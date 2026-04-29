@@ -2,7 +2,7 @@ import Link from "next/link";
 import FaqSection from "../components/FaqSection";
 import OurLocation from "../components/OurLocation";
 import { ArrowLeft } from "lucide-react";
-import WerbsiteBuilder from "../components/WerbsiteBuilder";
+// import WerbsiteBuilder from "../components/WerbsiteBuilder";
 
 const socials = [
   {
@@ -89,11 +89,11 @@ export default function ContactPage() {
         <p className="mb-5 heading inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
           تواصل معنا
         </p>
-        <h1 className="heading mb-5 text-[2.4rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[4rem]">
+        <h1 className="heading mb-5 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[6rem]">
           تواصل مع فريق
           <span className="text-primary heading marker-underline">
             {" "}
-            مشروع البوصلة
+            مشروع انطلاقتك
           </span>
         </h1>
         <p className="mx-auto max-w-2xl text-[0.95rem] leading-[1.95] text-slate-600 sm:text-lg">

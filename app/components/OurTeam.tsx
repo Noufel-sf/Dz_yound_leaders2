@@ -4,9 +4,9 @@ export default function OurTeam() {
   return (
     <section id="our-team" dir="rtl" className="px-4 py-20 sm:px-8 lg:px-12">
       <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/60">
+        <div className="relative aspect-[4/5] overflow-hidden ">
           <Image
-            src="/poli.png"
+            src="/h.jpg"
             alt="لماذا هذا البرنامج مهم"
             fill
             className="object-cover"
@@ -22,12 +22,12 @@ export default function OurTeam() {
           <h2 className="mt-5 heading text-3xl font-black leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
             يتكوّن فريق برنامج{" "}
             <span className="text-primary marker-underline heading">
-              "البوصلة"
+              "انطلاقتك"
             </span>
           </h2>
 
           <p className="mt-5 max-w-2xl text-lg leading-9 text-slate-600 sm:text-xl">
-            يتكوّن فريق برنامج “البوصلة” من مجموعة من الشباب الطموح والمتكامل،
+            يتكوّن فريق برنامج انطلاقتك من مجموعة من الشباب الطموح والمتكامل，
             يجمعهم الشغف بالتعلّم والعمل الجماعي. يعمل الفريق بروح احترافية
             لتقديم برنامج تكويني عالي الجودة، قائم على التنظيم والالتزام، بهدف
             إحداث أثر إيجابي ومستدام.

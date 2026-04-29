@@ -154,8 +154,7 @@ body {
 }
 
 .btn-gradient {
-   background-image: var(--gradient-primary);
-   color: #ffffff;
+   background-color: var(--color-primary);
    border-color: transparent;
    transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
 }

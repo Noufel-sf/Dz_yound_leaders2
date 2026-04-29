@@ -7,13 +7,14 @@ import OurVision from "../components/OurVision";
 import OurGoal from "../components/OurGoal";
 import OurTeam from "../components/OurTeam";
 import Plan from "../components/Plan";
+import WerbsiteBuilder from "../components/WerbsiteBuilder";
 
 export default function AboutPage() {
   return (
     <main dir="rtl" className="min-h-screen ">
       {/* ── Hero Section ── */}
       <section className="relative overflow-hidden px-4 py-24 sm:px-8 lg:px-12">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_25%,rgba(10,153,0,0.08),transparent_40%),radial-gradient(circle_at_80%_60%,rgba(224,47,117,0.08),transparent_40%)]" />
+        <div className="absolute inset-0 -z-10" />
 
         <div className="mx-auto max-w-5xl text-center">
           <div className="mb-6 inline-flex rounded-full bg-primary/10 px-5 py-2.5">
@@ -22,11 +23,11 @@ export default function AboutPage() {
             </span>
           </div>
 
-          <h1 className="heading mb-6 text-5xl font-bold leading-tight  text-slate-900 sm:text-6xl lg:text-7xl">
+          <h1 className="heading mb-6 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-[4rem] lg:text-[6rem]">
             مشروع
             <span className="text-primary heading marker-underline">
               {" "}
-              البوصلة
+              انطلاقتك
             </span>
           </h1>
 
@@ -40,7 +41,7 @@ export default function AboutPage() {
             <a
               target="_blank"
               href="https://docs.google.com/forms/d/e/1FAIpQLSfbaB2RWp_-TUz-QmFcEI1RDSXqHGAT_W0SxGcHdRHxbjSl5g/viewform"
-              className="btn-gradient group inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-lg font-bold shadow-lg transition-all hover:scale-105"
+              className="btn-gradient heading group inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-lg font-bold shadow-lg transition-all hover:scale-105"
             >
                سجل الآن
               <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
@@ -49,7 +50,7 @@ export default function AboutPage() {
         </div>
       </section>
       <OurTeam />
-      <Owner />
+      <WerbsiteBuilder />
       <OurGoal />
       <WhyChooseUs />
       <OurVision />

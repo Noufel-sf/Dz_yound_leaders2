@@ -45,7 +45,7 @@ export default function Navbar() {
             href="/"
             className="heading text-2xl marker-underline font-bold tracking-tight  text-primary transition-colors hover:text-third"
           >
-            البوصلة
+            انطلاقتك
           </Link>
 
           {/* Desktop links */}

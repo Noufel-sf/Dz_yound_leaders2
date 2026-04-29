@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lalezar , Noto_Sans_Arabic} from "next/font/google";
 import "./globals.css";
 import Layout from "./components/LayoutWrapper";
+import BackToTopButton from "./components/ui/BackToTopButton";
 
 const lalezar = Lalezar({
   weight: "400",
@@ -17,7 +18,7 @@ const notoSansArabic = Noto_Sans_Arabic({
 
 
 export const metadata: Metadata = {
-  title: "مخيم الرواد للشباب",
+  title: "مشروع انطلاقتك - مخيم الرواد للشباب",
   description: "مخيم الرواد للشباب هو برنامج تدريبي يهدف إلى تمكين الشباب من اكتساب المهارات القيادية والتطوير الشخصي، من خلال ورش عمل تفاعلية وأنشطة تعليمية ممتعة. يركز المخيم على تعزيز الثقة بالنفس، وتنمية مهارات التواصل، وبناء روح الفريق، مما يساعد المشاركين على تحقيق إمكاناتهم الكاملة في حياتهم الشخصية والمهنية.",
 };
 
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Layout>
           {children}
         </Layout>
+        <BackToTopButton />
       </body>
     </html>
   );

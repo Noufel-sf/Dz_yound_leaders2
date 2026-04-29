@@ -17,12 +17,7 @@ export default function OurVision() {
       />
 
       {/* large faded heading behind content */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-8 -z-10 select-none text-[clamp(5rem,18vw,14rem)] font-black leading-none text-slate-100"
-      >
-        رؤيتنا
-      </span>
+     
 
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 lg:flex-row lg:items-stretch lg:gap-16">
         {/* ── Text column ─────────────────────────────────── */}
@@ -76,7 +71,7 @@ export default function OurVision() {
           {/* image container */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/60">
             <Image
-              src="/why.png"
+              src="/g.svg"
               alt="لماذا هذا البرنامج مهم"
               fill
               className="object-cover"
@@ -89,7 +84,7 @@ export default function OurVision() {
             className="absolute -right-6 -top-6 -z-10 h-24 w-24 opacity-30"
             style={{
               backgroundImage:
-                "radial-gradient(circle, currentColor 1px, transparent 1px)",
+                "radial-gradient(circle, currentColor 2px, transparent 2px)",
               backgroundSize: "8px 8px",
               color: "var(--color-primary, #2563eb)",
             }}

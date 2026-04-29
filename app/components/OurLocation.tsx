@@ -3,7 +3,7 @@ function OurLocation() {
     <section className="relative flex flex-col gap-5 items-center overflow-hidden ">
         <h1 className="heading mb-5 text-[2.4rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[4rem]">
             موقع 
-          <span className="text-primary heading marker-underline">البوصلة</span>
+          <span className="text-primary heading marker-underline">انطلاقتك</span>
         </h1>
       {/* Map Embed */}
       <div className="relative w-full h-100 lg:h-125 bg-slate-200">

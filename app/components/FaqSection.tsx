@@ -52,7 +52,7 @@ export default function FaqSection() {
 
         {/* Header */}
         <div className="mb-12 flex flex-col items-center gap-4 text-center">
-          <p className="rounded-full  heading px-4 py-2 text-sm font-semibold bg-secondary/10 text-primary">
+          <p className="rounded-full  heading px-4 py-2 text-sm font-semibold bg-primary/10 text-primary">
             الأسئلة الشائعة
           </p>
           <h2 className="heading text-4xl font-bold leading-tight text-slate-900 sm:text-5xl">
