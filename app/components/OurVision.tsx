@@ -17,16 +17,19 @@ export default function OurVision() {
       />
 
       {/* large faded heading behind content */}
-     
 
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 lg:flex-row lg:items-stretch lg:gap-16">
         {/* ── Text column ─────────────────────────────────── */}
         <div className="flex flex-1 flex-col justify-center text-right">
           {/* badge */}
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            رؤيتنا
-          </span>
+          <div className="animate-bounce">
+            <Image
+              src="/stars.png"
+              alt="فريق انطلاقتك"
+              width={48}
+              height={48}
+            />
+          </div>
 
           {/* headline */}
           <h2 className="mt-5 heading text-4xl font-black leading-tight text-slate-900 sm:text-5xl lg:text-[3.4rem]">
@@ -71,7 +74,7 @@ export default function OurVision() {
           {/* image container */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/60">
             <Image
-              src="/g.svg"
+              src="/team.svg"
               alt="لماذا هذا البرنامج مهم"
               fill
               className="object-cover"

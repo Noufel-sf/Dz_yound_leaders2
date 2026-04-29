@@ -1,3 +1,4 @@
+import { Star } from "lucide-react";
 import Image from "next/image";
 
 export default function OurTeam() {
@@ -14,9 +15,8 @@ export default function OurTeam() {
           />
         </div>
         <div className="order-2 lg:order-1">
-          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold tracking-widest text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            فريقنا
+          <div className="">
+            <Image src="/stars.png" alt="فريق انطلاقتك" width={48} height={48} />
           </div>
 
           <h2 className="mt-5 heading text-3xl font-black leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
