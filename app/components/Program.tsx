@@ -20,7 +20,6 @@ const phases = [
       "تنطلق هذه المرحلة بتدريب مكثف على الذكاء الاصطناعي بوصفه المهارة الصلبة الأساسية، ثم يختار كل مشارك مسارًا تخصصيًا واحدًا للتطبيق العملي.",
     points: [
       "الذكاء الاصطناعي وPrompt Engineering: استخدام الأدوات الحديثة لرفع الإنتاجية وأتمتة المهام.",
-      "Python: أساسيات عملية لتبسيط المهام وتطوير التفكير البرمجي.",
       "المسارات المتاحة: ريادة الأعمال، التسويق الرقمي، وإدارة المشاريع.",
     ],
   },
@@ -35,6 +34,57 @@ const phases = [
       "مهارات الإلقاء، كاريزما الظهور، والتحكم في نبرة الصوت ولغة الجسد.",
       "إعداد متدربين قادرين على نقل المعرفة التقنية للأقران بشكل مستدام.",
     ],
+  },
+];
+
+const specializedPaths = [
+  {
+    id: "01",
+    title: "ريادة الأعمال",
+    icon: "🚀",
+    description: "بناء ريادة أعمال مستدامة من الفكرة إلى التطبيق",
+    details: [
+      "تطوير الفكرة وكتابة خطة العمل Business Plan الاحترافية",
+      "دراسة السوق والجمهور المستهدف وتحليل المنافسين",
+      "نماذج الإيرادات والتمويل والاستثمار في المشاريع الناشئة",
+      "استخدام الذكاء الاصطناعي في تسريع نمو الشركات الناشئة",
+      "بناء فريق متكامل والقيادة الفعالة للمشروع",
+      "قياس الأداء والمؤشرات الرئيسية KPIs والقابلية للتوسع",
+    ],
+    color: "from-blue-500/20 to-blue-600/20",
+    borderColor: "border-blue-200/50",
+  },
+  {
+    id: "02",
+    title: "التسويق الرقمي",
+    icon: "📱",
+    description: "إتقان أدوات التسويق الرقمي للوصول إلى الجمهور المستهدف",
+    details: [
+      "استراتيجية التسويق الرقمي الشاملة والمتكاملة",
+      "تحسين محركات البحث SEO والإعلانات المدفوعة SEM",
+      "التسويق عبر وسائل التواصل الاجتماعي والمحتوى الفيروسي",
+      "البريد الإلكتروني والتسويق بالعلاقات CRM",
+      "تحليل البيانات والإحصائيات لقياس فعالية الحملات",
+      "استخدام الذكاء الاصطناعي في أتمتة التسويق والتنبؤ بسلوك المستهلك",
+    ],
+    color: "from-purple-500/20 to-pink-600/20",
+    borderColor: "border-purple-200/50",
+  },
+  {
+    id: "03",
+    title: "إدارة المشاريع",
+    icon: "📊",
+    description: "إدارة المشاريع بكفاءة عالية والتسليم في الوقت المحدد",
+    details: [
+      "أساسيات إدارة المشاريع والمنهجيات Agile و Waterfall",
+      "تخطيط المشروع وتحديد النطاق والموارد والجدول الزمني",
+      "إدارة المخاطر والتعامل مع التحديات والتغييرات",
+      "قيادة الفريق والتواصل الفعال بين أصحاب المصلحة",
+      "مراقبة التقدم وقياس الأداء والانحرافات",
+      "استخدام أدوات إدارة المشاريع الحديثة والذكاء الاصطناعي في التنبؤ والتحسين",
+    ],
+    color: "from-green-500/20 to-emerald-600/20",
+    borderColor: "border-green-200/50",
   },
 ];
 
@@ -64,7 +114,7 @@ export default function Program() {
       <div className="mx-auto max-w-7xl">
         <div className="max-w-4xl">
            <div className="">
-            <Image src="/stars.png" alt="فريق انطلاقتك" width={48} height={48} />
+            <Image src="/img.svg" alt="فريق انطلاقتك" width={68} height={68} />
           </div>
           <h2 className="mt-5 text-3xl font-black leading-tight sm:text-4xl lg:text-5xl">
             <span className="heading marker-underline text-primary heading">النشاطات</span>
@@ -109,11 +159,66 @@ export default function Program() {
           ))}
         </div>
 
+        {/* Specialized Paths Section */}
+        <div className="mt-16">
+          <div className="max-w-3xl mb-10">
+            <h2 className="text-4xl heading font-black leading-tight">
+              <span className="heading marker-underline text-primary">رابعًا:</span>
+              <span className="mx-2 heading">المسارات التخصصية</span>
+            </h2>
+            <p className="mt-4 text-base leading-8 text-slate-700 sm:text-lg">
+              اختر مسارك المفضل واكتسب المهارات العملية اللازمة لتحقيق أحلامك في أحد هذه المجالات الثلاثة الواعدة.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-3">
+            {specializedPaths.map((path) => (
+              <div
+                key={path.id}
+                className={`group relative overflow-hidden rounded-3xl border ${path.borderColor} bg-gradient-to-br ${path.color} p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-opacity-100 backdrop-blur-sm`}
+              >
+                {/* Decorative Background */}
+                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10 blur-2xl transition-transform duration-300 group-hover:scale-150" />
+                <div className="absolute -left-8 -bottom-8 h-32 w-32 rounded-full bg-white/5 blur-2xl transition-transform duration-300 group-hover:scale-150" />
+
+                <div className="relative z-10">
+                  {/* Icon and Number */}
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <span className="text-5xl">{path.icon}</span>
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-sm font-black text-slate-700">
+                      {path.id}
+                    </span>
+                  </div>
+
+                  {/* Title and Description */}
+                  <h3 className="text-2xl heading font-black leading-snug text-slate-900 mt-4">
+                    {path.title}
+                  </h3>
+                  <p className="mt-3 text-sm font-semibold text-slate-700 line-clamp-2">
+                    {path.description}
+                  </p>
+
+                  {/* Details List */}
+                  <ul className="mt-6 space-y-2">
+                    {path.details.map((detail, idx) => (
+                      <li key={idx} className="flex gap-2 text-xs leading-6 text-slate-700">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 flex-none" />
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-14  p-6 sm:p-8">
           <div className="max-w-3xl">
-            <h3 className="text-2xl heading font-black leading-tight sm:text-3xl">
-              <span className="heading marker-underline text-primary">خامسًا:</span>
-              <span className="mx-2 heading text-primary">التقييم</span>
+            <h3 className="text-4xl heading font-black leading-tight ">
+              <span className="heading marker-underline  text-primary">خامسًا:</span>
+              <span className="mx-2 heading ">التقييم</span>
             </h3>
             <p className="mt-4 text-sm leading-7 text-slate-700 sm:text-base">
               تعتمد عملية التقييم على نظام شامل يضمن جودة المخرجات وتحقيق الأهداف المرجوة.
@@ -126,7 +231,7 @@ export default function Program() {
                 key={item.title}
                 className="rounded-2xl border border-secondary/15 bg-white p-5 shadow-sm"
               >
-                <h4 className="heading text-lg font-black text-secondary">{item.title}</h4>
+                <h4 className="heading text-xl font-black text-secondary">{item.title}</h4>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
               </div>
             ))}

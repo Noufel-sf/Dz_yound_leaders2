@@ -1,17 +1,17 @@
-"use client";
+import Image from "next/image";
 
 const objectives = [
-  "تعزيز وعي الشباب بأهمية المشاركة السياسية ودورهم في الحياة العامة.",
-  "توفير تكوين منهجي لـ 50 إلى 100 شاب في مجالات السياسة، القانون، الإدارة، والمهارات العملية.",
-  "تنمية فهم آليات عمل المجالس المنتخبة وصناعة القرار.",
-  "تقديم تجارب تطبيقية ومحاكاة لدعم الانخراط الفعلي في الشأن العام.",
+  "بناء الشخصية القيادية",
+  "التمكين التقني الشامل",
+  "التخصص المهني المرن",
+  "الاستدامة المعرفية",
 ];
 
 const expectedResults = [
-  "ارتفاع اهتمام الشباب بالمشاركة في الانتخابات والترشح للمجالس المنتخبة.",
-  "تعزيز مستوى الوعي السياسي لدى المشاركين.",
-  "تأهيل ما لا يقل عن 20 شابا للاندماج في المجالس المنتخبة أو الإدارة المحلية.",
-  "إطلاق مبادرات ومشاريع شبابية مرتبطة بالشأن العام.",
+  "تطوير المهارات الناعمة والذكاء العاطفي لدى 100% من المشاركين، مما يعزز قدرتهم على العمل الجماعي والقيادة.",
+  "إتقان جميع المشاركين لأساسيات الذكاء الاصطناعي وهندسة الأوامر (Prompt Engineering) وتطبيقها في أتمتة المهام اليومية.",
+  "إنجاز مشاريع تطبيقية في مسارات اختيارية (ريادة الأعمال، التسويق الرقمي، أو إدارة المشاريع) تعتمد بشكل أساسي على أدوات الذكاء الاصطناعي.",
+  "تأهيل شبكة من المدربين المعتمدين (TOT) القادرين على تصميم وتقديم حقائب تدريبية احترافية لنشر المعرفة التقنية.",
 ];
 
 const solutions = [
@@ -48,9 +48,15 @@ export default function ProblemAndObjectives() {
       <div className="mx-auto w-full max-w-6xl space-y-14">
         {/* ── Header ─────────────────────────────────────────── */}
         <div className="pr-6">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-primary mb-3">
-            برنامج البوصلة
-          </span>
+              <div className="">
+                     <Image
+                       src="/img.svg"
+                       alt="فريق انطلاقتك"
+                       width={78}
+                       height={78}
+                     />
+                   </div>
+         
           <h2 className="heading text-4xl font-black leading-tight text-slate-900 sm:text-6xl">
             الإشكالية،{" "}
             <span className="relative text-primary marker-underline heading">
@@ -83,12 +89,19 @@ export default function ProblemAndObjectives() {
         <div className="grid gap-5 lg:grid-cols-2">
           {/* Problem */}
           <div className="group relative overflow-hidden rounded-3xl bg-rose-50 p-8 border border-rose-100">
-            <p className="heading text-xs font-bold uppercase tracking-widest text-rose-500 mb-4">
+            <p className="heading text-2xl font-bold uppercase tracking-widest text-rose-500 mb-4">
               الإشكالية
             </p>
-         
+               <h3 className="heading text-xl font-extrabold text-red-900 sm:text-xl leading-snug">
+              تمكين الفئة المستهدفة من امتلاك أدوات المستقبل
+            </h3>
+
             <p className="mt-4 text-base leading-8 text-rose-800/80">
-            عزوف متزايد لدى الشباب عن الانخراط والمشاركة في المشهد السياسي مقابل غياب التوعية و التكوين الجاد.
+              يعاني الشباب (18–35 سنة) من صعوبة مواكبة التحولات الرقمية بسبب
+              فجوة بين التعليم التقليدي ومتطلبات سوق العمل. كما يفتقر الكثير
+              منهم لإتقان أدوات الذكاء الاصطناعي كمهارة أساسية للإنتاج. ويواجهون
+              صعوبة في تحديد المسارات التقنية عمليًا، مما يضعف تنافسيتهم المهنية
+              ونقل المعرفة بينهم.
             </p>
             {/* decorative number */}
             <span className="absolute -left-3 -bottom-6 text-[7rem] font-black text-rose-200/60 select-none leading-none pointer-events-none">
@@ -98,15 +111,18 @@ export default function ProblemAndObjectives() {
 
           {/* Goal */}
           <div className="group relative overflow-hidden rounded-3xl bg-emerald-50 p-8 ">
-            <p className="heading text-xs font-bold uppercase tracking-widest text-emerald-600 mb-4">
+            <p className="heading text-2xl font-bold uppercase tracking-widest text-emerald-600 mb-4">
               الهدف العام
             </p>
-            <h3 className="heading text-2xl font-extrabold text-emerald-900 sm:text-3xl leading-snug">
-              تأهيل 50–100 شاب لصناعة القرار
+            <h3 className="heading text-xl font-extrabold text-emerald-900 sm:text-xl leading-snug">
+              تمكين الفئة المستهدفة من امتلاك أدوات المستقبل
             </h3>
             <p className="mt-4 text-base leading-8 text-emerald-900/80">
-              تأهيل ما بين 50 و100 شاب في مجالات السياسة وصناعة القرار، عبر
-              برنامج يجمع بين المعرفة النظرية والتطبيق العملي.
+              عبر دمج الذكاء الاصطناعي كركيزة معرفية إلزامية لجميع المشاركين.
+              يسعى المشروع إلى صقل الشخصية القيادية وتوفير مسارات تخصصية
+              اختيارية تتيح للشباب تطبيق التقنيات الحديثة في مجالاتهم المهنية،
+              وصو لاً إلى إعداد جيل من المدربين القادرين على صناعة الأثر ونقل
+              الخبرات بفعالية في المجتمع
             </p>
             <span className="absolute -left-3 -bottom-6 text-[7rem] font-black text-emerald-200/60 select-none leading-none pointer-events-none">
               ✓
@@ -141,7 +157,7 @@ export default function ProblemAndObjectives() {
               </h3>
               <p className="mt-3 text-base leading-8 text-slate-600 sm:text-lg">
                 الشباب من{" "}
-                <span className="font-bold text-primary">18 إلى 45 سنة</span> من
+                <span className="font-bold text-primary">18 إلى 35 سنة</span> من
                 الطلبة والناشطين والمهتمين بالمجال العام، ممن يسعون لتطوير
                 معارفهم ومهاراتهم في السياسة والقانون والإدارة وتعزيز مشاركتهم
                 المجتمعية.
@@ -247,7 +263,10 @@ export default function ProblemAndObjectives() {
           <div className="mb-8 flex items-center gap-4">
             <div className="flex-1 " />
             <h3 className="heading  font-extrabold  text-4xl">
-              الحلول  <span className="text-primary marker-underline heading">المقترحة</span>
+              الحلول{" "}
+              <span className="text-primary marker-underline heading">
+                المقترحة
+              </span>
             </h3>
             <div className="flex-1" />
           </div>

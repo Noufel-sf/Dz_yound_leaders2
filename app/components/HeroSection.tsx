@@ -59,7 +59,9 @@ export default function HeroSection() {
 
           <h1 className="mt-6 heading text-4xl font-black leading-tight text-primary sm:text-5xl lg:text-6xl">
             تمكين الشباب بالمهارات الرقمية
-            <span className="mt-2 block text-secondary heading">من الفكرة إلى سوق العمل</span>
+            <span className="mt-2 block text-secondary heading marker-underline">
+              من الفكرة إلى سوق العمل
+            </span>
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-8 text-slate-700 sm:text-lg">
@@ -76,7 +78,7 @@ export default function HeroSection() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-secondary px-7 text-sm font-bold text-secondary transition hover:bg-secondary hover:text-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-secondary px-7 text-sm font-bold text-white transition bg-secondary hover:bg-secondary/90"
             >
               سجل اهتمامك
             </Link>
@@ -91,10 +93,10 @@ export default function HeroSection() {
         >
           <div className="relative mx-auto max-w-xl ">
             <Image
-              src="/work.svg"
+              src="/h.jpg"
               alt="work illustration"
               width={900}
-              height={700}
+              height={900}
               priority
               className="h-auto w-full"
             />

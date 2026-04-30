@@ -34,7 +34,7 @@ body {
    left: -0.2em;
    bottom: 0.12em;
    height: 0.4em;
-   background-color: rgba(69, 248, 215, 0.38);
+   background-color: rgba(252, 224, 10, 0.38);
 }
 
 * {
@@ -49,15 +49,14 @@ body {
   /* ===========================================
      COLORS (LIGHT MODE)
   ============================================ */
-   --color-primary:  #9929EA;
-   --color-secondary: #9E1C63;
-   --color-third: #9E1C60;
-   --color-fourth: #9E1C60;
+   --color-primary:  rgba(22, 163, 255, 0.9);
+   --color-secondary: rgba(255, 90, 87, 0.9);
+   --color-third: rgba(158, 28, 96, 0.9);
+   --color-fourth: rgba(158, 28, 96, 0.9);
    
    --gradient-primary: rgba(22, 163, 255, 0.9) ;
    
 
-  --color-secondary: #FFA9C4;
   
   --color-secondary-foreground: #ffffff;
   
@@ -162,6 +161,21 @@ body {
 .btn-gradient:hover {
    filter: brightness(1.05);
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(20%);
+  }
+  100% {
+    transform: translateX(-60%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 5s linear infinite;
+}
+
+
 
 /* Hero highlight styles (used by HeroSection) */
 .hero-title {

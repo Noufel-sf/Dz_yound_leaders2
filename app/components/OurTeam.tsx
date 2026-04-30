@@ -16,7 +16,7 @@ export default function OurTeam() {
         </div>
         <div className="order-2 lg:order-1">
           <div className="">
-            <Image src="/stars.png" alt="فريق انطلاقتك" width={48} height={48} />
+            <Image src="/img.svg" alt="فريق انطلاقتك" width={68} height={68} />
           </div>
 
           <h2 className="mt-5 heading text-3xl font-black leading-tight text-slate-900 sm:text-4xl lg:text-5xl">

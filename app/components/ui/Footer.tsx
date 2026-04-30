@@ -12,7 +12,7 @@ function Footer() {
           <div className="absolute inset-0 bg-primary -z-10" />
 
           <div className="w-full relative z-10 px-8 md:px-16">
-            <h1 className="text-[6rem] md:text-[10rem] text-center mb-12 heading  font-bold">
+            <h1 className="text-[6rem] md:text-[10rem] text-white text-center mb-12 heading  font-bold">
               مشروع انطلاقتك
             </h1>
             <div

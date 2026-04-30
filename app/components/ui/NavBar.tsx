@@ -115,7 +115,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
             className="heading text-xl marker-underline font-bold tracking-tight text-primary"
           >
-            البوصلة
+            انطلاقتك
           </Link>
           <button
             onClick={() => setIsOpen(false)}

@@ -22,12 +22,12 @@ export default function OurVision() {
         {/* ── Text column ─────────────────────────────────── */}
         <div className="flex flex-1 flex-col justify-center text-right">
           {/* badge */}
-          <div className="animate-bounce">
+          <div className="">
             <Image
-              src="/stars.png"
+              src="/img.svg"
               alt="فريق انطلاقتك"
-              width={48}
-              height={48}
+              width={78}
+              height={78}
             />
           </div>
 
@@ -74,7 +74,7 @@ export default function OurVision() {
           {/* image container */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/60">
             <Image
-              src="/team.svg"
+              src="/h.jpg"
               alt="لماذا هذا البرنامج مهم"
               fill
               className="object-cover"
