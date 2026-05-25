@@ -59,14 +59,15 @@ const faqs: FAQItem[] = [
 export default function FaqSection() {
   return (
     <section id="faq" dir="rtl" className="w-full px-4 py-20 sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-4xl  p-6 sm:p-10">
+      <div className="mx-auto max-w-4xl p-6 sm:p-10">
 
         {/* Header */}
         <div className="mb-12 flex flex-col items-center gap-4 text-center">
-          <p className="rounded-full  heading px-4 py-2 text-sm font-semibold bg-primary/10 text-primary">
-            الأسئلة الشائعة
-          </p>
-          <h2 className="heading text-4xl font-bold leading-tight text-slate-900 sm:text-5xl">
+         <span className="inline-flex items-center gap-2 rounded-full border-2 border-black heading bg-secondary px-4 py-1 text-2xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+          مشروع البوصلة
+        </span>
+
+          <h2 className="heading text-4xl font-bold leading-tight text-slate-900 sm:text-6xl">
             كل ما تحتاج معرفته قبل
             <span className="marker-underline text-primary heading"> الانطلاق معنا</span>
           </h2>
@@ -78,14 +79,14 @@ export default function FaqSection() {
         </div>
 
         {/* Accordion list */}
-        <div className="overflow-hidden rounded-2xl border border-primary/15 bg-white/70">
+        <div className="overflow-hidden rounded-3xl border-2 border-black bg-[var(--figjam-cream)] p-4 shadow-[10px_10px_0_0_#111111] sm:p-6">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq) => (
-              <AccordionItem key={faq.id} value={faq.id}>
-                <AccordionTrigger className="text-right">
+              <AccordionItem key={faq.id} value={faq.id} className="mb-4 last:mb-0">
+                <AccordionTrigger className="text-right heading text-lg">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-right text-sm leading-8 text-slate-600 sm:text-base">
+                <AccordionContent className="text-right text-sm leading-8 text-slate-700 sm:text-base">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

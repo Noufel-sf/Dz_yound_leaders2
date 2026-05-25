@@ -24,10 +24,10 @@ export default function OurVision() {
           {/* badge */}
           <div className="">
             <Image
-              src="/img.svg"
+              src="/logo2.png"
               alt="فريق انطلاقتك"
-              width={78}
-              height={78}
+              width={88}
+              height={88}
             />
           </div>
 

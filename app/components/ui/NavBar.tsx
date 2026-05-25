@@ -33,7 +33,7 @@ export default function Navbar() {
     <>
       <header
         className={[
-          "sticky top-0 z-40 bg-[var(--figjam-blue)] border-b-4 border-black  transition-all duration-300",
+          "sticky top-0 z-40  border-b-4 bg-blue-700 border-black  transition-all duration-300",
           scrolled
             ? "border  shadow-lg backdrop-blur-lg"
             : " ",
@@ -43,7 +43,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="heading text-2xl marker-underline font-bold tracking-tight  text-primary transition-colors hover:text-third"
+            className="heading text-2xl marker-underline font-bold tracking-tight  text-white transition-colors hover:text-third"
           >
             انطلاقتك
           </Link>
@@ -54,7 +54,7 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 href={link.to}
-                className="relative transition-colors hover:text-primary after:absolute after:-bottom-1 after:right-0 after:h-[2px] after:w-0 after:bg-gradient-to-l after:from-primary after:to-secondary after:transition-all hover:after:w-full"
+                className="relative text-white heading text-lg"
               >
                 {link.label}
               </Link>

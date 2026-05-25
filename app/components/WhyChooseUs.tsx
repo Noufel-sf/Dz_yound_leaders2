@@ -1,5 +1,12 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import { Check } from "lucide-react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const highlights = [
   {
@@ -46,13 +53,52 @@ const highlights = [
 ];
 
 function WhyChooseUs() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        ".why-choose-title",
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: { trigger: ".why-choose-title", start: "top 85%" },
+        },
+      );
+
+      gsap.utils.toArray<HTMLElement>(".why-choose-card").forEach((card, i) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 30, rotate: -2 },
+          {
+            opacity: 1,
+            y: 0,
+            rotate: 0,
+            duration: 0.6,
+            delay: i * 0.08,
+            ease: "power2.out",
+            scrollTrigger: { trigger: card, start: "top 85%" },
+          },
+        );
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
-    <section className="bg-[var(--figjam-blue)] px-4 py-20 sm:px-8 lg:px-12">
-      <div className="mb-10 flex flex-col items-center gap-4 text-center">
-        <span className="rounded-full border-2 border-black bg-[var(--figjam-yellow)] px-4 py-1 text-xl heading font-bold text-black shadow-[3px_3px_0_0_#111111]">
-          ما الذي يميزنا
+    <section
+      ref={sectionRef}
+      className="bg-blue-700 px-4 py-20 sm:px-8 lg:px-12"
+    >
+      <div className="why-choose-title mb-10 flex flex-col items-center gap-4 text-center">
+        <span className="inline-flex items-center gap-2 rounded-full border-2 border-black heading bg-secondary px-4 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+          مشروع البوصلة
         </span>
-        <h2 className="heading text-5xl font-bold uppercase text-[#111111] sm:text-7xl">
+
+        <h2 className="heading text-5xl font-bold uppercase text-white sm:text-7xl">
           <span className="block heading">ما الذي يميزنا</span>
         </h2>
       </div>
@@ -62,7 +108,7 @@ function WhyChooseUs() {
           {highlights.map((item, idx) => (
             <article
               key={idx}
-              className={`rounded-2xl border-[3px] bg-white p-6 shadow-[6px_6px_0_0_#111111] ${item.accent}`}
+              className={`why-choose-card rounded-2xl border-[3px] bg-white p-6 shadow-[6px_6px_0_0_#111111] ${item.accent}`}
             >
               <div className="mb-4 flex items-center justify-between">
                 <div
@@ -71,9 +117,9 @@ function WhyChooseUs() {
                   <Check className="h-6 w-6" />
                 </div>
                 <div className="flex items-center gap-1">
-                  <span className="h-3 w-3 rounded-full bg-[var(--figjam-blue)]" />
+                  <span className="h-3 w-3 rounded-full bg-primary" />
                   <span className="h-3 w-3 rounded-full bg-[var(--figjam-green)]" />
-                  <span className="h-3 w-3 rounded-full bg-[var(--figjam-yellow)]" />
+                  <span className="h-3 w-3 rounded-full bg-secondary" />
                 </div>
               </div>
               <h3 className="heading mb-3 text-lg font-bold text-[#111111]">

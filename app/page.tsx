@@ -15,10 +15,11 @@ export default function Home() {
   return (
     <>
       {isLoading && <PreLoad onComplete={() => setIsLoading(false)} />}
+      
       <HeroSection />
-      <WhyChooseUs />
        <OurVision />
-      <Services />
+       <WhyChooseUs />
+      {/* <Services /> */}
       {/* <Program /> */}
       {/* <ProblemAndObjectives /> */}
      

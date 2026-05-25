@@ -8,7 +8,7 @@ function Footer() {
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div className="relative h-[calc(100vh+430px)] -top-[100vh]">
-        <footer className="h-[430px] py-12 sticky top-[calc(100vh-430px)] bg-primary">
+        <footer className="h-[430px] py-42 pb-22 sticky top-[calc(100vh-430px)] bg-primary">
           <div className="absolute inset-0 bg-primary -z-10" />
 
           <div className="w-full relative z-10 px-8 md:px-16">
