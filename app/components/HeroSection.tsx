@@ -77,24 +77,8 @@ export default function HeroSection() {
       dir="rtl"
       className="relative min-h-screen overflow-hidden px-4 py-2 md:py-8 sm:px-8"
     >
-      {/* Background texture */}
 
-      {/* ── Top nav bar with logo ── */}
-      <motion.nav
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative z-10 mx-auto flex w-full max-w-5xl items-center justify-between pb-10"
-      >
-        <LogoSlot />
-
-        {/* Programme badge (top-left in RTL = visual right) */}
-        <span className="hidden sm:inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-xs font-semibold text-slate-600 shadow-sm backdrop-blur-sm">
-          <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-         الياس منصر· DZ Young Leaders
-        </span>
-      </motion.nav>
-
+    
       {/* ── Hero content ── */}
       <div className="relative z-10 mx-auto flex w-full gap-2 max-w-5xl flex-col items-center text-center">
         {/* Eyebrow pill */}
@@ -116,10 +100,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <span className="inline-flex w-fit mt-5 items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold capitalize tracking-widest text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            dz young leaders - مشروع البوصلة
-          </span>
+    
         </motion.div>
 
         {/* Sub-descriptions */}

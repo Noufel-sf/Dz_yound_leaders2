@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Lalezar , Noto_Sans_Arabic} from "next/font/google";
+import { Lalezar , Noto_Sans_Arabic, Inter } from "next/font/google";
 import "./globals.css";
 import Layout from "./components/LayoutWrapper";
 import BackToTopButton from "./components/ui/BackToTopButton";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const lalezar = Lalezar({
   weight: "400",
@@ -30,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lalezar.variable} ${notoSansArabic.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", lalezar.variable, notoSansArabic.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
         <Layout>

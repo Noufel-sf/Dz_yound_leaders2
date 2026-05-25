@@ -4,6 +4,7 @@ import { useState } from "react";
 import FaqSection from "./components/FaqSection";
 import HeroSection from "./components/HeroSection";
 import Program from "./components/Program";
+import Services from "./components/Services";
 import OurVision from "./components/OurVision";
 import ProblemAndObjectives from "./components/ProblemAndObjectives";
 import WhyChooseUs from "./components/WhyChooseUs";
@@ -19,7 +20,8 @@ export default function Home() {
       <HeroSection />
       <Marque />
       <WhyChooseUs />
-      <Program />
+      <Services />
+      {/* <Program /> */}
       <ProblemAndObjectives />
       <OurVision />
       <FaqSection />

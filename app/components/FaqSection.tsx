@@ -1,4 +1,15 @@
-import AccordionItem, { type FAQItem } from "./AcordionItem";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+type FAQItem = {
+  id: string;
+  question: string;
+  answer: string;
+};
 
 const faqs: FAQItem[] = [
   {
@@ -68,9 +79,18 @@ export default function FaqSection() {
 
         {/* Accordion list */}
         <div className="overflow-hidden rounded-2xl border border-primary/15 bg-white/70">
-          {faqs.map((faq) => (
-            <AccordionItem key={faq.id} item={faq} />
-          ))}
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq) => (
+              <AccordionItem key={faq.id} value={faq.id}>
+                <AccordionTrigger className="text-right">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-right text-sm leading-8 text-slate-600 sm:text-base">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
 
         {/* Footer note */}
