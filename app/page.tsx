@@ -8,6 +8,8 @@ import OurVision from "./components/OurVision";
 // import ProblemAndObjectives from "./components/ProblemAndObjectives";
 import WhyChooseUs from "./components/WhyChooseUs";
 import {PreLoad} from "./components/Preloader";
+import ReelVideo from "./components/ReelVideo";
+import CtaSection from "./components/CtaSection";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +21,8 @@ export default function Home() {
       <HeroSection />
        <OurVision />
        <WhyChooseUs />
+       <ReelVideo />
+       <CtaSection />
       {/* <Services /> */}
       {/* <Program /> */}
       {/* <ProblemAndObjectives /> */}

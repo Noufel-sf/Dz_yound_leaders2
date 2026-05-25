@@ -199,6 +199,9 @@ export default function ContactPage() {
       </div>
       <OurLocation />
       <FaqSection />
+      {/* <canvas style="vertical-align: top; width: 411px; height: 411px;" width="822" height="822"></canvas> */}
     </main>
   );
 }
+
+
