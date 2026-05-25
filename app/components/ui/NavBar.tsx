@@ -33,10 +33,10 @@ export default function Navbar() {
     <>
       <header
         className={[
-          "sticky top-0 z-40 transition-all duration-300",
+          "sticky top-0 z-40 bg-[var(--figjam-blue)] border-b-4 border-black  transition-all duration-300",
           scrolled
-            ? "border-b border-primary/20  shadow-sm backdrop-blur-lg"
-            : "border-b border-transparent ",
+            ? "border  shadow-lg backdrop-blur-lg"
+            : " ",
         ].join(" ")}
       >
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 lg:px-4">

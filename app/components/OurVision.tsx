@@ -4,7 +4,7 @@ export default function OurVision() {
   return (
     <section
       dir="rtl"
-      className="relative overflow-hidden  px-4 py-20 sm:px-8 lg:px-12"
+      className="relative overflow-hidden bg-amber-100  px-4 py-20 sm:px-8 lg:px-12"
     >
       {/* subtle background grid */}
       <div

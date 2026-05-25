@@ -115,7 +115,6 @@ const SERVICES = [
 ];
 
 export default function Services() {
-  const router = useRouter();
 
   // refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -169,7 +168,7 @@ export default function Services() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-x-hidden bg-[var(--figjam-cream)] text-[#111111] selection:bg-[var(--figjam-green)] selection:text-black"
+      className="relative w-full mt-40 overflow-x-hidden bg-[var(--figjam-cream)] text-[#111111] selection:bg-[var(--figjam-green)] selection:text-black"
     >
       {/* SERVICES SCROLL STACK */}
 

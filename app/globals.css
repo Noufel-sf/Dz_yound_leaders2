@@ -186,6 +186,19 @@ body {
   animation: marquee 5s linear infinite;
 }
 
+@keyframes marquee2 {
+   0% {
+      transform: translateX(100%);
+   }
+   100% {
+      transform: translateX(-100%);
+   }
+}
+
+.animate-marquee2 {
+   animation: marquee2 5s linear infinite;
+}
+
 /* Hero highlight styles (used by HeroSection) */
 .hero-title {
    display: inline-block;
