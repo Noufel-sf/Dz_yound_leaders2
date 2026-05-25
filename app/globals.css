@@ -6,11 +6,11 @@ html {
 }
 
 body {
-   min-height: 100%;
+   /* min-height: 100%;
    background-color: #ffffff;
    background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.35) 1px, transparent 0);
    background-size: 20px 20px;
-   background-repeat: repeat;
+   background-repeat: repeat; */
 }
 
 .heading {
@@ -77,6 +77,18 @@ body {
 
   --color-destructive: #ef4444;
   --color-destructive-foreground: #ffffff;
+
+  /* ===========================================
+     FIGJAM HERO COLORS
+  ============================================ */
+  --figjam-black: #111111;
+  --figjam-cream: #fff8ec;
+  --figjam-purple: #8a4dff;
+  --figjam-yellow: #ffd64d;
+  --figjam-pink: #ff6f8f;
+  --figjam-blue: #3c7cff;
+  --figjam-orange: #ff7a3c;
+  --figjam-green: #41c27d;
 
 
   /* Now you can use:
@@ -213,3 +225,267 @@ body {
 
 /* Make sure headings keep Arabic font weight and RTL */
 .heading { direction: rtl; }
+
+/* FigJam-inspired hero styles */
+.figjam-hero {
+   background: linear-gradient(180deg, #fffdf7 0%, #ffffff 55%, #fff7e8 100%);
+   color: var(--figjam-black);
+}
+
+.figjam-grid {
+   position: absolute;
+   inset: 0;
+   background-image: radial-gradient(rgba(17, 17, 17, 0.12) 1px, transparent 0);
+   background-size: 26px 26px;
+   opacity: 0.4;
+   pointer-events: none;
+}
+
+.figjam-blob {
+   position: absolute;
+   width: 340px;
+   height: 340px;
+   border-radius: 48% 52% 58% 42% / 55% 38% 62% 45%;
+   filter: blur(0.5px);
+   opacity: 0.7;
+   z-index: 0;
+}
+
+.figjam-blob-purple {
+   background: var(--figjam-purple);
+   right: -80px;
+   bottom: -80px;
+}
+
+.figjam-blob-yellow {
+   background: var(--figjam-yellow);
+   left: -120px;
+   top: 120px;
+}
+
+.figjam-logo {
+   width: 42px;
+   height: 42px;
+   border-radius: 12px;
+   background: #000000;
+   color: #ffffff;
+   display: grid;
+   place-items: center;
+   font-weight: 800;
+   letter-spacing: -0.05em;
+}
+
+.figjam-pill {
+   margin-top: 2px;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 11px;
+   font-weight: 700;
+   padding: 2px 8px;
+   border-radius: 999px;
+   background: var(--figjam-yellow);
+   color: #1c1c1c;
+}
+
+.figjam-tag {
+   display: inline-flex;
+   align-items: center;
+   padding: 6px 14px;
+   border-radius: 999px;
+   background: #ffffff;
+   border: 2px solid #111111;
+   box-shadow: 4px 4px 0 #111111;
+   font-size: 12px;
+   font-weight: 700;
+}
+
+.figjam-underline {
+   position: relative;
+   display: inline-block;
+   padding: 0 6px;
+   margin: 0 2px;
+   z-index: 0;
+}
+
+.figjam-underline::after {
+   content: "";
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 6px;
+   height: 0.5em;
+   z-index: -1;
+   transform: rotate(-2deg);
+   border-radius: 10px;
+   background: var(--figjam-yellow);
+}
+
+.figjam-underline-yellow::after { background: var(--figjam-yellow); }
+.figjam-underline-pink::after { background: var(--figjam-pink); }
+
+.figjam-cta {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 48px;
+   padding: 0 28px;
+   border-radius: 999px;
+   background: #111111;
+   color: #ffffff;
+   font-weight: 800;
+   box-shadow: 4px 4px 0 #111111;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.figjam-cta:hover {
+   transform: translateY(-2px);
+   box-shadow: 6px 6px 0 #111111;
+}
+
+.figjam-ghost {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 48px;
+   padding: 0 28px;
+   border-radius: 999px;
+   border: 2px solid #111111;
+   color: #111111;
+   font-weight: 800;
+   background: #ffffff;
+   box-shadow: 4px 4px 0 #111111;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.figjam-ghost:hover {
+   transform: translateY(-2px);
+   box-shadow: 6px 6px 0 #111111;
+}
+
+.figjam-chip {
+   padding: 6px 14px;
+   border-radius: 999px;
+   background: #ffffff;
+   border: 2px dashed #111111;
+   font-weight: 700;
+}
+
+.figjam-chip-pink { background: rgba(255, 111, 143, 0.18); }
+.figjam-chip-yellow { background: rgba(255, 214, 77, 0.25); }
+
+.figjam-board {
+   position: relative;
+   border-radius: 24px;
+   background: #ffffff;
+   border: 3px solid #111111;
+   box-shadow: 12px 12px 0 #111111;
+   padding: 20px 24px 28px;
+}
+
+.figjam-board-toolbar {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   padding-bottom: 12px;
+   border-bottom: 2px solid rgba(17, 17, 17, 0.1);
+}
+
+.figjam-dot {
+   width: 10px;
+   height: 10px;
+   border-radius: 999px;
+   display: inline-block;
+}
+
+.figjam-dot-red { background: #ff5a57; }
+.figjam-dot-yellow { background: #ffd64d; }
+.figjam-dot-green { background: #41c27d; }
+
+.figjam-board-title {
+   margin-inline-start: auto;
+   font-size: 12px;
+   font-weight: 800;
+   color: #111111;
+}
+
+.figjam-notes {
+   display: grid;
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+   gap: 12px;
+   margin-top: 18px;
+}
+
+.figjam-note {
+   min-height: 74px;
+   border-radius: 14px;
+   padding: 12px 14px;
+   font-weight: 700;
+   color: #111111;
+   box-shadow: 4px 4px 0 #111111;
+   border: 2px solid #111111;
+}
+
+.figjam-note-yellow { background: var(--figjam-yellow); }
+.figjam-note-pink { background: var(--figjam-pink); }
+.figjam-note-blue { background: #cfe1ff; }
+
+.figjam-stamp {
+   align-self: center;
+   justify-self: center;
+   margin-top: 12px;
+   padding: 6px 16px;
+   border: 2px solid #111111;
+   border-radius: 999px;
+   font-weight: 800;
+   background: #ffffff;
+   transform: rotate(-8deg);
+}
+
+.figjam-play {
+   position: absolute;
+   left: 50%;
+   bottom: 18px;
+   transform: translateX(-50%);
+   width: 58px;
+   height: 58px;
+   border-radius: 999px;
+   background: #ffffff;
+   border: 3px solid #111111;
+   box-shadow: 4px 4px 0 #111111;
+   display: grid;
+   place-items: center;
+}
+
+.figjam-play-icon {
+   width: 0;
+   height: 0;
+   border-top: 10px solid transparent;
+   border-bottom: 10px solid transparent;
+   border-left: 16px solid #111111;
+   margin-inline-start: 4px;
+}
+
+.figjam-sticker {
+   position: absolute;
+   padding: 8px 16px;
+   border-radius: 999px;
+   font-weight: 800;
+   border: 2px solid #111111;
+   box-shadow: 4px 4px 0 #111111;
+   background: #ffffff;
+}
+
+.figjam-sticker-orange {
+   background: var(--figjam-orange);
+   color: #111111;
+   top: 16px;
+   right: -6px;
+}
+
+.figjam-sticker-green {
+   background: var(--figjam-green);
+   color: #111111;
+   bottom: -8px;
+   left: 10px;
+}
