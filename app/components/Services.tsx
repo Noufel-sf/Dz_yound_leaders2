@@ -168,7 +168,7 @@ export default function Services() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full mt-40 overflow-x-hidden bg-[var(--figjam-cream)] text-[#111111] selection:bg-[var(--figjam-green)] selection:text-black"
+      className="relative w-full overflow-x-hidden bg-[var(--figjam-cream)] text-[#111111] selection:bg-[var(--figjam-green)] selection:text-black"
     >
       {/* SERVICES SCROLL STACK */}
 
@@ -186,7 +186,7 @@ export default function Services() {
             style={{ zIndex: i + 10 }}
           >
             {/* GHOST NUMBER */}
-            <span className="pointer-events-none absolute bottom-0 right-4 select-none font-display text-[22vw] font-black leading-none text-black/5">
+            <span className="pointer-events-none font-mono absolute bottom-0 right-4  text-[22vw]  leading-none text-black/5">
               {svc.id}
             </span>
 

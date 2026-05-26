@@ -22,8 +22,8 @@ export default function Home() {
        <OurVision />
        <WhyChooseUs />
        <ReelVideo />
+       <Services />
        <CtaSection />
-      {/* <Services /> */}
       {/* <Program /> */}
       {/* <ProblemAndObjectives /> */}
      
