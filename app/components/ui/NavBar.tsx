@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, X, Menu } from "lucide-react";
 
 const navLinks = [
-  { label: "الرئيسية", to: "/" },
+  // { label: "الرئيسية", to: "/" },
   { label: "من نحن", to: "/about" },
   { label: "تواصل", to: "/contact" },
 ];
@@ -33,36 +33,34 @@ export default function Navbar() {
     <>
       <header
         className={[
-          "sticky top-0 z-40  border-b-4 bg-blue-700 border-black  transition-all duration-300",
-          scrolled
-            ? "border  shadow-lg backdrop-blur-lg"
-            : " ",
+          "fixed top-0 left-0 z-50 w-full py-3 bg-transparent transition-all duration-300",
+          scrolled ? "backdrop-blur-md bg-black/20" : "",
         ].join(" ")}
       >
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 lg:px-4">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="heading text-2xl marker-underline font-bold tracking-tight  text-white transition-colors hover:text-third"
-          >
-            انطلاقتك
-          </Link>
-
-          {/* Desktop links */}
-          <div className="hidden items-center gap-8 text-sm font-medium text-slate-700 md:flex">
+        <nav className="mx-auto grid max-w-6xl grid-cols-2 items-center px-4 py-4 md:px-6 lg:grid-cols-[1fr_auto_1fr] lg:px-4">
+          {/* Desktop links (left on large screens) */}
+          <div className="hidden items-center gap-8 text-sm font-medium  lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 href={link.to}
-                className="relative text-white heading text-lg"
+                className="heading flex items-center flex-row-reverse h-12 border-2 border-black px-8 bg-secondary  shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none "
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex flex-row md:flex-row items-center gap-2">
+          {/* Logo (center) */}
+          <Link
+            href="/"
+            className="heading justify-self-start text-2xl font-bold tracking-tight text-white transition-colors hover:text-third lg:justify-self-center"
+          >
+            انطلاقتك
+          </Link>
+
+          {/* Desktop CTA (right) */}
+          <div className="hidden items-center justify-self-end gap-2 lg:flex">
             <a
               target="_blank"
               href="https://docs.google.com/forms/d/e/1FAIpQLSfbaB2RWp_-TUz-QmFcEI1RDSXqHGAT_W0SxGcHdRHxbjSl5g/viewform"
@@ -71,12 +69,11 @@ export default function Navbar() {
               سجل الآن
               <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
             </a>
-        
           </div>
 
           {/* Mobile hamburger */}
           <button
-            className="rounded-md p-2 text-slate-800 md:hidden"
+            className="justify-self-end rounded-md p-2 text-white md:hidden"
             aria-label="فتح القائمة"
             onClick={() => setIsOpen(true)}
           >

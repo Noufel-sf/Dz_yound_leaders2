@@ -9,25 +9,25 @@ const socials = [
     id: "linkedin",
     label: "LINKEDIN",
     href: "https://www.linkedin.com",
-    color: "bg-[#0A66C2] text-white hover:bg-primary/20 hover:text-primary",
+    color: "bg-primary text-white hover:bg-primary/20 hover:text-primary",
   },
   {
     id: "instagram",
     label: "INSTAGRAM",
     href: "https://www.instagram.com/albawsala_program",
-    color: "bg-[#E1306C] text-white hover:bg-primary/20 hover:text-primary",
+    color: "bg-secondary text-white hover:bg-primary/20 hover:text-primary",
   },
   {
     id: "facebook",
     label: "FACEBOOK",
     href: "https://web.facebook.com/albawsala_program?_rdc=1&_rdr#",
-    color: "bg-[#1877F2] text-white hover:bg-primary/20 hover:text-primary",
+    color: "bg-primary text-white hover:bg-primary/20 hover:text-primary",
   },
   {
     id: "github",
     label: "GITHUB",
     href: "https://github.com",
-    color: "bg-[#111111] text-white hover:bg-primary/20 hover:text-primary",
+    color: "bg-secondary text-white hover:bg-primary/20 hover:text-primary",
   },
   // {
   //   id: "telegram",
@@ -46,10 +46,10 @@ const socials = [
 
 export default function ContactPage() {
   return (
-    <main dir="rtl" className="min-h-screen flex flex-col">
+    <main dir="rtl" className="min-h-screen flex flex-col py-24">
       {/* ── Hero ── */}
       <div className="w-full pt-24 pb-16 px-6 text-center">
-        <p className="inline-flex items-center gap-2 rounded-full border-2 border-black heading bg-secondary px-4 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+        <p className="inline-flex items-center gap-2 border-2 mb-2 border-black heading bg-secondary px-7 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
           تواصل معنا
         </p>
         <h1 className="heading mb-5 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[6rem]">
@@ -80,6 +80,9 @@ export default function ContactPage() {
       {/* ── Social Cards ── */}
       <div className="flex-1 w-full pb-24">
         <div className="">
+          <h1 className="heading  text-center text-[2.8rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[4rem]">
+            تواصل عبر منصاتنا الاجتماعية
+          </h1>
           <div className="flex items-center justify-between px-6 py-6 sm:px-10">
           
             <span className="text-white text-2xl sm:text-3xl">-&gt;</span>

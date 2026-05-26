@@ -1,56 +1,84 @@
-import React from "react";
-import Image from "next/image";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 import { ArrowLeft } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function CtaSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+ 
+    
+
+      gsap.to(sectionRef.current, {
+        scale: 0.64,
+        opacity: 0,
+        y: -60,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "bottom 80%",
+          end: "bottom 20%",
+          scrub: 1.5,
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="px-4 py-20 sm:px-8 lg:px-12" dir="rtl">
-      <div className="mx-auto max-w-5xl rounded-[32px] px-6 py-14 text-center  sm:px-10">
-        <div className="mb-12 flex flex-col items-center gap-4 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border-2 border-black heading bg-secondary px-4 py-1 text-2xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
-            مشروع البوصلة
-          </span>
+    <section
+      ref={sectionRef}
+      className="relative  flex flex-col mt-30 items-center justify-center overflow-hidden  px-4 py-24 sm:px-8 lg:px-12"
+      dir="rtl"
+      style={{ transformOrigin: "center top" }}
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(circle_at_center,rgba(148,163,184,0.12),transparent_55%)]" />
 
-          <h2 className="heading text-4xl font-bold leading-tight text-slate-900 sm:text-6xl">
-            كل ما تحتاج معرفته قبل
-            <span className="marker-underline text-primary heading">
-              {" "}
-              الانطلاق معنا
-            </span>
-          </h2>
-          <p className="max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-            إجابات واضحة تساعدك على فهم مسار مشروع البوصلة وكيفية الاستفادة من
-            التكوينات السياسية والقيادية.
-          </p>
-          <div className="mt-1 h-px w-14 bg-primary" />
-        </div>
-        <div className="mx-auto mb-6 flex w-full max-w-2xl items-center justify-center">
-          <Image
-            src="/cta3.png"
-            alt="دعوة للانضمام"
-            width={520}
-            height={260}
-            className="h-auto w-full max-w-[520px]"
-            priority
-          />
-        </div>
-
-        <h2 className="heading mb-3 text-3xl font-bold text-slate-900 sm:text-4xl">
-          انضم إلى مسارنا القيادي اليوم
+      <div className="relative mx-auto max-w-5xl text-center">
+        <h2
+          data-cta-item
+          className="heading text-4xl font-light leading-tight tracking-tight sm:text-9xl"
+        >
+          إن لم نؤمّن
+       
+          مستقبلنا،
+          <br />
+          فلن نجد سببًا
+      
+          لنصنعه.
         </h2>
-        <p className="mx-auto mb-8 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-          نوفّر لك بيئة تدريبية داعمة ومسارًا عمليًا لصقل المهارات وبناء أثر
-          واقعي في المجتمع.
+
+        <p
+          data-cta-item
+          className="mx-auto mt-6 max-w-2xl text-base leading-8  sm:text-lg"
+        >
+          مشروع البوصلة يمنحك الأدوات والمسار لتصنع أثرًا حقيقيًا في مجتمعك
+          وتكون جزءًا من الجيل القادر على القيادة.
         </p>
 
-        <a
-          target="_blank"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSdHvr5R3_eS0nwktsFXqSuOYsEY9dgGL9o81FpBuD_gdY6BSQ/viewform?usp=dialog"
-          className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-        >
-          سجّل الآن
-          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-        </a>
+        <div data-cta-item className="mt-10">
+          <a
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdHvr5R3_eS0nwktsFXqSuOYsEY9dgGL9o81FpBuD_gdY6BSQ/viewform?usp=dialog"
+            className="heading flex mx-auto w-1/3 items-center flex-row-reverse h-12 border-2 border-black px-4 justify-center bg-secondary  shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none "
+          >
+            سجّل الآن
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+          </a>
+        </div>
       </div>
     </section>
   );

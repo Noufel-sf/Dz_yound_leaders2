@@ -19,9 +19,9 @@ export default function Home() {
       {isLoading && <PreLoad onComplete={() => setIsLoading(false)} />}
       
       <HeroSection />
+       <ReelVideo />
        <OurVision />
        <WhyChooseUs />
-       <ReelVideo />
        <Services />
        <CtaSection />
       {/* <Program /> */}

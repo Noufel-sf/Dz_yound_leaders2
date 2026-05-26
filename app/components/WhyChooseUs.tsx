@@ -94,7 +94,7 @@ function WhyChooseUs() {
       className="bg-blue-700 px-4 py-20 sm:px-8 lg:px-12"
     >
       <div className="why-choose-title mb-10 flex flex-col items-center gap-4 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border-2 border-black heading bg-secondary px-4 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+        <span className="inline-flex items-center gap-2  border-2 border-black heading bg-secondary px-4 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
           مشروع البوصلة
         </span>
 

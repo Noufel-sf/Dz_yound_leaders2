@@ -8,10 +8,10 @@ export default function HeroSection() {
   return (
     <section
       dir="rtl"
-      className="relative min-h-screen overflow-hidden bg-blue-700 px-4 py-24 sm:px-8"
+      className="relative min-h-screen overflow-hidden bg-blue-700 p-32 px-4 md:py-44 sm:px-8"
     >
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border-2 border-black heading bg-secondary px-4 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+        <span className="inline-flex items-center gap-2  border-2 border-black heading bg-secondary px-4 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
           مشروع البوصلة
         </span>
 
@@ -56,7 +56,7 @@ export default function HeroSection() {
           <Button
             asChild
             variant="neutral"
-            className="heading h-12 border-2 border-black px-4 bg-secondary text-secondary-foreground shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            className="heading h-12 border-2 border-black px-4 bg-secondary  shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
           >
             <Link href="/about">تعرف أكثر</Link>
           </Button>
