@@ -65,7 +65,7 @@ export default function OurVision() {
             className="relative order-1 z-10 min-h-[160px] border-2 border-black bg-secondary px-10 py-12 shadow-[8px_8px_0_0_#111111] lg:absolute lg:left-0 lg:top-8 lg:w-[48%]"
           >
             <h2 className="heading text-4xl font-black italic text-slate-900 text-center sm:text-5xl lg:text-[2.9rem]">
-              من نحن
+              Our Vision
             </h2>
           </div>
 
@@ -144,7 +144,8 @@ export default function OurVision() {
             className="relative order-4 z-10 min-h-[160px] border-2 border-black bg-secondary p-12 shadow-[8px_8px_0_0_#111111] lg:absolute lg:bottom-24 lg:right-0 lg:w-[42%]"
           >
             <h2 className="heading text-3xl text-center font-black italic text-slate-900 sm:text-5xl lg:text-[2.9rem]">
-              لماذا هذا البرنامج مهم؟
+              Why Choose Us
+           
             </h2>
           </div>
         </div>

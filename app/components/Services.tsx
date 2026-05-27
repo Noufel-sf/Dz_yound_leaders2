@@ -102,11 +102,11 @@ const SERVICES = [
         summary:
           "عرض حي (Demo Day) لقياس قوة الإلقاء والقدرة على نقل المعلومة.",
       },
-      {
-        title: "قياس الأثر والرضا",
-        summary:
-          "استطلاعات رأي دورية لقياس ملاءمة البرنامج للفئة العمرية 18-35 سنة.",
-      },
+      // {
+      //   title: "قياس الأثر والرضا",
+      //   summary:
+      //     "استطلاعات رأي دورية لقياس ملاءمة البرنامج للفئة العمرية 18-35 سنة.",
+      // },
     ],
     bg: "bg-[var(--figjam-pink)] text-[#111111]",
     accent: "text-[var(--figjam-green)]",
@@ -195,11 +195,11 @@ export default function Services() {
               {/* Left Column */}
               <div className="flex flex-col gap-6 md:w-1/2">
                 <span
-                  className={`font-sans text-xs font-bold uppercase tracking-[0.4em] ${svc.accent}`}
+                  className={`text-center gap-2 w-1/2  border-2 border-black heading bg-secondary px-4  py-1 text-xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]`}
                 >
                   {svc.category}
                 </span>
-                <h2 className="heading whitespace-pre-line break-words text-3xl font-black uppercase leading-[1.1] tracking-tight text-black sm:text-4xl md:text-5xl lg:text-[4.5rem]">
+                <h2 className="heading whitespace-pre-line break-words text-5xl font-black uppercase leading-[1.1] tracking-tight text-black sm:text-4xl md:text-8xl lg:text-[4.5rem]">
                   {svc.title}
                   <span className={svc.accent}>.</span>
                 </h2>

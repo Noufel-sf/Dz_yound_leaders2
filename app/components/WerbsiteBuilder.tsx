@@ -30,9 +30,7 @@ export default function WerbsiteBuilder() {
       className="relative overflow-hidden px-4 py-20 sm:px-8 sm:py-24"
     >
       <div className="mx-auto w-full max-w-5xl text-center">
-        <span className="heading inline-flex rounded-full bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary">
-          خدمة بناء المواقع
-        </span>
+   
 
         <h2 className="heading mt-6 text-3xl font-black leading-tight text-slate-900 sm:text-5xl">
           مصمم{" "}
@@ -47,7 +45,7 @@ export default function WerbsiteBuilder() {
 
         <div className="mx-auto mt-10 rounded-full flex w-full max-w-3xl flex-col items-center px-5 py-6  sm:px-8 sm:py-8">
           <Image
-            src="/builder.jpg"
+            src="/owner.png"
             alt="واجهة بناء موقع إلكتروني"
             width={180}
             height={160}
