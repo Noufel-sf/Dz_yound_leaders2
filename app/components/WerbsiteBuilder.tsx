@@ -1,126 +1,226 @@
 "use client";
 
-import { forwardRef, useImperativeHandle, useRef } from "react";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import Link from "next/link";
-import { Mail, MessageCircle } from "lucide-react";
 
-const contacts = [
-  {
-    id: "whatsapp",
-    label: "واتساب",
-    value: "0796528894",
-    href: "https://api.whatsapp.com/send/?phone=213540355191&text&type=phone_number&app_absent=0",
-    icon: MessageCircle,
-  },
-  {
-    id: "instagram",
-    label: "إنستغرام",
-    value: "@Noufel.2.0",
-    href: "https://www.instagram.com/Noufel.2.0",
-    icon: MessageCircle,
-  },
-  {
-    id: "email",
-    label: "البريد الإلكتروني",
-    value: "noufelnasridevelopment@gmail.com",
-    href: "mailto:noufelnasridevelopment@gmail.com",
-    icon: Mail,
-  },
-];
+const DEFAULT_END_DESKTOP = "+=200%";
+const DEFAULT_END_MOBILE = "+=150%";
 
-export type WerbsiteBuilderHandle = {
-  section: HTMLElement | null;
-  title: HTMLHeadingElement | null;
-};
+gsap.registerPlugin(ScrollTrigger);
 
-const WerbsiteBuilder = forwardRef<WerbsiteBuilderHandle>(
-  function WerbsiteBuilder(_, ref) {
-    const sectionRef = useRef<HTMLElement | null>(null);
-    const titleRef = useRef<HTMLHeadingElement | null>(null);
-    const imageRef = useRef<HTMLDivElement | null>(null);
-    const textRef = useRef<HTMLDivElement | null>(null);
+function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <rect
+        x="4"
+        y="4"
+        width="16"
+        height="16"
+        rx="5"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <circle cx="12" cy="12" r="3.2" stroke="currentColor" strokeWidth="2" />
+      <circle cx="17" cy="7" r="1.1" fill="currentColor" />
+    </svg>
+  );
+}
 
-    useImperativeHandle(ref, () => ({
-      section: sectionRef.current,
-      title: titleRef.current,
-    }));
+function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M14 8.5h2.5V5.8H14c-2 0-3.5 1.5-3.5 3.5V11H8v2.8h2.5V19H13v-5.2h2.2L15.6 11H13V9.3c0-.4.3-.8 1-.8Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
 
-    return (
-      <section
-        id="website-builder"
-        dir="rtl"
-        ref={sectionRef}
-        className="relative overflow-hidden h-screen px-4 py-20 sm:px-8 sm:py-24"
+function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M20 11.9a8 8 0 1 1-14.4-4.7L4.5 4l3.4 1.1A8 8 0 0 1 20 11.9Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.3 8.7c.2-.4.5-.5.9-.4l.9.4c.3.1.5.4.5.7l-.2 1c0 .2 0 .4.2.6.3.5.8 1.1 1.4 1.6.2.2.5.2.7.1l.8-.3c.3-.1.6 0 .8.2l.7.7c.2.2.2.6 0 .8-.4.6-1.1.9-1.9.8-1.4-.1-3-.9-4.4-2.3-1.3-1.4-2.1-2.9-2.3-4.3-.1-.8.2-1.5.8-1.9Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+interface AboutLayerOneProps {
+  endDesktop?: string;
+  endMobile?: string;
+  className?: string;
+}
+
+export default function AboutLayerOne({
+  endDesktop = DEFAULT_END_DESKTOP,
+  endMobile = DEFAULT_END_MOBILE,
+  className,
+}: AboutLayerOneProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const logoCardRef = useRef<HTMLDivElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const socialsRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!sectionRef.current || !headlineRef.current) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 767px)",
+        },
+        (context) => {
+          const { isDesktop } = context.conditions as { isDesktop: boolean };
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              id: "about-layer-one",
+              trigger: sectionRef.current,
+              start: "top top",
+              end: isDesktop ? endDesktop : endMobile,
+              pin: true,
+              scrub: 1.5,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          const headline = headlineRef.current as HTMLElement;
+
+          tl.fromTo(
+            headline.querySelectorAll(".header-title span"),
+            { y: 100, opacity: 0 },
+            { y: 0, opacity: 1, stagger: 0.15, duration: 2 },
+            0,
+          )
+            .fromTo(
+              headline.querySelector(".sub-header"),
+              { y: 30, opacity: 0 },
+              { y: 0, opacity: 1, duration: 1.5 },
+              0.5,
+            )
+            .fromTo(
+              logoCardRef.current,
+              { y: 40, opacity: 0, scale: 0.94 },
+              { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: "power3.out" },
+              0.9,
+            )
+            .fromTo(
+              descriptionRef.current,
+              { y: 25, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.9, ease: "power2.out" },
+              1.1,
+            )
+            .fromTo(
+              socialsRef.current,
+              { y: 20, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+              1.25,
+            )
+            .to(
+              headlineRef.current,
+              {
+                y: isDesktop ? "-100vh" : "-120vh",
+                opacity: 0,
+                duration: 3,
+                ease: "expo.in",
+              },
+              2,
+            );
+        },
+      );
+
+      return () => {
+        mm.revert();
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      };
+    },
+    { scope: sectionRef },
+  );
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`relative h-screen w-full overflow-hidden bg-primary-950 ${
+        className ?? ""
+      }`}
+    >
+      <div
+        ref={headlineRef}
+        className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center"
       >
-        <div className="mx-auto w-full max-w-6xl">
-          <div className="mb-10 text-center">
-            <h2
-              ref={titleRef}
-              className="heading text-[14vw] font-black leading-tight text-slate-900"
-            >
-              عن
-              <span className="marker-underline text-primary heading"> المبادرة</span>
-            </h2>
-          </div>
-
-          <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="order-1 flex justify-center">
-              <div ref={imageRef} className="w-full max-w-[360px]">
-                <div className="rotate-2 hover:rotate-0 transition duration-500 border border-5 shadow-[10px_12px_0_0_#111111] bg-white p-4">
-                  <div className="overflow-hidden bg-slate-100">
-                    <Image
-                      src="/owner.png"
-                      alt="واجهة بناء موقع إلكتروني"
-                      width={420}
-                      height={460}
-                      className="w-full object-cover"
-                      priority
-                    />
-                  </div>
-                  <div className="pt-3 text-center text-xs font-semibold text-slate-600">
-                    نعم، هذه انا
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div ref={textRef} className="order-2 text-right">
-              <h2 className="heading text-3xl font-black leading-tight text-slate-900 sm:text-5xl">
-                صاحب
-                <span className="text-primary heading"> الموقع</span>
-              </h2>
-
-              <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-                نقدم خدمة تصميم وتطوير مواقع عصرية بسرعة عالية وتجربة استخدام واضحة،
-                مع صفحات تعريف، خدمات، تواصل، وتحسين أساسي لمحركات البحث.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                {contacts.map((contact) => {
-                  const Icon = contact.icon;
-                  return (
-                    <Link
-                      key={contact.id}
-                      href={contact.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-slate-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
-                    >
-                      <Icon className="h-4 w-4 text-primary" />
-                      <span>{contact.label}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
+        <h2 className="header-title -rotate-2 flex flex-col items-center heading justify-center gap-x-6 font-display text-[12vw] uppercase leading-none tracking-tighter  md:flex-row md:text-[8rem]">
+          <span className=" heading "> صاحبة</span>
+          <span className=" heading text-primary"> المشروع</span>
+        </h2>
+        <div
+          ref={logoCardRef}
+          className="mx-auto mb-8 w-full max-w-[18rem] mt-20 -rotate-2 border-4 border-black bg-white p-4 shadow-[10px_8px_0_0_#111111] sm:max-w-[24rem] lg:max-w-120"
+        >
+          <div className="relative aspect-16/5 w-full">
+            <Image
+              src="/fullLogo.png"
+              alt="Full logo"
+              width={500}
+              height={400}
+              className="object-contain"
+              priority
+            />
           </div>
         </div>
-      </section>
-    );
-  }
-);
 
-WerbsiteBuilder.displayName = "WerbsiteBuilder";
+        <div className="mt-2 flex w-full max-w-3xl flex-col items-center gap-5 px-4 text-center sm:px-0">
+          <p
+            ref={descriptionRef}
+            className="max-w-2xl text-sm leading-7 text-gray-700 sm:text-base md:text-lg"
+          >
+            شعارنا يعكس هوية المبادرة وروحها الشبابية. نحن نبني مساحة تجمع
+            الإلهام، التطوير، والعمل الجماعي لنصنع أثرًا حقيقيًا في المجتمع.
+          </p>
 
-export default WerbsiteBuilder;
+          <div
+            ref={socialsRef}
+            className="flex items-center justify-center gap-4"
+          >
+            <a
+              href="#"
+              aria-label="Instagram"
+              className="inline-flex h-11 w-11 items-center justify-center border-2 border-black bg-white text-black shadow-[4px_4px_0_0_#111111] transition-transform duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white"
+            >
+              <InstagramIcon className="h-5 w-5" />
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              className="inline-flex h-11 w-11 items-center justify-center border-2 border-black bg-white text-black shadow-[4px_4px_0_0_#111111] transition-transform duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white"
+            >
+              <FacebookIcon className="h-5 w-5" />
+            </a>
+            <a
+              href="#"
+              aria-label="WhatsApp"
+              className="inline-flex h-11 w-11 items-center justify-center border-2 border-black bg-white text-black shadow-[4px_4px_0_0_#111111] transition-transform duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white"
+            >
+              <WhatsAppIcon className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -203,9 +203,8 @@ export default function AboutPage() {
         </div>
       </section>
       <OurVision />
+      <WerbsiteBuilder/>
       <ProblemAndObjectives ref={problemAndObjectivesRef} />
-      <WerbsiteBuilder ref={werbsiteBuilderRef} />
-      <WhyChooseUs />
       <CtaSection />
       <FaqSection />
     </main>
