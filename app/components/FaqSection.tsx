@@ -58,7 +58,7 @@ const faqs: FAQItem[] = [
 
 export default function FaqSection() {
   return (
-    <section id="faq" dir="rtl" className="w-full px-4 py-20 sm:px-8 lg:px-12">
+    <section id="faq" dir="rtl" className="w-full   py-20 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-4xl p-6 sm:p-10">
 
         {/* Header */}
@@ -79,7 +79,7 @@ export default function FaqSection() {
         </div>
 
         {/* Accordion list */}
-        <div className="overflow-hidden rounded-3xl border-2 border-black bg-[var(--figjam-cream)] p-4 shadow-[10px_10px_0_0_#111111] sm:p-6">
+        <div className="overflow-hidden rotate-1 hover:rotate-0 transition duration-500 border-2 border-black bg-[var(--figjam-cream)] p-4 shadow-[10px_10px_0_0_#111111] sm:p-6">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq) => (
               <AccordionItem key={faq.id} value={faq.id} className="mb-4 last:mb-0">

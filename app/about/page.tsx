@@ -7,7 +7,9 @@ import { useGSAP } from "@gsap/react";
 import CtaSection from "../components/CtaSection";
 import WhyChooseUs from "../components/WhyChooseUs";
 import OurVision from "../components/OurVision";
-import WerbsiteBuilder from "../components/WerbsiteBuilder";
+import WerbsiteBuilder, {
+  WerbsiteBuilderHandle,
+} from "../components/WerbsiteBuilder";
 import ProblemAndObjectives from "../components/ProblemAndObjectives";
 import FaqSection from "../components/FaqSection";
 
@@ -16,6 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AboutPage() {
   const mainRef = useRef<HTMLDivElement | null>(null);
   const problemAndObjectivesRef = useRef<any>(null);
+  const werbsiteBuilderRef = useRef<WerbsiteBuilderHandle | null>(null);
 
   useGSAP(
     () => {
@@ -103,6 +106,39 @@ export default function AboutPage() {
               );
           });
           servicesTl.to({}, { duration: 1 });
+          if (werbsiteBuilderRef.current) {
+            const wbSection = werbsiteBuilderRef.current.section;
+            const wbTitle = werbsiteBuilderRef.current.title;
+
+            if (wbSection && wbTitle) {
+              gsap.set(wbTitle, { opacity: 0, y: 24, scale: 1 });
+
+              gsap.timeline({
+                scrollTrigger: {
+                  id: "website-builder-title",
+                  trigger: wbSection,
+                  start: "top top",
+                  end: "bottom",
+                  scrub: 1,
+                  invalidateOnRefresh: true,
+                },
+              })
+                .to(
+                  wbTitle,
+                  { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+                  0
+                )
+                .to(
+                  wbTitle,
+                  {
+                    scale: isDesktop ? 0.5 : 1,
+                    duration: 1.2,
+                    ease: "expo.inOut",
+                  },
+                  1
+                );
+            }
+          }
         },
       );
 
@@ -152,7 +188,7 @@ export default function AboutPage() {
       </section>
       <ProblemAndObjectives ref={problemAndObjectivesRef} />
       <OurVision />
-      <WerbsiteBuilder />
+      <WerbsiteBuilder ref={werbsiteBuilderRef} />
       <WhyChooseUs />
       <CtaSection />
       <FaqSection />
