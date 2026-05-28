@@ -1,155 +1,112 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 
-export default function OurVision() {
-  const sectionRef = useRef<HTMLElement | null>(null);
+const DEFAULT_END_DESKTOP = '+=200%'
+const DEFAULT_END_MOBILE = '+=150%'
 
-  useEffect(() => {
-    if (!sectionRef.current) return;
+gsap.registerPlugin(ScrollTrigger)
 
-    gsap.registerPlugin(ScrollTrigger);
+interface AboutLayerOneProps {
+  endDesktop?: string
+  endMobile?: string
+  className?: string
+}
 
-    const ctx = gsap.context(() => {
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
+export default function AboutLayerOne({
+  endDesktop = DEFAULT_END_DESKTOP,
+  endMobile = DEFAULT_END_MOBILE,
+  className,
+}: AboutLayerOneProps) {
+  const sectionRef = useRef<HTMLElement>(null)
+  const headlineRef = useRef<HTMLDivElement>(null)
 
-      if (reduceMotion) {
-        gsap.set("[data-vision-item]", { autoAlpha: 1, y: 0 });
-        return;
-      }
+  useGSAP(
+    () => {
+      if (!sectionRef.current || !headlineRef.current) return
 
-      gsap.from("[data-vision-item]", {
-        autoAlpha: 0,
-        y: 36,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.12,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          toggleActions: "play none none none",
+      const mm = gsap.matchMedia()
+
+      mm.add(
+        {
+          isDesktop: '(min-width: 768px)',
+          isMobile: '(max-width: 767px)',
         },
-      });
-    }, sectionRef);
+        (context) => {
+          const { isDesktop } = context.conditions as { isDesktop: boolean }
 
-    return () => ctx.revert();
-  }, []);
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              id: 'about-layer-one',
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: isDesktop ? endDesktop : endMobile,
+              pin: true,
+              scrub: 1.5,
+              invalidateOnRefresh: true,
+            },
+          })
+
+          const headline = headlineRef.current as HTMLElement
+
+          tl.fromTo(
+            headline.querySelectorAll('.header-title span'),
+            { y: 100, opacity: 0 },
+            { y: 0, opacity: 1, stagger: 0.15, duration: 2 },
+            0
+          )
+            .fromTo(
+              headline.querySelector('.sub-header'),
+              { y: 30, opacity: 0 },
+              { y: 0, opacity: 1, duration: 1.5 },
+              0.5
+            )
+            .to(
+              headlineRef.current,
+              {
+                y: isDesktop ? '-100vh' : '-120vh',
+                opacity: 0,
+                duration: 3,
+                ease: 'expo.in',
+              },
+              2
+            )
+        }
+      )
+
+      return () => {
+        mm.revert()
+        ScrollTrigger.getAll().forEach((t) => t.kill())
+      }
+    },
+    { scope: sectionRef }
+  )
 
   return (
     <section
-      dir="rtl"
       ref={sectionRef}
-      className="relative  overflow-hidden px-4 py-20 lg:py-30 sm:px-8 lg:px-12"
+      className={`relative h-screen w-full overflow-hidden bg-primary-950 ${
+        className ?? ''
+      }`}
     >
-      {/* subtle background grid */}
       <div
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.025]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-
-      <div className="mx-auto w-full max-w-6xl">
-        <div className="relative flex flex-col gap-8 lg:block lg:min-h-[540px]">
-          {/* Gold title block */}
-          <div
-            data-vision-item
-            className="relative order-1 z-10 min-h-[160px] border-2 border-black bg-secondary px-10 py-12 shadow-[8px_8px_0_0_#111111] lg:absolute lg:left-0 lg:top-8 lg:w-[48%]"
-          >
-            <h2 className="heading text-4xl font-black italic text-slate-900 text-center sm:text-5xl lg:text-[2.9rem]">
-              Our Vision
-            </h2>
-          </div>
-
-          {/* Window card (top right) */}
-          <div
-            data-vision-item
-            className="relative order-2 z-20 lg:absolute lg:right-0 lg:top-0 lg:w-[54%] lg:-translate-y-6"
-          >
-            <div className="border-2 border-black bg-white mt-4 lg:mt-0 shadow-[8px_8px_0_0_#111111]">
-              <div className="flex items-center gap-2 border-b-2 border-black px-4 py-2.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
-                <span className="h-2.5 w-2.5 rounded-full bg-green-500" />
-              </div>
-              <div className="px-7 py-9 text-right ">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/logo2.png"
-                    alt="فريق انطلاقتك"
-                    width={48}
-                    height={48}
-                  />
-                  <h3 className="heading text-xl font-extrabold text-slate-900">
-                    فريق انطلاقتك
-                  </h3>
-                </div>
-                <p className="mt-4 text-[0.95rem] leading-7 text-slate-600 sm:text-base">
-                  نسعى إلى تقليص الفجوة بين الشباب والمجالس المنتخبة عبر تكوين
-                  عملي يرفع الوعي السياسي ويمنح المشاركين أدوات حقيقية لفهم الشأن
-                  العام والمساهمة فيه.
-                </p>
-                <div className="mt-5">
-                  <Link href="/about">
-                  <span className="inline-flex items-center rounded-md border border-slate-300 bg-slate-50 cursor-pointer px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-widest text-slate-700">
-                    اكتشف رؤيتنا
-                  </span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Window card (bottom left) */}
-          <div
-            data-vision-item
-            className="relative order-3 z-20 lg:absolute lg:bottom-15 lg:left-2 lg:w-[60%]"
-          >
-            <div className="border-2 border-black bg-white shadow-[8px_8px_0_0_#111111]">
-              <div className="flex items-center gap-2 border-b-2 border-black px-4 py-2.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
-                <span className="h-2.5 w-2.5 rounded-full bg-green-500" />
-              </div>
-              <div className="px-7 py-9 text-right">
-                <h3 className="heading text-xl font-extrabold text-slate-900">
-                  ما الذي نقدمه؟
-                </h3>
-                <p className="mt-4 text-[0.95rem] leading-7 text-slate-600 sm:text-base">
-                  برنامج عملي يدعم الشباب بالمهارات والأدوات اللازمة لفهم الشأن
-                  العام والمشاركة الفعالة في صناعة القرار.
-                </p>
-                <div className="mt-5">
-                  <Link href="/about">
-                    <span className="inline-flex items-center border border-slate-300 bg-slate-50 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-widest text-slate-700">
-                      تعرف على البرنامج
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Gold question block */}
-          <div
-            data-vision-item
-            className="relative order-4 z-10 min-h-[160px] border-2 border-black bg-secondary p-12 shadow-[8px_8px_0_0_#111111] lg:absolute lg:bottom-24 lg:right-0 lg:w-[42%]"
-          >
-            <h2 className="heading text-3xl text-center font-black italic text-slate-900 sm:text-5xl lg:text-[2.9rem]">
-              Why Choose Us
-           
-            </h2>
-          </div>
-        </div>
+        ref={headlineRef}
+        className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center"
+      >
+        <h2 className="header-title -rotate-2 flex flex-col items-center heading justify-center gap-x-6 font-display text-[12vw] uppercase leading-none tracking-tighter  md:flex-row md:text-[8rem]">
+           <span className=" heading ">مخيم رواد</span>
+          <span className=" heading text-primary"> الشباب</span>
+        </h2>
+        <p className="sub-header mt-8 max-w-4xl font-display text-gray-800 text-lg uppercase tracking-tight md:mt-12 md:text-3xl">
+          منذ 2016، يعمل مخيم رواد الشباب على تمكين الشباب من تطوير
+          المهارات القيادية والمشاركة المدنية، ودعمهم في بناء مشاريع
+          مجتمعية مستدامة. نقدّم ورش عمل، تدريبًا عمليًا، وبرامج توجيهية
+          تهدف إلى إعداد الجيل القادم من القادة والمبادرات المحلية.
+        </p>
       </div>
     </section>
-  );
+  )
 }

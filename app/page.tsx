@@ -7,7 +7,7 @@ import Services from "./components/Services";
 import OurVision from "./components/OurVision";
 // import ProblemAndObjectives from "./components/ProblemAndObjectives";
 import WhyChooseUs from "./components/WhyChooseUs";
-import {PreLoad} from "./components/Preloader";
+import { PreLoad } from "./components/Preloader";
 import ReelVideo from "./components/ReelVideo";
 import CtaSection from "./components/CtaSection";
 
@@ -17,18 +17,12 @@ export default function Home() {
   return (
     <>
       {isLoading && <PreLoad onComplete={() => setIsLoading(false)} />}
-      
       <HeroSection />
-       <ReelVideo />
-       <OurVision />
-       <WhyChooseUs />
-       <Services />
-       <CtaSection />
-      {/* <Program /> */}
-      {/* <ProblemAndObjectives /> */}
-     
+      <ReelVideo />
+      <WhyChooseUs />
+      <Services />
+      <CtaSection />
       <FaqSection />
     </>
-  
   );
 }

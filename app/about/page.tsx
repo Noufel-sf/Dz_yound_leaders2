@@ -1,5 +1,6 @@
 "use client";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,7 +18,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPage() {
   const mainRef = useRef<HTMLDivElement | null>(null);
-  const problemAndObjectivesRef = useRef<any>(null);
+  const problemAndObjectivesRef = useRef<{
+    items?: HTMLDivElement[];
+    section?: HTMLElement;
+    title?: HTMLElement;
+  } | null>(null);
   const werbsiteBuilderRef = useRef<WerbsiteBuilderHandle | null>(null);
 
   useGSAP(
@@ -153,25 +158,35 @@ export default function AboutPage() {
       <section className="relative mb-40 lg:mb-54 overflow-hidden px-4 py-24 sm:px-8 lg:px-12">
         <div className="absolute inset-0 -z-10" />
 
-        <div className="mx-auto max-w-5xl text-center">
+        <div className="mx-auto  text-center">
           <div className="mb-6  px-5 py-2.5">
             <span className="inline-flex items-center gap-2 border-2 border-black heading bg-secondary px-4 py-1 text-xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
               من نحن
             </span>
           </div>
 
-          <h1 className="heading mb-6 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-[4rem] lg:text-[10rem]">
-            مشروع
+          <h1 className="heading mb-6 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-[4rem] lg:text-[13rem]">
+            مخيم 
             <span className="text-primary heading">
               {" "}
-              انطلاقتك
+              رواد الشباب
             </span>
           </h1>
 
-          <p className="mx-auto mb-8 max-w-3xl text-lg leading-8 text-slate-600 sm:text-xl">
-            مبادرة شبابية تكوينية تسعى إلى تأهيل وتمكين الشباب الجزائري في
-            المجال السياسي وصناعة القرار، من خلال تكوينات تطبيقية تعزز الكفاءة
-            والقيادة والمسؤولية.
+          <div className="mx-auto mb-8 w-full max-w-[18rem] -rotate-2 border-4 border-black bg-white p-4 shadow-[10px_8px_0_0_#111111] sm:max-w-[24rem] lg:max-w-120">
+            <div className="relative aspect-16/5 w-full">
+              <Image
+                src="/fullLogo.png"
+                alt="Full logo"
+                width={500}
+                height={400}
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
+          <p className="text-lg mb-8 text-slate-700">
+            مخيم رواد الشباب هو مكان للنمو والتطور، حيث يلتقي الشباب من مختلف أنحاء البلاد لمشاركة الخبرات والمهارات.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -184,10 +199,11 @@ export default function AboutPage() {
               <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
             </a>
           </div>
+
         </div>
       </section>
-      <ProblemAndObjectives ref={problemAndObjectivesRef} />
       <OurVision />
+      <ProblemAndObjectives ref={problemAndObjectivesRef} />
       <WerbsiteBuilder ref={werbsiteBuilderRef} />
       <WhyChooseUs />
       <CtaSection />
