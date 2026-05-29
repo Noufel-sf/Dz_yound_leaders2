@@ -69,7 +69,7 @@ export default function FaqSection() {
 
           <h2 className="heading text-4xl font-bold leading-tight text-slate-900 sm:text-6xl">
             كل ما تحتاج معرفته قبل
-            <span className="marker-underline text-primary heading"> الانطلاق معنا</span>
+            <span className=" text-primary heading"> الانطلاق معنا</span>
           </h2>
           <p className="max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
             إجابات واضحة تساعدك على فهم مسار مشروع البوصلة وكيفية الاستفادة من

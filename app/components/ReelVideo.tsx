@@ -1,23 +1,55 @@
 import React from "react";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function ReelVideo() {
+
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useGSAP(() => {
+    if (!titleRef.current) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: titleRef.current,
+        start: "top 80%",
+        end: "top 30%",
+        scrub: 1.5,
+      },
+    });
+    tl.fromTo(
+      titleRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.5, ease: "power3.out" },
+    );
+  }
+  );
+
+
+
+
+
+
+
+
+
   return (
     <section className="relative w-full h-screen mt-30 overflow-hidden px-4 py-20 sm:px-8 lg:px-12">
       <div className="relative mx-auto max-w-5xl text-center">
         <span className="inline-flex mb-3 items-center gap-2  border-2 border-black heading bg-secondary px-4 py-1 text-2xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
           مشروع البوصلة
         </span>
-        <h2 className="heading text-5xl font-bold leading-tight text-slate-900 sm:text-5xl">
+        <h2 
+        ref={titleRef}
+        className="heading text-5xl font-bold leading-tight text-slate-900 sm:text-5xl">
           كل ما تحتاج معرفته قبل
-          <span className="marker-underline text-primary heading">
+          <span className=" text-primary heading">
             {" "}
             الانطلاق معنا
           </span>
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-          إجابات واضحة تساعدك على فهم مسار مشروع البوصلة وكيفية الاستفادة من
-          التكوينات السياسية والقيادية.
-        </p>
+    
       </div>
 
       <div className="relative mx-auto mt-14 max-w-5xl">

@@ -96,7 +96,7 @@ export default function AboutLayerOne({
         ref={headlineRef}
         className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center"
       >
-        <h2 className="header-title -rotate-2 flex flex-col items-center heading justify-center gap-x-6 font-display text-[12vw] uppercase leading-none tracking-tighter  md:flex-row md:text-[8rem]">
+        <h2 className="header-title -rotate-2 flex flex-col items-center heading justify-center gap-x-6 font-display text-[15vw] uppercase leading-none tracking-tighter  md:flex-row md:text-[15rem]">
            <span className=" heading ">مخيم رواد</span>
           <span className=" heading text-primary"> الشباب</span>
         </h2>

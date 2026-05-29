@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { ArrowLeft } from "lucide-react";
 import { gsap } from "gsap";
+import Link from "next/link";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function CtaSection() {
@@ -15,11 +16,8 @@ function CtaSection() {
 
     const ctx = gsap.context(() => {
       const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
+        "(prefers-reduced-motion: reduce)",
       ).matches;
-
- 
-    
 
       gsap.to(sectionRef.current, {
         scale: 0.64,
@@ -50,15 +48,11 @@ function CtaSection() {
       <div className="relative mx-auto max-w-5xl text-center">
         <h2
           data-cta-item
-          className="heading text-4xl font-light leading-tight tracking-tight sm:text-9xl"
+          className="heading text-5xl font-light leading-tight tracking-tight sm:text-9xl"
         >
-          إن لم نؤمّن
-       
-          مستقبلنا،
+          إن لم نؤمّن مستقبلنا،
           <br />
-          فلن نجد سببًا
-      
-          لنصنعه.
+          فلن نجد سببًا لنصنعه.
         </h2>
 
         <p
@@ -69,14 +63,23 @@ function CtaSection() {
           وتكون جزءًا من الجيل القادر على القيادة.
         </p>
 
-        <div data-cta-item className="mt-10">
+        <div
+          data-cta-item
+          className="mt-10 flex items-center gap-5  justify-center "
+        >
+          <Link
+            href="/about"
+            className="heading inline-flex items-center gap-2 border-2 text-white border-black bg-primary px-6 py-3 md:text-lg font-bold text-primary-foreground shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+          >
+            تعرف أكثر
+            <ArrowLeft className="h-5 w-5" />
+          </Link>
           <a
             target="_blank"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdHvr5R3_eS0nwktsFXqSuOYsEY9dgGL9o81FpBuD_gdY6BSQ/viewform?usp=dialog"
-            className="heading flex mx-auto w-1/3 items-center flex-row-reverse h-12 border-2 border-black px-4 justify-center bg-secondary  shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none "
+            href=""
+            className="heading inline-flex items-center gap-2 border-2 border-black px-8 py-3 md:text-lg font-bold bg-secondary shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
           >
-            سجّل الآن
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            انضم الآن
           </a>
         </div>
       </div>

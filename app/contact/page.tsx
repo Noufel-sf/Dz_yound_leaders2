@@ -54,7 +54,7 @@ export default function ContactPage() {
         </p>
         <h1 className="heading mb-5 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[6rem]">
           تواصل مع فريق
-          <span className="text-primary heading marker-underline">
+          <span className="text-primary heading ">
             {" "}
             مشروع انطلاقتك
           </span>
@@ -85,7 +85,6 @@ export default function ContactPage() {
           </h1>
           <div className="flex items-center justify-between px-6 py-6 sm:px-10">
           
-            <span className="text-white text-2xl sm:text-3xl">-&gt;</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-white/10">
             {socials.map((s) => (

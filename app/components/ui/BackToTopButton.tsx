@@ -1,14 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
 export default function BackToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
+      const currentScrollY = window.scrollY;
+      const scrollingUp = currentScrollY < lastScrollYRef.current;
+      const pastThreshold = currentScrollY > 300;
+
+      setIsVisible(pastThreshold && scrollingUp);
+      lastScrollYRef.current = currentScrollY;
     };
 
     handleScroll();
