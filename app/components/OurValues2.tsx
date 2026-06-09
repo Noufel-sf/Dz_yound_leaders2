@@ -39,11 +39,11 @@ export default function OurValues2() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-14">
           {features.map((f) => (
             <div key={f.title} className="text-center">
-                <span role="img" aria-label="">
+                <span aria-hidden="true">
                   {f.icon}
                 </span>
               <h3 className="text-3xl font-bold mb-3 heading">{f.title}</h3>
-              <p className="text-gray-500 leading-relaxed text-sm">{f.body}</p>
+              <p className="text-gray-600 leading-relaxed text-sm">{f.body}</p>
             </div>
           ))}
         </div>

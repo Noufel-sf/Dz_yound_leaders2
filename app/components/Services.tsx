@@ -16,24 +16,20 @@ const SERVICES = [
     id: "01",
     category: "البرنامج التدريبي",
     title: "المراحل الأساسية",
-    desc: "ثلاث مراحل مترابطة تبني الشخصية وتُكسب المهارات ثم تُحوّلها إلى أثر عملي.",
+    desc: "ثلاث مراحل مترابطة تبني الشخصية إلى أثر عملي.",
     sections: [
       {
         title: "المرحلة الأولى: بناء الشخصية وصقل المهارات الناعمة",
         badge: "إلزامية",
         summary:
-          "هذه المرحلة هي حجر الأساس في المخيم، وتهدف إلى تجهيز المشاركين بمهارات التواصل والقيادة وإدارة الذات قبل الانتقال إلى أي تخصص تقني.",
-        // items: [
-        //   'التواصل والذكاء العاطفي: فهم أنماط الشخصيات، الإقناع، إدارة النزاعات، والتعامل بذكاء وفعالية.',
-        //   'القيادة والعمل الجماعي: بناء الفرق عالية الأداء وتوزيع الأدوار بما يرفع الانسجام والإنتاجية.',
-        //   'إدارة الذات والوقت: تقنيات الإنتاجية الشخصية، التعامل مع ضغط العمل، وتجنب الاحتراق الوظيفي.',
-        // ],
+          "هذه المرحلة هي حجر الأساس في المخيم، وتهل إلى أي تخصص تقني.",
+
       },
       {
         title: "المرحلة الثانية: التمكين التقني والمسارات التخصصية",
         badge: "إلزامية ثم اختيارية",
         summary:
-          "تنطلق هذه المرحلة بتدريب مكثف على الذكاء الاصطناعي بوصفه المهارة الصلبة الأساسية، ثم يختار كل مشارك مسارًا تخصصيًا واحدًا للتطبيق العملي.",
+          "تنطلق هذه المرحلة بتدريب مكثف للتطبيق العملي.",
         // items: [
         //   'الذكاء الاصطناعي وPrompt Engineering: استخدام الأدوات الحديثة لرفع الإنتاجية وأتمتة المهام.',
         //   'المسارات المتاحة: ريادة الأعمال، التسويق الرقمي، وإدارة المشاريع.',
@@ -43,7 +39,7 @@ const SERVICES = [
         title: "المرحلة الثالثة: صناعة الأثر (TOT)",
         badge: "تأثير",
         summary:
-          "تستهدف هذه المرحلة تحويل المتدربين المتميزين إلى صناع معرفة قادرين على نقل الخبرة وتقديمها باحترافية أمام الجمهور.",
+          "تستهدف هذه المرحلة تحويل المتدربين أمام الجمهور.",
         // items: [
         //   'سيكولوجية تعلم الكبار وتصميم الحقائب التدريبية الاحترافية.',
         //   'مهارات الإلقاء، كاريزما الظهور، والتحكم في نبرة الصوت ولغة الجسد.',
@@ -125,6 +121,10 @@ export default function Services() {
 
   useGSAP(
     () => {
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.trigger && containerRef.current?.contains(st.trigger)) st.kill();
+      });
+
       const cards = serviceCards.current;
 
       gsap.set(cards, {
@@ -161,6 +161,8 @@ export default function Services() {
           `card-${i}`,
         );
       });
+
+      ScrollTrigger.refresh();
     },
     { scope: containerRef },
   );
@@ -209,26 +211,20 @@ export default function Services() {
               </div>
 
               {/* Right Column: Sections */}
-              <div className="grid w-full grid-cols-1 gap-6 border-t border-black/10 pt-6 md:grid-cols-2 md:border-l md:border-t-0 md:pl-12 md:pt-0">
+              <div className="grid w-full grid-cols-1 gap-6 border-t border-black/10 pt-6 lg:grid-cols-2 md:border-l md:border-t-0 md:pl-12 md:pt-0">
                 {svc.sections.map((section) => (
                   <div
                     key={section.title}
-                    className="rounded-2xl border border-black/10 bg-white/60 p-5"
+                    className="border-4  shadow-[3px_3px_0_0_#111111] border-black bg-white/60 p-5"
                   >
                     <div className="flex items-center justify-between gap-3">
                       <h3 className="heading text-lg font-black text-black">
                         {section.title}
                       </h3>
-                      {section.badge ? (
-                        <span
-                          className={`rounded-full px-3 py-1 text-xs font-bold ${svc.accent} bg-white/70`}
-                        >
-                          {section.badge}
-                        </span>
-                      ) : null}
+              
                     </div>
                     {section.summary ? (
-                      <p className="mt-3 text-sm leading-7 text-black/70">
+                      <p className="mt-3 text-sm font-extrabold leading-7 text-black/70">
                         {section.summary}
                       </p>
                     ) : null}

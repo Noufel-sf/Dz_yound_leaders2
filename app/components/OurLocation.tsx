@@ -6,9 +6,9 @@ function OurLocation() {
           <span className="inline-flex items-center gap-2  border-2 border-black heading bg-secondary px-6 py-1 text-xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
             موقعنا
           </span>
-          <h1 className="heading text-[3.4rem] font-black leading-[1.1] tracking-tight text-slate-900 sm:text-[3.2rem] lg:text-[4rem]">
-            موقع <span className="text-primary heading">انطلاقتك</span>
-          </h1>
+          <h2 className="heading text-[3.4rem] font-black leading-[1.1] tracking-tight text-slate-900 sm:text-[3.2rem] lg:text-[7rem]">
+            موقع <span className="text-primary heading">رواد الشباب</span>
+          </h2>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-700 sm:text-base">
             زورونا في المقر الرئيسي، أو استخدم الخريطة لتحديد أسرع طريق للوصول.
           </p>

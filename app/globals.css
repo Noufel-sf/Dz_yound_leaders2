@@ -7,11 +7,14 @@
 html {
   scroll-behavior: smooth;
    min-height: 100%;
-   background-color: #99CCFF;
+
+  z-index: 2;
+
+   background-color: #f2ece1;
 }
 
 body {
-   background-color: #99CCFF;
+   background-color: #F2ECE1;
 }
 
 .heading {
@@ -39,7 +42,7 @@ body {
 }
 
 * {
-  font-family: "Noto Sans Arabic", sans-serif;
+  font-family: "Zain";
   font-optical-sizing: auto;
   font-weight: 500;
 }
@@ -48,10 +51,10 @@ body {
   /* ===========================================
      COLORS (LIGHT MODE)
   ============================================ */
-   --color-primary: #1d4ed8;
-   --color-secondary: #eab308;
+   --color-primary: #0C3B82  ;
+   --color-secondary: #D89A1D;
    --color-third: #8a4dff;
-   --color-fourth: rgba(158, 28, 96, 0.9);
+   --color-fourth: #1D8FE1;
 
 
   --color-secondary-foreground: #ffffff;

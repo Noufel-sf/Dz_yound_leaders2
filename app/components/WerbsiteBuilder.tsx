@@ -175,7 +175,7 @@ export default function AboutLayerOne({
           <div className="relative aspect-16/5 w-full">
             <Image
               src="/fullLogo.png"
-              alt="Full logo"
+              alt="الشعار الكامل لمشروع رواد الشباب"
               width={500}
               height={400}
               className="object-contain"
@@ -198,21 +198,27 @@ export default function AboutLayerOne({
             className="flex items-center justify-center gap-4"
           >
             <a
-              href="#"
+              href="https://www.instagram.com/edg"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="inline-flex h-11 w-11 items-center justify-center border-2 border-black bg-white text-black shadow-[4px_4px_0_0_#111111] transition-transform duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white"
             >
               <InstagramIcon className="h-5 w-5" />
             </a>
             <a
-              href="#"
+              href="https://www.facebook.com/edg"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               className="inline-flex h-11 w-11 items-center justify-center border-2 border-black bg-white text-black shadow-[4px_4px_0_0_#111111] transition-transform duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white"
             >
               <FacebookIcon className="h-5 w-5" />
             </a>
             <a
-              href="#"
+              href="https://wa.me/+213772358023"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="WhatsApp"
               className="inline-flex h-11 w-11 items-center justify-center border-2 border-black bg-white text-black shadow-[4px_4px_0_0_#111111] transition-transform duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white"
             >

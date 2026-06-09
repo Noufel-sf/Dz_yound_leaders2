@@ -8,9 +8,7 @@ import { useGSAP } from "@gsap/react";
 import CtaSection from "../components/CtaSection";
 import WhyChooseUs from "../components/WhyChooseUs";
 import OurVision from "../components/OurVision";
-import WerbsiteBuilder, {
-  WerbsiteBuilderHandle,
-} from "../components/WerbsiteBuilder";
+import WerbsiteBuilder from "../components/WerbsiteBuilder";
 import ProblemAndObjectives from "../components/ProblemAndObjectives";
 import FaqSection from "../components/FaqSection";
 
@@ -23,7 +21,7 @@ export default function AboutPage() {
     section?: HTMLElement;
     title?: HTMLElement;
   } | null>(null);
-  const werbsiteBuilderRef = useRef<WerbsiteBuilderHandle | null>(null);
+  const werbsiteBuilderRef = useRef<{ section?: HTMLElement; title?: HTMLElement } | null>(null);
 
   useGSAP(
     () => {
@@ -153,7 +151,7 @@ export default function AboutPage() {
   );
 
   return (
-    <main ref={mainRef} dir="rtl" className=" py-24">
+    <main ref={mainRef} dir="rtl" className=" py-24 z-10">
       {/* ── Hero Section ── */}
       <section className="relative mb-40 lg:mb-54 overflow-hidden px-4 py-24 sm:px-8 lg:px-12">
         <div className="absolute inset-0 -z-10" />
@@ -165,7 +163,7 @@ export default function AboutPage() {
             </span>
           </div>
 
-          <h1 className="heading mb-6 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-[4rem] lg:text-[13rem]">
+          <h1 className="heading mb-6 rotate-2 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-[4rem] lg:text-[13rem]">
             مخيم 
             <span className="text-primary heading">
               {" "}
@@ -173,11 +171,11 @@ export default function AboutPage() {
             </span>
           </h1>
 
-          <div className="mx-auto mb-8 w-full max-w-[18rem] -rotate-2 border-4 border-black bg-white p-4 shadow-[10px_8px_0_0_#111111] sm:max-w-[24rem] lg:max-w-120">
+          <div className="mx-auto mb-8 w-full max-w-[18rem] -rotate-2 hover:rotate-0 transition duration-500 border-4 border-black bg-white p-4 shadow-[10px_8px_0_0_#111111] sm:max-w-[24rem] lg:max-w-120">
             <div className="relative aspect-16/5 w-full">
               <Image
-                src="/fullLogo.png"
-                alt="Full logo"
+                src="/logo3.png"
+                alt="الشعار الكامل لمخيم رواد الشباب"
                 width={500}
                 height={400}
                 className="object-contain"

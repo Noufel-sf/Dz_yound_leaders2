@@ -8,7 +8,7 @@ export default function OurTeam() {
         <div className="relative aspect-[4/5] overflow-hidden ">
           <Image
             src="/h.jpg"
-            alt="لماذا هذا البرنامج مهم"
+            alt="صورة فريق برنامج انطلاقتك"
             fill
             className="object-cover"
             priority

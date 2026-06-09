@@ -43,13 +43,13 @@ const ProblemAndObjectives = forwardRef((_, ref) => {
       className="relative h-screen w-full overflow-hidden bg-primary-950"
     >
       <div className="relative flex mt-30 w-full items-center justify-center px-8">
-        <h1
+        <h2
           ref={titleRef}
           className="featured heading select-none font-display text-[11vw] uppercase leading-none tracking-tighter"
         >
           الاشكالية و
           <span className="text-primary heading "> الحلول</span>
-        </h1>
+        </h2>
       </div>
 
       <div className="absolute inset-0 top-[25vh] lg:top-[35vh]">

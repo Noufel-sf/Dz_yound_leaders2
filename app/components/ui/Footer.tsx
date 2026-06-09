@@ -1,81 +1,205 @@
-import React from "react";
-import Link from "next/link";
+'use client'
 
-function Footer() {
-  return (
-    <div
-      className="relative h-[530px] bg-primary"
-      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
-    >
-      <div className="relative h-[calc(100vh+430px)] -top-[100vh]">
-        <footer className="h-[430px] py-12 lg:py-32 pb-22 sticky top-[calc(100vh-430px)] bg-primary">
-          <div className="absolute inset-0 bg-primary -z-10" />
+import React, { forwardRef, useRef } from 'react'
+import Image from 'next/image'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
-          <div className="w-full relative z-10 pb-12 px-8 md:px-16">
-            <h1 className="text-[6rem] md:text-[10rem] text-white text-center mb-3 heading  font-bold">
-              مشروع انطلاقتك
-            </h1>
-            <div
-              className="flex flex-col z-10 md:flex-row justify-between gap-3  items-center  text-sm"
-              dir="rtl"
-            >
-              {/* Left: Copyright */}
-              <span className="text-white/90">© 2026 Noufel seif el islam nasri</span>
-
-              {/* Center: Links */}
-              <div className="flex items-center gap-6 flex-row-reverse">
-              
-                <div className="flex items-center gap-3">
-                  <a
-                    href="https://www.instagram.com/albawsala_program"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white/90 transition-colors hover:bg-white/10"
-                    aria-label="Instagram"
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-4 w-4">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                      <circle cx="12" cy="12" r="4" />
-                      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://web.facebook.com/albawsala_program?_rdc=1&_rdr#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white/90 transition-colors hover:bg-white/10"
-                    aria-label="Facebook"
-                  >
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://www.linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white/90 transition-colors hover:bg-white/10"
-                    aria-label="LinkedIn"
-                  >
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                      <path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.1 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.67-1.2 2.3-2.4 4.7-2.4 5 0 5.9 3.3 5.9 7.6V24h-5V16c0-1.9 0-4.4-2.7-4.4s-3.1 2.1-3.1 4.3V24h-5V8z" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              {/* Right: Site name & description */}
-              <div className="">
-                <span>مشروع انطلاقتك</span>
-                <span className="mx-2">•</span>
-                <span>DZ Young Leaders</span>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
-  );
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
 }
 
-export default Footer;
+interface FooterProps {
+  onScrollToTop?: () => void
+}
+
+const SOCIAL_LINKS = [
+
+  {
+    name: 'Instagram',
+    link: 'https://www.instagram.com/edg',
+    target: '_blank',
+  },
+  {
+    name: 'Facebook',
+    link: 'https://www.facebook.com/edg',
+    target: '_blank',
+  },
+
+]
+
+const PRIMARY_NAV = [
+  { label: 'الرئيسية', path: '/' },
+  { label: 'من نحن', path: '/about' },
+  { label: 'تواصل معنا', path: '/contact' },
+]
+
+
+const Footer = forwardRef<HTMLElement, FooterProps>(
+  ({ onScrollToTop }, ref) => {
+    const titleRef = useRef<HTMLDivElement>(null)
+    const contentRef = useRef<HTMLDivElement>(null)
+    const bottomRef = useRef<HTMLDivElement>(null)
+    const btpRef = useRef<HTMLDivElement>(null)
+
+    const pathname = usePathname()
+    useGSAP(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: 'top 90%',
+          toggleActions: 'play none none reverse',
+        },
+      })
+
+      tl.from(
+        [
+          titleRef.current,
+          contentRef.current,
+          btpRef.current,
+          bottomRef.current,
+        ],
+        {
+          opacity: 0,
+          y: -40,
+          duration: 1,
+          stagger: 0.1,
+          ease: 'power3.out',
+        }
+      )
+    })
+    return (
+      <footer
+        ref={ref}
+        className="relative flex  min-h-screen bg-secondary w-full flex-col items-center justify-between overflow-hidden bg-primary-950 py-[4vh]"
+      >
+        <div className="flex w-full flex-grow flex-col items-center justify-between">
+          {/* 1. MASSIVE LOGO  */}
+
+          <div ref={titleRef} className="flex w-[90vw] justify-between">
+            <div className="flex items-center font-display text-[12vw] font-black leading-[1.3] tracking-tight">
+              <span className="text-primary mr-5">I</span>
+
+              <span className="text-white heading "> رواد الشباب </span>
+            </div>
+
+            {/* Mascot edgo */}
+
+            <div className="relative  aspect-square h-[22vw] overflow-hidden rounded-sm md:flex">
+              <Image
+                src="/logobig.png"
+                alt="EDG Groupe Mascot"
+                className="h-full w-full object-cover"
+                width={500}
+                height={500}
+                priority
+              />
+            </div>
+          </div>
+
+          {/* 2. MIDDLE SECTION  */}
+          <div
+            ref={contentRef}
+            className="z-10 mt-8 flex w-[90vw] flex-col items-start justify-between gap-12 md:mt-0 md:flex-row md:items-center"
+          >
+            {/* Headline */}
+            <div className="flex max-w-full flex-col gap-8 md:max-w-[50vw]">
+              <h2 className="font-sans text-[clamp(1.5rem,4vw,2.5rem)] font-medium leading-[1.5] text-white/90">
+                 نُؤمن بأن العمل العام يبدأ من الوعي، ولهذا نُكرّس مساحات للتعلم، ومنصات للانطلاق، وتجارب تصنع الأثر.
+              </h2>
+
+              <a
+                href="/contact"
+                className="cta-link group relative w-fit font-sans text-xl font-medium text-white transition-colors hover:text-primary md:text-2xl"
+              >
+                تواصل معنا
+                {/* Animated Underline */}
+                <span className="absolute -bottom-2 left-0 h-[2px] w-full origin-right scale-x-100 bg-white/30 transition-transform duration-500 ease-out group-hover:origin-left group-hover:scale-x-0"></span>
+                <span className="absolute -bottom-2 left-0 h-[2px] w-full origin-left scale-x-0 bg-primary transition-transform duration-500 ease-out group-hover:scale-x-100"></span>
+              </a>
+            </div>
+
+            {/* Nav Links */}
+            <div className="flex gap-12 md:gap-[5vw] lg:gap-[8vw]">
+              <ul className="flex flex-col gap-4 font-sans text-base font-semibold uppercase text-white/70 md:text-lg">
+                {PRIMARY_NAV.map((item) => (
+                  <li key={item.path}>
+                    <Link
+                      href={item.path}
+                      className={`text-left transition-colors hover:text-primary ${pathname === item.path ? 'text-primary' : ''}`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            
+            </div>
+          </div>
+
+          {/* 3. BACK TO TOP */}
+          <div ref={btpRef} className="flex w-full justify-end pr-[5vw]">
+            <button
+              onClick={onScrollToTop}
+              aria-label="العودة للأعلى"
+              className="flex h-14 w-14 items-center cursor-pointer justify-center bg-primary text-black transition-transform hover:scale-110 md:h-16 md:w-16"
+            >
+              <svg
+                className="h-6 w-6 md:h-8 md:w-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="square"
+                  strokeWidth="3"
+                  d="M5 10l7-7m0 0l7 7m-7-7v18"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* 4. BOTTOM BAR */}
+          <div
+            ref={bottomRef}
+            className="flex w-[90vw] flex-col gap-6 pt-8 md:flex-row md:justify-between"
+          >
+            <div className="flex flex-wrap gap-6 font-sans text-sm font-medium ">
+              {SOCIAL_LINKS.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.link}
+                  target={s.target}
+                  className="transition-colors hover:text-white"
+                >
+                  {s.name}
+                </a>
+              ))}
+            </div>
+            <div className="font-sans text-sm font-medium">
+              <p>
+                © 2026 Copyright Nasri noufel seif el islam.{' '}
+                <span>
+                  Designed & Built by{' '}
+                  <a
+                    href="https://my-portfolio-pi-nine-27.vercel.app/"
+                    target="new"
+                    className="uppercase ml-2 text-white/70 transition-colors hover:text-primary"
+                  >
+                    NSF
+                  </a>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    )
+  }
+)
+
+Footer.displayName = 'Footer'
+export default Footer

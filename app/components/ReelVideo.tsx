@@ -1,14 +1,22 @@
 import React from "react";
 import { useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ReelVideo() {
 
+  const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useGSAP(() => {
     if (!titleRef.current) return;
+
+    ScrollTrigger.getAll().forEach((st) => {
+      if (st.trigger && sectionRef.current?.contains(st.trigger)) st.kill();
+    });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -23,7 +31,9 @@ export default function ReelVideo() {
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.5, ease: "power3.out" },
     );
-  }
+
+    ScrollTrigger.refresh();
+  }, { scope: sectionRef }
   );
 
 
@@ -35,14 +45,14 @@ export default function ReelVideo() {
 
 
   return (
-    <section className="relative w-full h-screen mt-30 overflow-hidden px-4 py-20 sm:px-8 lg:px-12">
+    <section ref={sectionRef} className="relative w-full h-screen mt-30 mb-30 overflow-hidden px-4 py-20 sm:px-8 lg:px-12">
       <div className="relative mx-auto max-w-5xl text-center">
         <span className="inline-flex mb-3 items-center gap-2  border-2 border-black heading bg-secondary px-4 py-1 text-2xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
-          مشروع البوصلة
+            فيديو تعريفي 
         </span>
         <h2 
         ref={titleRef}
-        className="heading text-5xl font-bold leading-tight text-slate-900 sm:text-5xl">
+        className="heading text-5xl font-bold leading-tight text-slate-900 sm:text-8xl">
           كل ما تحتاج معرفته قبل
           <span className=" text-primary heading">
             {" "}

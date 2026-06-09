@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-const DEFAULT_END_DESKTOP = '+=200%'
-const DEFAULT_END_MOBILE = '+=150%'
+const DEFAULT_END_DESKTOP = "+=200%";
+const DEFAULT_END_MOBILE = "+=150%";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 interface AboutLayerOneProps {
-  endDesktop?: string
-  endMobile?: string
-  className?: string
+  endDesktop?: string;
+  endMobile?: string;
+  className?: string;
 }
 
 export default function AboutLayerOne({
@@ -21,75 +21,75 @@ export default function AboutLayerOne({
   endMobile = DEFAULT_END_MOBILE,
   className,
 }: AboutLayerOneProps) {
-  const sectionRef = useRef<HTMLElement>(null)
-  const headlineRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      if (!sectionRef.current || !headlineRef.current) return
+      if (!sectionRef.current || !headlineRef.current) return;
 
-      const mm = gsap.matchMedia()
+      const mm = gsap.matchMedia();
 
       mm.add(
         {
-          isDesktop: '(min-width: 768px)',
-          isMobile: '(max-width: 767px)',
+          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 767px)",
         },
         (context) => {
-          const { isDesktop } = context.conditions as { isDesktop: boolean }
+          const { isDesktop } = context.conditions as { isDesktop: boolean };
 
           const tl = gsap.timeline({
             scrollTrigger: {
-              id: 'about-layer-one',
+              id: "about-layer-one",
               trigger: sectionRef.current,
-              start: 'top top',
+              start: "top top",
               end: isDesktop ? endDesktop : endMobile,
               pin: true,
               scrub: 1.5,
               invalidateOnRefresh: true,
             },
-          })
+          });
 
-          const headline = headlineRef.current as HTMLElement
+          const headline = headlineRef.current as HTMLElement;
 
           tl.fromTo(
-            headline.querySelectorAll('.header-title span'),
+            headline.querySelectorAll(".header-title span"),
             { y: 100, opacity: 0 },
             { y: 0, opacity: 1, stagger: 0.15, duration: 2 },
-            0
+            0,
           )
             .fromTo(
-              headline.querySelector('.sub-header'),
+              headline.querySelector(".sub-header"),
               { y: 30, opacity: 0 },
               { y: 0, opacity: 1, duration: 1.5 },
-              0.5
+              0.5,
             )
             .to(
               headlineRef.current,
               {
-                y: isDesktop ? '-100vh' : '-120vh',
+                y: isDesktop ? "-100vh" : "-120vh",
                 opacity: 0,
                 duration: 3,
-                ease: 'expo.in',
+                ease: "expo.in",
               },
-              2
-            )
-        }
-      )
+              2,
+            );
+        },
+      );
 
       return () => {
-        mm.revert()
-        ScrollTrigger.getAll().forEach((t) => t.kill())
-      }
+        mm.revert();
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      };
     },
-    { scope: sectionRef }
-  )
+    { scope: sectionRef },
+  );
 
   return (
     <section
       ref={sectionRef}
       className={`relative h-screen w-full overflow-hidden bg-primary-950 ${
-        className ?? ''
+        className ?? ""
       }`}
     >
       <div
@@ -97,16 +97,16 @@ export default function AboutLayerOne({
         className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center"
       >
         <h2 className="header-title -rotate-2 flex flex-col items-center heading justify-center gap-x-6 font-display text-[15vw] uppercase leading-none tracking-tighter  md:flex-row md:text-[15rem]">
-           <span className=" heading ">مخيم رواد</span>
+          <span className=" heading ">مخيم رواد</span>
           <span className=" heading text-primary"> الشباب</span>
         </h2>
         <p className="sub-header mt-8 max-w-4xl font-display text-gray-800 text-lg uppercase tracking-tight md:mt-12 md:text-3xl">
-          منذ 2016، يعمل مخيم رواد الشباب على تمكين الشباب من تطوير
-          المهارات القيادية والمشاركة المدنية، ودعمهم في بناء مشاريع
-          مجتمعية مستدامة. نقدّم ورش عمل، تدريبًا عمليًا، وبرامج توجيهية
-          تهدف إلى إعداد الجيل القادم من القادة والمبادرات المحلية.
+          منذ 2016، يعمل مخيم رواد الشباب على تمكين الشباب من تطوير المهارات
+          القيادية والمشاركة المدنية، ودعمهم في بناء مشاريع مجتمعية مستدامة.
+          نقدّم ورش عمل، تدريبًا عمليًا، وبرامج توجيهية تهدف إلى إعداد الجيل
+          القادم من القادة والمبادرات المحلية.
         </p>
       </div>
     </section>
-  )
+  );
 }

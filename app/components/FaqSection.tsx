@@ -58,20 +58,20 @@ const faqs: FAQItem[] = [
 
 export default function FaqSection() {
   return (
-    <section id="faq" dir="rtl" className="w-full   py-20 sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-4xl p-6 sm:p-10">
+    <section id="faq"  className="w-full z-100  py-20 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-4xl z-100 p-6 sm:p-10">
 
         {/* Header */}
         <div className="mb-12 flex flex-col items-center gap-4 text-center">
-         <span className="inline-flex items-center gap-2 border-2 border-black heading bg-secondary px-4 py-1 text-2xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
-          مشروع البوصلة
+         <span className="inline-flex items-center gap-2 border-2 border-black heading bg-secondary px-4 py-1 text-xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+          الأسئلة الشائعة 
         </span>
 
-          <h2 className="heading text-4xl font-bold leading-tight text-slate-900 sm:text-6xl">
+          <h2 className="heading text-5xl z-10 font-bold leading-tight text-slate-900 sm:text-8xl">
             كل ما تحتاج معرفته قبل
             <span className=" text-primary heading"> الانطلاق معنا</span>
           </h2>
-          <p className="max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+          <p className="max-w-2xl z-10 text-base leading-8 sm:text-lg">
             إجابات واضحة تساعدك على فهم مسار مشروع البوصلة وكيفية الاستفادة من
             التكوينات السياسية والقيادية.
           </p>
@@ -79,10 +79,10 @@ export default function FaqSection() {
         </div>
 
         {/* Accordion list */}
-        <div className="overflow-hidden rotate-1 hover:rotate-0 transition duration-500 border-2 border-black bg-[var(--figjam-cream)] p-4 shadow-[10px_10px_0_0_#111111] sm:p-6">
-          <Accordion type="single" collapsible className="w-full">
+        <div className="overflow-hidden z-100 rotate-1 hover:rotate-0 transition duration-500 border-2 border-black bg-[var(--figjam-cream)] p-4 shadow-[10px_10px_0_0_#111111] sm:p-6">
+          <Accordion type="single" collapsible className="w-full z-10">
             {faqs.map((faq) => (
-              <AccordionItem key={faq.id} value={faq.id} className="mb-4 last:mb-0">
+              <AccordionItem key={faq.id} value={faq.id} className="mb-4 z-10 last:mb-0">
                 <AccordionTrigger className="text-right heading text-lg">
                   {faq.question}
                 </AccordionTrigger>

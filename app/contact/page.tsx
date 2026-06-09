@@ -6,60 +6,42 @@ import { ArrowLeft } from "lucide-react";
 
 const socials = [
   {
-    id: "linkedin",
-    label: "LINKEDIN",
-    href: "https://www.linkedin.com",
-    color: "bg-primary text-white hover:bg-primary/20 hover:text-primary",
-  },
-  {
     id: "instagram",
     label: "INSTAGRAM",
     href: "https://www.instagram.com/albawsala_program",
-    color: "bg-secondary text-white hover:bg-primary/20 hover:text-primary",
+    color: "bg-secondary text-white hover:bg-accent hover:text-primary",
   },
   {
     id: "facebook",
     label: "FACEBOOK",
-    href: "https://web.facebook.com/albawsala_program?_rdc=1&_rdr#",
-    color: "bg-primary text-white hover:bg-primary/20 hover:text-primary",
+    href: "https://www.facebook.com/profile.php?id=61590390284453&locale=fr_FR",
+    color: "bg-primary text-white hover:bg-accent hover:text-primary",
   },
   {
-    id: "github",
-    label: "GITHUB",
-    href: "https://github.com",
-    color: "bg-secondary text-white hover:bg-primary/20 hover:text-primary",
+    id: "whatsapp",
+    label: "WHATSAPP",
+    href: "https://wa.me/+213772358023",
+    color: "bg-secondary text-white hover:bg-accent hover:text-primary",
   },
-  // {
-  //   id: "telegram",
-  //   label: "تيليغرام",
-  //   handle: "@elbawsala_dz",
-  //   href: "https://t.me/elbawsala_dz",
-  //   description: "انضم للقناة الرسمية وتابع مواعيد التكوين",
-  //   color: "hover:border-[#229ED9] hover:text-[#229ED9]",
-  //   icon: (
-  //     <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
-  //       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 14.4l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.888.16z" />
-  //     </svg>
-  //   ),
-  // },
+
 ];
 
 export default function ContactPage() {
   return (
-    <main dir="rtl" className="min-h-screen flex flex-col py-24">
+    <main dir="rtl" className="min-h-screen z-10 flex flex-col py-24">
       {/* ── Hero ── */}
       <div className="w-full pt-24 pb-16 px-6 text-center">
-        <p className="inline-flex items-center gap-2 border-2 mb-2 border-black heading bg-secondary px-7 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+        <p className="inline-flex items-center gap-2 border-2 mb-2 border-black heading bg-secondary px-7 py-1 text-xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
           تواصل معنا
         </p>
-        <h1 className="heading mb-5 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[6rem]">
+        <h1 className="heading mb-5 rotate-2 text-[3.8rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[9rem]">
           تواصل مع فريق
           <span className="text-primary heading ">
             {" "}
             مشروع انطلاقتك
           </span>
         </h1>
-        <p className="mx-auto max-w-2xl text-[0.95rem] leading-[1.95] text-slate-600 sm:text-lg">
+        <p className="mx-auto max-w-2xl text-[0.95rem] leading-[1.95] sm:text-lg">
           للاستفسار حول الدفعات القادمة، شروط المشاركة، أو تفاصيل البرنامج，
           يمكنك مراسلتنا عبر المنصات التالية وسنرد عليك في أقرب وقت.
         </p>
@@ -78,15 +60,15 @@ export default function ContactPage() {
       </div>
 
       {/* ── Social Cards ── */}
-      <div className="flex-1 w-full pb-24">
+      <div className="flex-1 contain-content mx-auto w-full pb-24">
         <div className="">
-          <h1 className="heading  text-center text-[2.8rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[4rem]">
+          <h2 className="heading  text-center text-[2.8rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[4rem]">
             تواصل عبر منصاتنا الاجتماعية
-          </h1>
+          </h2>
           <div className="flex items-center justify-between px-6 py-6 sm:px-10">
           
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 border-t border-white/10">
             {socials.map((s) => (
               <Link
                 key={s.id}
@@ -115,13 +97,13 @@ export default function ContactPage() {
           <div className="h-px flex-1 bg-primary/20" />
         </div>
 
-        <span className="btn-gradient  md:max-w-5xl mx-auto flex items-center justify-between  shadow-[4px_4px_0_0_#111111] border-4 border-black  px-6 py-7 transition-colors duration-300">
+        <span className="btn-gradient   md:max-w-5xl mx-auto flex items-center justify-between  shadow-[4px_4px_0_0_#111111] border-4 border-black  px-6 py-7 transition-colors duration-300">
           <div className="flex flex-col gap-1">
             <span className="text-[0.72rem] font-semibold tracking-[0.12em] opacity-80">
               البريد الإلكتروني
             </span>
             <span className="text-[1.1rem] font-semibold text-white tracking-tight">
-              albawsalaprogram@gmail.com
+              bouteramansourk@gmail.com 
             </span>
           </div>
           <svg

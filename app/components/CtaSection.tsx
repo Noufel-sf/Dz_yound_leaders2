@@ -6,13 +6,17 @@ import { gsap } from "gsap";
 import Link from "next/link";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 function CtaSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.getAll().forEach((st) => {
+      if (st.trigger && sectionRef.current?.contains(st.trigger)) st.kill();
+    });
 
     const ctx = gsap.context(() => {
       const reduceMotion = window.matchMedia(
@@ -20,7 +24,7 @@ function CtaSection() {
       ).matches;
 
       gsap.to(sectionRef.current, {
-        scale: 0.64,
+        scale: 0.94,
         opacity: 0,
         y: -60,
         ease: "none",
@@ -32,6 +36,8 @@ function CtaSection() {
         },
       });
     }, sectionRef);
+
+    ScrollTrigger.refresh();
 
     return () => ctx.revert();
   }, []);
@@ -76,7 +82,8 @@ function CtaSection() {
           </Link>
           <a
             target="_blank"
-            href=""
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfbaB2RWp_-TUz-QmFcEI1RDSXqHGAT_W0SxGcHdRHxbjSl5g/viewform"
+            rel="noopener noreferrer"
             className="heading inline-flex items-center gap-2 border-2 border-black px-8 py-3 md:text-lg font-bold bg-secondary shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
           >
             انضم الآن

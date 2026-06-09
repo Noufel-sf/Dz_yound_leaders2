@@ -12,7 +12,7 @@ const highlights = [
   {
     title: "تأهيل شامل",
     description:
-      "برنامج متكامل يغطي المسارات المهارية والقانونية والإدارية والسياسية.",
+      "برنامج متكامل يغطي المسارات المهارية والقانونية.",
     accent: "border-[var(--figjam-blue)]",
     iconBg: "bg-[var(--figjam-blue)]",
   },
@@ -33,13 +33,13 @@ const highlights = [
   {
     title: "شراكات استراتيجية",
     description:
-      "دعم من وزارة الشباب والمجلس الأعلى للشباب ضمن برنامج DZ Young Leaders.",
+      "دعم من  للشباب ضمن برنامج DZ Young Leaders.",
     accent: "border-[var(--figjam-green)]",
     iconBg: "bg-[var(--figjam-green)]",
   },
   {
     title: "تقييم مستمر",
-    description: "نظام تقييم شامل لضمان جودة المخرجات وتحقيق الأهداف المرجوة.",
+    description: "نظام تقييم شامل لضمان جودة المخرجاة.",
     accent: "border-[var(--figjam-purple)]",
     iconBg: "bg-[var(--figjam-purple)]",
   },
@@ -57,6 +57,10 @@ function WhyChooseUs() {
 
   useGSAP(
     () => {
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.trigger && sectionRef.current?.contains(st.trigger)) st.kill();
+      });
+
       gsap.fromTo(
         ".why-choose-title",
         { opacity: 0, y: 24 },
@@ -84,6 +88,8 @@ function WhyChooseUs() {
           },
         );
       });
+
+      ScrollTrigger.refresh();
     },
     { scope: sectionRef },
   );
@@ -91,24 +97,26 @@ function WhyChooseUs() {
   return (
     <section
       ref={sectionRef}
-      className="bg-blue-700 px-4 py-20 sm:px-8 lg:px-12"
+      className="bg-primary z-2 px-4 py-20 sm:px-8  lg:px-12"
     >
       <div className="why-choose-title mb-10 flex flex-col items-center gap-4 text-center">
-        <span className="inline-flex items-center gap-2  border-2 border-black heading bg-secondary px-4 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
-          مشروع البوصلة
+        <span className="inline-flex items-center gap-2  border-2 border-black heading bg-secondary px-4 py-1 text-2xl md:text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+            لماذا تختارنا
         </span>
 
-        <h2 className="heading text-5xl font-bold uppercase text-white sm:text-7xl">
-          <span className="block heading">ما الذي يميزنا</span>
+        <h2 className="heading text-6xl font-bold text-white uppercase sm:text-9xl">
+          <span className="block heading" dir="rtl">
+            ما الذي يميزنا ?
+          </span>
         </h2>
       </div>
 
-      <div className="mx-auto max-w-6xl -rotate-1 rounded-[28px] border-[3px] border-black bg-[var(--figjam-cream)] p-6 shadow-[10px_10px_0_0_#111111] sm:p-10">
+      <div className="mx-auto max-w-6xl -rotate-1 hover:rotate-0 transition duration-500 ease-in-out border-[3px] border-black bg-[var(--figjam-cream)] p-6 shadow-[10px_10px_0_0_#111111] sm:p-10">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {highlights.map((item, idx) => (
             <article
               key={idx}
-              className={`why-choose-card rounded-2xl border-[3px] bg-white p-6 shadow-[6px_6px_0_0_#111111] ${item.accent}`}
+              className={`why-choose-card  border-[3px] bg-white p-6 shadow-[6px_6px_0_0_#111111] ${item.accent}`}
             >
               <div className="mb-4 flex items-center justify-between">
                 <div
