@@ -5,170 +5,239 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
 export default function HeroSection() {
-  const sectionRef  = useRef<HTMLElement>(null);
-  const contentRef  = useRef<HTMLDivElement>(null);
-  const logoRef     = useRef<HTMLDivElement>(null);
-  const shape1Ref   = useRef<HTMLDivElement>(null);
-  const shape2Ref   = useRef<HTMLDivElement>(null);
-  const shape3Ref   = useRef<HTMLDivElement>(null);
+  // const sectionRef = useRef<HTMLElement>(null);
+  // const contentRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  // const shape1Ref = useRef<HTMLDivElement>(null);
+  // const shape2Ref = useRef<HTMLDivElement>(null);
+  // const shape3Ref = useRef<HTMLDivElement>(null);
 
-      // Corner shapes pop in first — they frame everything else
-      tl.fromTo(
-        [shape1Ref.current, shape2Ref.current],
-        { scale: 0.4, opacity: 0 },
-        { scale: 1, opacity: 1, stagger: 0.12, duration: 1.1, ease: "back.out(1.6)" },
-      )
-        // Logo drops in
-        .fromTo(
-          logoRef.current,
-          { y: -30, opacity: 0, scale: 0.85 },
-          { y: 0, opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" },
-          "-=0.5",
-        )
-        // Content lines stagger up
-        .fromTo(
-          contentRef.current?.children ?? [],
-          { y: 44, opacity: 0 },
-          { y: 0, opacity: 1, stagger: 0.13, duration: 0.7 },
-          "-=0.35",
-        )
-        // Bottom shape slides in
-        .fromTo(
-          shape3Ref.current,
-          { x: -60, opacity: 0 },
-          { x: 0, opacity: 1, duration: 1 },
-          "-=0.6",
-        );
+  // useGSAP(
+  //   () => {
+  //     const tl = gsap.timeline({
+  //       defaults: {
+  //         ease: "power3.out",
+  //       },
+  //     });
 
-      // Endless floating
-      gsap.to(shape1Ref.current, {
-        y: -20, rotation: 8, duration: 3.4,
-        ease: "sine.inOut", yoyo: true, repeat: -1,
-      });
-      gsap.to(shape2Ref.current, {
-        y: -16, x: -6, rotation: -10, duration: 4.2,
-        ease: "sine.inOut", yoyo: true, repeat: -1,
-      });
-      gsap.to(shape3Ref.current, {
-        y: -12, rotation: 6, duration: 3.8,
-        ease: "sine.inOut", yoyo: true, repeat: -1,
-      });
-    },
-    { scope: sectionRef },
-  );
+  //     tl.fromTo(
+  //       [shape1Ref.current, shape2Ref.current],
+  //       {
+  //         scale: 0.4,
+  //         opacity: 0,
+  //       },
+  //       {
+  //         scale: 1,
+  //         opacity: 1,
+  //         stagger: 0.15,
+  //         duration: 1,
+  //         ease: "back.out(1.7)",
+  //       },
+  //     )
+  //       .fromTo(
+  //         contentRef.current?.children ?? [],
+  //         {
+  //           y: 40,
+  //           opacity: 0,
+  //         },
+  //         {
+  //           y: 0,
+  //           opacity: 1,
+  //           stagger: 0.12,
+  //           duration: 0.8,
+  //         },
+  //         "-=0.5",
+  //       )
+  //       .fromTo(
+  //         shape3Ref.current,
+  //         {
+  //           x: -80,
+  //           opacity: 0,
+  //         },
+  //         {
+  //           x: 0,
+  //           opacity: 1,
+  //           duration: 1,
+  //         },
+  //         "-=0.7",
+  //       );
+
+  //     // floating animation
+  //     gsap.to(shape1Ref.current, {
+  //       y: -18,
+  //       rotate: 8,
+  //       duration: 3.5,
+  //       repeat: -1,
+  //       yoyo: true,
+  //       ease: "sine.inOut",
+  //     });
+
+  //     gsap.to(shape2Ref.current, {
+  //       y: -14,
+  //       rotate: -10,
+  //       duration: 4,
+  //       repeat: -1,
+  //       yoyo: true,
+  //       ease: "sine.inOut",
+  //     });
+
+  //     gsap.to(shape3Ref.current, {
+  //       y: -12,
+  //       duration: 3,
+  //       repeat: -1,
+  //       yoyo: true,
+  //       ease: "sine.inOut",
+  //     });
+  //   },
+  //   { scope: sectionRef },
+  // );
 
   return (
     <section
-      ref={sectionRef}
+      // ref={sectionRef}
       dir="rtl"
-      className="relative min-h-screen overflow-hidden px-6 sm:px-10"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 "
     >
-      {/* ── Background (unchanged) ── */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:radial-gradient(#111111_1px,transparent_1px)] [background-size:24px_24px]" />
-      <div className="pointer-events-none absolute left-0 top-0 h-72 w-72 rounded-full bg-[#FFD64D]/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[#3C7CFF]/15 blur-3xl" />
+      {/* background grid */}
+      {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f620_1px,transparent_1px)] bg-[size:80px]" /> */}
 
-      {/* ── Shape 1 — top-left (like the pink shape in reference) ── */}
+      {/* blur lights */}
+      {/* <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-primary/10 blur-3xl" /> */}
+      {/* <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-secondary/20 blur-3xl" /> */}
+
+      {/* shape 1 */}
       <div
-        ref={shape1Ref}
-        className="pointer-events-none absolute left-2 top-4 md:left-8 md:top-8"
-        style={{ rotate: "-12deg" }}
+        // ref={shape1Ref}
+        className="pointer-events-none absolute left-2 top-26 md:left-10 md:top-30"
       >
         <Image
           src="/shape1.png"
           alt=""
           width={180}
           height={180}
-          className="w-24 md:w-40 lg:w-48"
-          aria-hidden="true"
+          className="w-14 md:w-40"
           priority
         />
       </div>
 
-      {/* ── Shape 2 — top-right (like the gold crescent in reference) ── */}
+      {/* shape 2 */}
       <div
-        ref={shape2Ref}
-        className="pointer-events-none absolute right-2 top-4 md:right-8 md:top-8"
-        style={{ rotate: "6deg" }}
-      >
-        <Image
-          src="/shape2.svg"
-          alt=""
-          width={200}
-          height={200}
-          className="w-28 md:w-44 lg:w-56"
-          aria-hidden="true"
-          priority
-        />
-      </div>
-
-      {/* ── Shape 3 — bottom-left ── */}
-      <div
-        ref={shape3Ref}
-        className="pointer-events-none absolute bottom-8 left-4 md:bottom-16 md:left-10"
+        // ref={shape2Ref}
+        className="pointer-events-none absolute -right-4 top-30 md:-right-10 md:top-26"
       >
         <Image
           src="/shape3.png"
           alt=""
-          width={130}
-          height={130}
-          className="w-20 md:w-32"
-          aria-hidden="true"
+          width={120}
+          height={100}
+          className="w-18 md:w-48"
+          priority
         />
       </div>
 
-   
-
-      {/* ── Main content ── */}
+      {/* shape 3 */}
       <div
-        ref={contentRef}
-        className="relative z-10 mx-auto mt-8 flex w-full max-w-2xl flex-col items-center text-center"
+        // ref={shape3Ref}
+        className="pointer-events-none absolute bottom-10 left-4 md:left-12"
       >
-        {/* Rotated badge — eyebrow */}
-        <span className="heading inline-flex -rotate-1 items-center border-2 border-black bg-secondary px-5 py-1.5 text-base font-bold text-black shadow-[3px_3px_0_0_#111111]">
-          نادي رواد الشباب
+        <Image
+          src="/shape2.svg"
+          alt=""
+          width={100}
+          height={100}
+          className="w-24 md:w-44"
+          priority
+        />
+      </div>
+
+          <div
+        // ref={shape3Ref}
+        className="pointer-events-none absolute bottom-10 right-4 md:right-12"
+      >
+        <Image
+          src="/c2.png"
+          alt=""
+          width={100}
+          height={100}
+          className="w-24 md:w-44"
+          priority
+        />
+      </div>
+
+
+      {/* center content */}
+      <div
+        // ref={contentRef}
+        className="relative z-10 flex max-w-8xl flex-col items-center text-center"
+      >
+        {/* top small text */}
+        <span className="heading border-2 border-black bg-secondary px-5 py-2 text-sm font-black text-black shadow-[4px_4px_0_0_#111111] md:text-base">
+          مخيم الرواد الشبابي
         </span>
 
-        {/* Headline */}
-        <h1 className="heading mt-7 text-5xl font-black leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl">
-          حيث يبدأ{" "}
-          <span className="text-primary  heading">المستقبل</span>
-          <span className="mt-3 block heading text-4xl sm:text-5xl lg:text-[3.5rem]">
-            وتشارك في صناعة القرار
+        {/* big title */}
+        <h1 className="heading mt-5 text-5xl rotate-3  font-black leading-[1.1] text-black sm:text-6xl md:text-7xl lg:text-[8.5rem]">
+          نحلم، نبتكر،
+          <span className="text-primary heading">
+            ونبني المستقبل
           </span>
         </h1>
 
-        {/* One-liner sub-text */}
-        <p className="mt-6 max-w-lg text-base leading-8 text-slate-600 sm:text-lg">
-          تم اختيار المشروع ضمن برنامج{" "}
-          <span className="heading font-bold text-primary">DZ Young Leaders</span>{" "}
-          التابع لوزارة الشباب وبالتنسيق مع المجلس الأعلى للشباب.
+        {/* arrow + text */}
+        {/* <div className="mt-8 flex items-center gap-5">
+          <div className="-scale-x-100 text-primary">
+            <Image
+              src="/shape2.svg"
+              alt=""
+              width={80}
+              height={80}
+              className="w-16 md:w-30"
+              priority
+            />
+          </div>
+
+          <span className="heading text-3xl font-black md:text-5xl">
+            أنت جزء من التغيير
+          </span>
+        </div> */}
+
+        {/* subtitle */}
+        <p className="mt-4 md:mt-10 max-w-3xl text-md leading-9 text-black/70 md:text-2xl">
+          انضم إلى تجربة شبابية تجمع بين
+          <span className="heading font-black text-primary">
+            {" "}
+            القيادة،
+          </span>
+          <span className="heading font-black text-secondary">
+            {" "}
+            التكنولوجيا،
+          </span>
+          <span className="heading font-black text-primary">
+            {" "}
+            والابتكار
+          </span>
+          ، لصناعة جيل قادر على التأثير الحقيقي في المجتمع.
         </p>
 
-        {/* CTA buttons */}
-        <div className="mt-8 mb-20 flex flex-wrap items-center justify-center gap-3">
+        {/* buttons */}
+        <div className="mt-12 flex  items-center justify-center gap-5">
           <Link
-            href="/about"
-            className="heading inline-flex h-12 items-center gap-2 border-2 border-black bg-primary px-7 text-base font-bold text-white shadow-[4px_4px_0_0_#111111] transition-transform hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            href="/register"
+            className="heading inline-flex h-14 items-center gap-3 border-2 border-black bg-primary px-8 text-md md:text-lg font-black text-white shadow-[5px_5px_0_0_#111111] transition-all hover:-translate-y-1 hover:shadow-[8px_8px_0_0_#111111]"
           >
-            ابدأ الآن
+            سجل الآن
             <ArrowLeft className="h-5 w-5" />
           </Link>
-          <Button
-            asChild
-            variant="neutral"
-            className="heading h-12 border-2 border-black bg-secondary px-5 text-base font-bold shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+
+          <Link
+            href="/about"
+            className="heading inline-flex h-14 items-center border-2 border-black bg-white px-8 text-md md:text-lg font-black text-black shadow-[5px_5px_0_0_#111111] transition-all hover:-translate-y-1 hover:shadow-[8px_8px_0_0_#111111]"
           >
-            <Link href="/about">تعرف أكثر</Link>
-          </Button>
+            اكتشف البرنامج
+          </Link>
         </div>
       </div>
     </section>
