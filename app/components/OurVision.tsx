@@ -97,11 +97,11 @@ export default function AboutLayerOne({
         className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center"
       >
         <h2 className="header-title -rotate-2 flex flex-col items-center heading justify-center gap-x-6 font-display text-[15vw] uppercase leading-none tracking-tighter  md:flex-row md:text-[15rem]">
-          <span className=" heading ">مخيم رواد</span>
-          <span className=" heading text-primary"> الشباب</span>
+          <span className=" heading "> رؤيتنا</span>
+          <span className=" heading text-primary"> للشباب?</span>
         </h2>
-        <p className="sub-header mt-8 max-w-4xl font-display text-gray-800 text-lg uppercase tracking-tight md:mt-12 md:text-3xl">
-          منذ 2016، يعمل مخيم رواد الشباب على تمكين الشباب من تطوير المهارات
+        <p className="sub-header mt-8 max-w-4xl font-display text-gray-600 text-lg uppercase tracking-tight md:mt-12 md:text-3xl">
+           2026، يعمل مخيم رواد الشباب على تمكين الشباب  18 - 35 سنة من تطوير المهارات
           القيادية والمشاركة المدنية، ودعمهم في بناء مشاريع مجتمعية مستدامة.
           نقدّم ورش عمل، تدريبًا عمليًا، وبرامج توجيهية تهدف إلى إعداد الجيل
           القادم من القادة والمبادرات المحلية.

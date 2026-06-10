@@ -6,17 +6,13 @@ import { gsap } from "gsap";
 import Link from "next/link";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 function CtaSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    ScrollTrigger.getAll().forEach((st) => {
-      if (st.trigger && sectionRef.current?.contains(st.trigger)) st.kill();
-    });
+    gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
       const reduceMotion = window.matchMedia(
@@ -26,7 +22,7 @@ function CtaSection() {
       gsap.to(sectionRef.current, {
         scale: 0.94,
         opacity: 0,
-        y: -60,
+        y: -80,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -36,8 +32,6 @@ function CtaSection() {
         },
       });
     }, sectionRef);
-
-    ScrollTrigger.refresh();
 
     return () => ctx.revert();
   }, []);
@@ -49,21 +43,21 @@ function CtaSection() {
       dir="rtl"
       style={{ transformOrigin: "center top" }}
     >
-      <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(circle_at_center,rgba(148,163,184,0.12),transparent_55%)]" />
 
       <div className="relative mx-auto max-w-5xl text-center">
         <h2
           data-cta-item
           className="heading text-5xl font-light leading-tight tracking-tight sm:text-9xl"
         >
-          إن لم نؤمّن مستقبلنا،
+          
+        ض  ُشعل شغفك، نُطلق إبداعك، نُصقل قيادتك.
           <br />
-          فلن نجد سببًا لنصنعه.
+         انم لجيل يصنع الفارق 
         </h2>
 
         <p
           data-cta-item
-          className="mx-auto mt-6 max-w-2xl text-base leading-8  sm:text-lg"
+          className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-700 sm:text-lg"
         >
           مشروع البوصلة يمنحك الأدوات والمسار لتصنع أثرًا حقيقيًا في مجتمعك
           وتكون جزءًا من الجيل القادر على القيادة.
@@ -75,16 +69,15 @@ function CtaSection() {
         >
           <Link
             href="/about"
-            className="heading inline-flex items-center gap-2 border-2 text-white border-black bg-primary px-6 py-3 md:text-lg font-bold text-primary-foreground shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            className=" inline-flex heading items-center gap-2 border-2  border-black bg-primary px-6 py-3 md:text-lg font-bold text-primary-foreground shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
           >
             تعرف أكثر
             <ArrowLeft className="h-5 w-5" />
           </Link>
           <a
             target="_blank"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfbaB2RWp_-TUz-QmFcEI1RDSXqHGAT_W0SxGcHdRHxbjSl5g/viewform"
-            rel="noopener noreferrer"
-            className="heading inline-flex items-center gap-2 border-2 border-black px-8 py-3 md:text-lg font-bold bg-secondary shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            href=""
+            className=" inline-flex heading items-center gap-2 border-2 border-black text-white px-8 py-3 md:text-lg font-bold bg-secondary shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
           >
             انضم الآن
           </a>

@@ -153,7 +153,7 @@ export default function AboutPage() {
   return (
     <main ref={mainRef} dir="rtl" className=" py-24 z-10">
       {/* ── Hero Section ── */}
-      <section className="relative mb-40 lg:mb-54 overflow-hidden px-4 py-24 sm:px-8 lg:px-12">
+      <section className="relative mb-40  lg:mb-54 overflow-hidden px-4 py-24 sm:px-8 lg:px-12">
         <div className="absolute inset-0 -z-10" />
 
         <div className="mx-auto  text-center">
@@ -183,8 +183,10 @@ export default function AboutPage() {
               />
             </div>
           </div>
-          <p className="text-lg mb-8 text-slate-700">
-            مخيم رواد الشباب هو مكان للنمو والتطور، حيث يلتقي الشباب من مختلف أنحاء البلاد لمشاركة الخبرات والمهارات.
+          <p className="text-md text-center md:text-xl mb-8 mx-auto max-w-lg text-slate-700">
+            تم اختيار المشروع ضمن برنامج <span className="font-bold text-primary">DZ Young Leaders</span> التابع لوزارة الشباب وبالتنسيق مع المجلس الأعلى للشباب، مما يعكس أهمية دوره في دعم وتمكين الشباب الجزائري.
+
+
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
