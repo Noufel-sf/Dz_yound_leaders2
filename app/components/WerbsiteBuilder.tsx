@@ -170,14 +170,14 @@ export default function AboutLayerOne({
         </h2>
         <div
           ref={logoCardRef}
-          className="mx-auto mb-8 w-full max-w-[18rem] mt-20 -rotate-2 border-4 border-black bg-white p-4 shadow-[10px_8px_0_0_#111111] sm:max-w-[24rem] lg:max-w-120"
+          className="mx-auto mb-8  max-w-[14rem] mt-20 -rotate-2 border-4 border-black bg-white p-4 shadow-[10px_8px_0_0_#111111] sm:max-w-[24rem] lg:max-w-90"
         >
-          <div className="relative aspect-16/5 w-full">
+          <div className="">
             <Image
-              src="/fullLogo.png"
+              src="/owner2.png"
               alt="الشعار الكامل لمشروع رواد الشباب"
-              width={500}
-              height={400}
+              width={320}
+              height={300}
               className="object-contain"
               priority
             />

@@ -2,15 +2,8 @@
 
 import React, { forwardRef, useRef } from 'react'
 import Image from 'next/image'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 interface FooterProps {
   onScrollToTop?: () => void
@@ -38,48 +31,19 @@ const PRIMARY_NAV = [
 ]
 
 
-const Footer = forwardRef<HTMLElement, FooterProps>(
-  ({ onScrollToTop }, ref) => {
-    const titleRef = useRef<HTMLDivElement>(null)
-    const contentRef = useRef<HTMLDivElement>(null)
-    const bottomRef = useRef<HTMLDivElement>(null)
-    const btpRef = useRef<HTMLDivElement>(null)
+const Footer = () => {
+   
 
     const pathname = usePathname()
-    useGSAP(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: 'top 90%',
-          toggleActions: 'play none none reverse',
-        },
-      })
-
-      tl.from(
-        [
-          titleRef.current,
-          contentRef.current,
-          btpRef.current,
-          bottomRef.current,
-        ],
-        {
-          opacity: 0,
-          y: -40,
-          duration: 1,
-          stagger: 0.1,
-          ease: 'power3.out',
-        }
-      )
-    })
+    
     return (
       <footer
-        ref={ref}
         className="relative flex  min-h-screen bg-secondary w-full flex-col items-center justify-between overflow-hidden bg-primary-950 py-[4vh]"
       >
         <div className="flex w-full flex-grow flex-col items-center justify-between">
           {/* 1. MASSIVE LOGO  */}
 
-          <div ref={titleRef} className="flex w-[90vw] justify-between">
+          <div  className="flex w-[90vw] justify-between">
             <div className="flex items-center font-display text-[12vw] font-black leading-[1.3] tracking-tight">
               <span className="text-primary mr-5">I</span>
 
@@ -88,10 +52,10 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
 
             {/* Mascot edgo */}
 
-            <div className="relative  aspect-square h-[22vw] overflow-hidden rounded-sm md:flex">
+            <div className="relative   h-[22vw] overflow-hidden rounded-sm md:flex">
               <Image
-                src="/logo3.png"
-                alt="EDG Groupe Mascot"
+                src="/dzyoungLeaders.jpg"
+                alt="Dz young leaders"
                 className="h-full w-full object-cover"
                 width={500}
                 height={500}
@@ -102,7 +66,6 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
 
           {/* 2. MIDDLE SECTION  */}
           <div
-            ref={contentRef}
             className="z-10 mt-8 flex w-[90vw] flex-col items-start justify-between gap-12 md:mt-0 md:flex-row md:items-center"
           >
             {/* Headline */}
@@ -140,31 +103,10 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
             </div>
           </div>
 
-          {/* 3. BACK TO TOP */}
-          <div ref={btpRef} className="flex w-full justify-end pr-[5vw]">
-            <button
-              onClick={onScrollToTop}
-              aria-label="العودة للأعلى"
-              className="flex h-14 w-14 items-center cursor-pointer justify-center bg-primary text-black transition-transform hover:scale-110 md:h-16 md:w-16"
-            >
-              <svg
-                className="h-6 w-6 md:h-8 md:w-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="square"
-                  strokeWidth="3"
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                />
-              </svg>
-            </button>
-          </div>
+       
 
           {/* 4. BOTTOM BAR */}
           <div
-            ref={bottomRef}
             className="flex w-[90vw] flex-col gap-6 pt-8 md:flex-row md:justify-between"
           >
             <div className="flex flex-wrap gap-6 font-sans text-sm font-medium ">
@@ -199,7 +141,6 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
       </footer>
     )
   }
-)
 
 Footer.displayName = 'Footer'
 export default Footer

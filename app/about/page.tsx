@@ -21,7 +21,10 @@ export default function AboutPage() {
     section?: HTMLElement;
     title?: HTMLElement;
   } | null>(null);
-  const werbsiteBuilderRef = useRef<{ section?: HTMLElement; title?: HTMLElement } | null>(null);
+  const werbsiteBuilderRef = useRef<{
+    section?: HTMLElement;
+    title?: HTMLElement;
+  } | null>(null);
 
   useGSAP(
     () => {
@@ -116,20 +119,21 @@ export default function AboutPage() {
             if (wbSection && wbTitle) {
               gsap.set(wbTitle, { opacity: 0, y: 24, scale: 1 });
 
-              gsap.timeline({
-                scrollTrigger: {
-                  id: "website-builder-title",
-                  trigger: wbSection,
-                  start: "top top",
-                  end: "bottom",
-                  scrub: 1,
-                  invalidateOnRefresh: true,
-                },
-              })
+              gsap
+                .timeline({
+                  scrollTrigger: {
+                    id: "website-builder-title",
+                    trigger: wbSection,
+                    start: "top top",
+                    end: "bottom",
+                    scrub: 1,
+                    invalidateOnRefresh: true,
+                  },
+                })
                 .to(
                   wbTitle,
                   { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
-                  0
+                  0,
                 )
                 .to(
                   wbTitle,
@@ -138,7 +142,7 @@ export default function AboutPage() {
                     duration: 1.2,
                     ease: "expo.inOut",
                   },
-                  1
+                  1,
                 );
             }
           }
@@ -164,11 +168,8 @@ export default function AboutPage() {
           </div>
 
           <h1 className="heading mb-6 rotate-2 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-[4rem] lg:text-[13rem]">
-            مخيم 
-            <span className="text-primary heading">
-              {" "}
-              رواد الشباب
-            </span>
+            مخيم
+            <span className="text-primary heading"> رواد الشباب</span>
           </h1>
 
           <div className="mx-auto mb-8 w-full max-w-[18rem] -rotate-2 hover:rotate-0 transition duration-500 border-4 border-black bg-white p-4 shadow-[10px_8px_0_0_#111111] sm:max-w-[24rem] lg:max-w-120">
@@ -184,9 +185,10 @@ export default function AboutPage() {
             </div>
           </div>
           <p className="text-md text-center md:text-xl mb-8 mx-auto max-w-lg text-slate-700">
-            تم اختيار المشروع ضمن برنامج <span className="font-bold text-primary">DZ Young Leaders</span> التابع لوزارة الشباب وبالتنسيق مع المجلس الأعلى للشباب، مما يعكس أهمية دوره في دعم وتمكين الشباب الجزائري.
-
-
+            تم اختيار المشروع ضمن برنامج{" "}
+            <span className="font-bold text-primary">DZ Young Leaders</span>{" "}
+            التابع لوزارة الشباب وبالتنسيق مع المجلس الأعلى للشباب، مما يعكس
+            أهمية دوره في دعم وتمكين الشباب الجزائري.
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -200,10 +202,38 @@ export default function AboutPage() {
             </a>
           </div>
 
+            <div
+                  // ref={shape1Ref}
+                  className="pointer-events-none absolute left-2 top-26 md:left-10 md:top-30"
+                >
+                  <Image
+                    src="/shape1.png"
+                    alt=""
+                    width={180}
+                    height={180}
+                    className="w-14 md:w-40"
+                    priority
+                  />
+                </div>
+          
+                {/* shape 2 */}
+                <div
+                  // ref={shape2Ref}
+                  className="pointer-events-none absolute -right-4 top-30 md:-right-10 md:top-26"
+                >
+                  <Image
+                    src="/shape2.svg"
+                    alt=""
+                    width={120}
+                    height={100}
+                    className="w-18 md:w-48"
+                    priority
+                  />
+                </div>
         </div>
       </section>
       <OurVision />
-      <WerbsiteBuilder/>
+      <WerbsiteBuilder />
       <ProblemAndObjectives ref={problemAndObjectivesRef} />
       <CtaSection />
       <FaqSection />

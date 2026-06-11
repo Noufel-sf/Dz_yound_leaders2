@@ -22,7 +22,7 @@ export default function OurTeam() {
           <h2 className="mt-5 heading text-3xl font-black leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
             يتكوّن فريق برنامج{" "}
             <span className="text-primary marker-underline heading">
-              "انطلاقتك"
+              &quot;انطلاقتك&quot;
             </span>
           </h2>
 

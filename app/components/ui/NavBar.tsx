@@ -272,9 +272,10 @@ export function useNavbarAnimations({
 
           if (menuOpen) return;
 
+          const isAtTop = self.scroll() < 50;
+
           gsap.to(navContainerRef.current, {
-            y: self.direction === 1 ? -120 : 0,
-            autoAlpha: self.direction === 1 ? 0 : 1,
+            autoAlpha: isAtTop ? 1 : 0,
             duration: 0.35,
             ease: "power2.out",
             overwrite: true,

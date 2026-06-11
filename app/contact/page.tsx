@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FaqSection from "../components/FaqSection";
 import OurLocation from "../components/OurLocation";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 // import WerbsiteBuilder from "../components/WerbsiteBuilder";
 
@@ -23,23 +24,22 @@ const socials = [
     href: "https://wa.me/+213772358023",
     color: "bg-secondary text-white hover:bg-accent hover:text-primary",
   },
-
 ];
 
 export default function ContactPage() {
   return (
-    <main dir="rtl" className="min-h-screen z-10 flex flex-col py-24">
+    <main
+      dir="rtl"
+      className="min-h-screen z-10 flex flex-col py-24 overflow-hidden"
+    >
       {/* ── Hero ── */}
-      <div className="w-full pt-24 pb-16 px-6 text-center">
+      <div className="overflow-x-hidden pt-24 pb-16 px-6 text-center">
         <p className="inline-flex items-center gap-2 border-2 mb-2 border-black heading bg-secondary px-7 py-1 text-xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
           تواصل معنا
         </p>
         <h1 className="heading mb-5 rotate-2 text-[3.8rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[9rem]">
           تواصل مع فريق
-          <span className="text-primary heading ">
-            {" "}
-            مشروع انطلاقتك
-          </span>
+          <span className="text-primary heading ">  رواد الشباب</span>
         </h1>
         <p className="mx-auto max-w-2xl text-[0.95rem] leading-[1.95] sm:text-lg">
           للاستفسار حول الدفعات القادمة، شروط المشاركة، أو تفاصيل البرنامج，
@@ -56,7 +56,35 @@ export default function ContactPage() {
             <ArrowLeft className="h-5 w-5" />
           </a>
         </div>
-        <div className="mx-auto mt-8 h-px w-12 bg-primary" />
+        <div className="mx-auto mt-8 h-px w-12 bg-primary overflow-hidden" />
+        <div
+          // ref={shape1Ref}
+          className="pointer-events-none absolute left-2 top-26 md:left-10 md:top-30"
+        >
+          <Image
+            src="/shape1.png"
+            alt=""
+            width={180}
+            height={180}
+            className="w-14 md:w-40"
+            priority
+          />
+        </div>
+
+        {/* shape 2 */}
+        <div
+          // ref={shape2Ref}
+          className="pointer-events-none absolute right-4 top-30 md:right-10 md:top-26"
+        >
+          <Image
+            src="/shape2.svg"
+            alt=""
+            width={120}
+            height={100}
+            className="w-18 md:w-48"
+            priority
+          />
+        </div>
       </div>
 
       {/* ── Social Cards ── */}
@@ -65,9 +93,7 @@ export default function ContactPage() {
           <h2 className="heading  text-center text-[2.8rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[4rem]">
             تواصل عبر منصاتنا الاجتماعية
           </h2>
-          <div className="flex items-center justify-between px-6 py-6 sm:px-10">
-          
-          </div>
+          <div className="flex items-center justify-between px-6 py-6 sm:px-10"></div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 border-t border-white/10">
             {socials.map((s) => (
               <Link
@@ -103,7 +129,7 @@ export default function ContactPage() {
               البريد الإلكتروني
             </span>
             <span className="text-[1.1rem] font-semibold text-white tracking-tight">
-              bouteramansourk@gmail.com 
+              bouteramansourk@gmail.com
             </span>
           </div>
           <svg
@@ -130,5 +156,3 @@ export default function ContactPage() {
     </main>
   );
 }
-
-

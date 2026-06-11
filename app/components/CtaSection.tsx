@@ -50,9 +50,9 @@ function CtaSection() {
           className="heading text-5xl font-light leading-tight tracking-tight sm:text-9xl"
         >
           
-        ض  ُشعل شغفك، نُطلق إبداعك، نُصقل قيادتك.
+          نشعل شغفك، نُطلق إبداعك، نُصقل قيادتك.
           <br />
-         انم لجيل يصنع الفارق 
+         انضم لجيل يصنع الفارق 
         </h2>
 
         <p
