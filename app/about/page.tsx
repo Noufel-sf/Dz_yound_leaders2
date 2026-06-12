@@ -91,16 +91,13 @@ export default function AboutPage() {
 
             sCards.forEach((card: HTMLDivElement, i: number) => {
               if (i === 0) return;
-              const prevContent = sCards[i - 1].querySelector(".service-content");
+              const prevContent =
+                sCards[i - 1].querySelector(".service-content");
               const currentContent = card.querySelector(".service-content");
               const pos = i + 2.5;
 
               servicesTl
-                .to(
-                  card,
-                  { yPercent: i * 9, ease: "power2.inOut" },
-                  pos,
-                )
+                .to(card, { yPercent: i * 9, ease: "power2.inOut" }, pos)
                 .to(
                   prevContent,
                   { y: -100, scale: 0.9, opacity: 0, ease: "power2.inOut" },
@@ -238,9 +235,8 @@ export default function AboutPage() {
       <OurVision />
       <WerbsiteBuilder />
       <ProblemAndObjectives ref={problemAndObjectivesRef} />
-      <ServicesSection />
       <CtaSection />
-    <FaqSection />
+      <FaqSection />
     </main>
   );
 }

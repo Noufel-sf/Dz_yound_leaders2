@@ -21,7 +21,7 @@ export const PreLoad = ({ onComplete }: PreloaderProps) => {
         onComplete: () => {
           gsap.to(preloaderRef.current, {
             yPercent: -100,
-            duration: 0.9,
+            duration: 0.5,
             ease: "expo.inOut",
             onComplete: () => {
               setIsComplete(true);
