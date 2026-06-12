@@ -6,78 +6,86 @@ import { gsap } from "gsap";
 import Link from "next/link";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 function CtaSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    gsap.registerPlugin(ScrollTrigger);
-
     const ctx = gsap.context(() => {
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
-      gsap.to(sectionRef.current, {
+      // reset state first
+      gsap.set(sectionRef.current, {
+        opacity: 1,
+        y: 0,
         scale: 1,
-        opacity: 0,
-        y: -80,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "bottom 80%",
-          end: "bottom 20%",
-          scrub: 1.5,
-        },
       });
+
+      // animation
+      gsap.fromTo(
+        sectionRef.current,
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+        },
+        {
+          scale: 0.92,
+          opacity: 0.2,
+          y: -80,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "bottom 85%",
+            end: "bottom 20%",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        },
+      );
+
+      ScrollTrigger.refresh();
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative  flex flex-col mt-30 items-center justify-center overflow-hidden  px-4 py-24 sm:px-8 lg:px-12"
+      className="relative mt-30 flex flex-col items-center justify-center overflow-hidden px-4 py-24 sm:px-8 lg:px-12"
       dir="rtl"
       style={{ transformOrigin: "center top" }}
     >
-
       <div className="relative mx-auto max-w-7xl text-center">
-        <h2
-          data-cta-item
-          className="heading text-4xl font-light leading-tight tracking-tight sm:text-9xl"
-        >
-          
+        <h2 className="heading text-4xl font-light leading-tight tracking-tight sm:text-9xl">
           نشعل شغفك، نُطلق إبداعك، نُصقل قيادتك.
           <br />
-         انضم لجيل يصنع الفارق 
+          انضم لجيل يصنع الفارق
         </h2>
 
-        <p
-          data-cta-item
-          className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-700 sm:text-lg"
-        >
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-700 sm:text-lg">
           مشروع البوصلة يمنحك الأدوات والمسار لتصنع أثرًا حقيقيًا في مجتمعك
           وتكون جزءًا من الجيل القادر على القيادة.
         </p>
 
-        <div
-          data-cta-item
-          className="mt-10 flex items-center gap-5  justify-center "
-        >
+        <div className="mt-10 flex items-center justify-center gap-5">
           <Link
             href="/about"
-            className=" inline-flex heading items-center gap-2 border-2 text-white  border-black bg-primary px-6 py-3 md:text-lg font-bold text-primary-foreground shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            className="heading inline-flex items-center gap-2 border-2 border-black bg-primary px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none md:text-lg"
           >
             تعرف أكثر
             <ArrowLeft className="h-5 w-5" />
           </Link>
+
           <a
             target="_blank"
             href=""
-            className=" inline-flex heading items-center gap-2 border-2 border-black  px-8 py-3 md:text-lg font-bold bg-secondary shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            className="heading inline-flex items-center gap-2 border-2 border-black bg-secondary px-8 py-3 font-bold shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none md:text-lg"
           >
             انضم الآن
           </a>
