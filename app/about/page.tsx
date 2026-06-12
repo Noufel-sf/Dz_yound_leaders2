@@ -10,6 +10,7 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import OurVision from "../components/OurVision";
 import WerbsiteBuilder from "../components/WerbsiteBuilder";
 import ProblemAndObjectives from "../components/ProblemAndObjectives";
+import ServicesSection from "../components/Services";
 import FaqSection from "../components/FaqSection";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -157,7 +158,7 @@ export default function AboutPage() {
   );
 
   return (
-    <main ref={mainRef} dir="rtl" className=" py-24 z-10">
+    <main ref={mainRef} className=" py-24 z-10">
       {/* ── Hero Section ── */}
       <section className="relative  overflow-hidden px-4 py-24 sm:px-8 lg:px-12">
         <div className="absolute inset-0 -z-10" />
@@ -237,8 +238,9 @@ export default function AboutPage() {
       <OurVision />
       <WerbsiteBuilder />
       <ProblemAndObjectives ref={problemAndObjectivesRef} />
+      <ServicesSection />
       <CtaSection />
-      <FaqSection />
+    <FaqSection />
     </main>
   );
 }

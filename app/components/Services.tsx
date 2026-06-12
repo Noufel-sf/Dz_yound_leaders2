@@ -4,9 +4,8 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/all";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 // ─────────────────────────────────────────────────────────
 // DATA
@@ -52,7 +51,7 @@ const SERVICES = [
         summary: "بناء ريادة أعمال مستدامة من الفكرة إلى التطبيق.",
       },
       {
-        title: "التسويق الرقمي",
+        title: "التمكين الرقمي",
         badge: "📱",
         summary: "إتقان أدوات التسويق الرقمي للوصول إلى الجمهور المستهدف.",
       },
@@ -180,7 +179,7 @@ export default function Services() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-x-hidden bg-[var(--figjam-cream)] text-[#111111] selection:bg-[var(--figjam-green)] selection:text-black"
+      className="relative w-full touch-pan-y overflow-x-hidden text-[#111111] selection:text-black"
     >
       {/* ───────────────────────────────────── */}
       {/* SERVICES */}
@@ -196,7 +195,7 @@ export default function Services() {
             ref={(el) => {
               if (el) serviceCards.current[i] = el;
             }}
-            className={`relative flex min-h-screen w-full flex-col items-center justify-center px-6 py-16 md:absolute md:inset-1 md:h-screen md:px-20 ${svc.bg}`}
+            className={`relative flex w-full touch-pan-y flex-col items-center justify-center px-6 py-12 md:absolute md:inset-1 md:h-screen md:px-20 md:py-16 ${svc.bg}`}
             style={{ zIndex: i + 10 }}
           >
             {/* GHOST NUMBER */}
@@ -207,7 +206,7 @@ export default function Services() {
 
             {/* CONTENT */}
 
-            <div className="relative z-10 flex w-full max-w-7xl flex-col items-start justify-center gap-10 py-20 md:max-w-full md:flex-row md:items-start md:justify-between">
+            <div className="relative z-10 flex w-full max-w-7xl flex-col items-start justify-center gap-8 py-8 md:max-w-full md:flex-row md:items-start md:justify-between md:gap-10 md:py-20">
               {/* LEFT */}
 
               <div className="flex flex-col gap-6 md:w-1/2">

@@ -45,14 +45,13 @@ const Footer = () => {
 
           <div  className="flex w-[90vw] justify-between">
             <div className="flex items-center font-display text-[12vw] font-black leading-[1.3] tracking-tight">
-              <span className="text-primary mr-5">I</span>
 
               <span className="text-white heading "> رواد الشباب </span>
             </div>
 
             {/* Mascot edgo */}
 
-            <div className="relative   h-[22vw] overflow-hidden rounded-sm md:flex">
+            <div className="relative h-[22vw] overflow-hidden rounded-sm md:flex">
               <Image
                 src="/dzyoungLeaders.jpg"
                 alt="Dz young leaders"
@@ -66,7 +65,7 @@ const Footer = () => {
 
           {/* 2. MIDDLE SECTION  */}
           <div
-            className="z-10 mt-8 flex w-[90vw] flex-col items-start justify-between gap-12 md:mt-0 md:flex-row md:items-center"
+            className="z-10  flex w-[90vw] flex-col items-start justify-between gap-12 md:mt-0 md:flex-row md:items-center"
           >
             {/* Headline */}
             <div className="flex max-w-full flex-col gap-8 md:max-w-[50vw]">
