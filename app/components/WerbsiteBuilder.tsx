@@ -7,7 +7,6 @@ import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 
 const DEFAULT_END_DESKTOP = "+=200%";
-const DEFAULT_END_MOBILE = "+=90%";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,13 +58,11 @@ function WhatsAppIcon(props: React.SVGProps<SVGSVGElement>) {
 
 interface AboutLayerOneProps {
   endDesktop?: string;
-  endMobile?: string;
   className?: string;
 }
 
 export default function AboutLayerOne({
   endDesktop = DEFAULT_END_DESKTOP,
-  endMobile = DEFAULT_END_MOBILE,
   className,
 }: AboutLayerOneProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -88,14 +85,27 @@ export default function AboutLayerOne({
         (context) => {
           const { isDesktop } = context.conditions as { isDesktop: boolean };
 
+          if (!isDesktop) {
+            gsap.set(
+              [
+                headlineRef.current,
+                logoCardRef.current,
+                descriptionRef.current,
+                socialsRef.current,
+              ],
+              { clearProps: "all" },
+            );
+            return;
+          }
+
           const tl = gsap.timeline({
             scrollTrigger: {
               id: "about-layer-one",
               trigger: sectionRef.current,
               start: "top top",
-              end: isDesktop ? endDesktop : endMobile,
+              end: endDesktop,
               pin: true,
-              scrub: isDesktop ? 1.5 : 0.8,
+              scrub: 1.5,
               invalidateOnRefresh: true,
             },
           });
@@ -135,9 +145,9 @@ export default function AboutLayerOne({
             .to(
               headlineRef.current,
               {
-                y: isDesktop ? "-100vh" : "-65vh",
+                y: "-100vh",
                 opacity: 0,
-                duration: isDesktop ? 3 : 1.6,
+                duration: 3,
                 ease: "expo.in",
               },
               2,
@@ -155,7 +165,7 @@ export default function AboutLayerOne({
   return (
     <section
       ref={sectionRef}
-      className={`relative h-screen w-full overflow-hidden bg-primary-950 ${
+      className={`relative min-h-[720px] w-full overflow-hidden bg-primary-950 md:h-screen md:min-h-0 ${
         className ?? ""
       }`}
     >
@@ -169,7 +179,7 @@ export default function AboutLayerOne({
         </h2>
         <div
           ref={logoCardRef}
-          className="mx-auto mb-8  max-w-[14rem] mt-20 -rotate-2 border-4 border-black bg-white p-4 shadow-[10px_8px_0_0_#111111] sm:max-w-[24rem] lg:max-w-90"
+          className="mx-auto mb-5 mt-10 max-w-[12rem] -rotate-2 border-4 border-black bg-white p-3 shadow-[10px_8px_0_0_#111111] sm:max-w-[24rem] md:mb-8 md:mt-20 md:p-4 lg:max-w-90"
         >
           <div className="">
             <Image

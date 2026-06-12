@@ -4,21 +4,19 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import ScrollIndicator from "./ui/ScrollIndectator";
 
 const DEFAULT_END_DESKTOP = "+=200%";
-const DEFAULT_END_MOBILE = "+=100%";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface AboutLayerOneProps {
   endDesktop?: string;
-  endMobile?: string;
   className?: string;
 }
 
 export default function AboutLayerOne({
   endDesktop = DEFAULT_END_DESKTOP,
-  endMobile = DEFAULT_END_MOBILE,
   className,
 }: AboutLayerOneProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -30,52 +28,81 @@ export default function AboutLayerOne({
 
       const mm = gsap.matchMedia();
 
-      mm.add(
-        {
-          isDesktop: "(min-width: 768px)",
-          isMobile: "(max-width: 767px)",
-        },
-        (context) => {
-          const { isDesktop } = context.conditions as { isDesktop: boolean };
+      mm.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            id: "about-layer-one",
+            trigger: sectionRef.current,
+            start: "top top",
+            end: endDesktop,
+            pin: true,
+            scrub: 1.5,
+            invalidateOnRefresh: true,
+          },
+        });
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              id: "about-layer-one",
-              trigger: sectionRef.current,
-              start: "top top",
-              end: isDesktop ? endDesktop : endMobile,
-              pin: true,
-              scrub: isDesktop ? 1.5 : 0.8,
-              invalidateOnRefresh: true,
+        const headline = headlineRef.current as HTMLElement;
+
+        tl.fromTo(
+          headline.querySelectorAll(".header-title span"),
+          {
+            y: 100,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.15,
+            duration: 2,
+          },
+          0,
+        )
+          .fromTo(
+            headline.querySelector(".sub-header"),
+            {
+              y: 30,
+              opacity: 0,
             },
-          });
-
-          const headline = headlineRef.current as HTMLElement;
-
-          tl.fromTo(
-            headline.querySelectorAll(".header-title span"),
-            { y: 100, opacity: 0 },
-            { y: 0, opacity: 1, stagger: 0.15, duration: 2 },
-            0,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1.5,
+            },
+            0.5,
           )
-            .fromTo(
-              headline.querySelector(".sub-header"),
-              { y: 30, opacity: 0 },
-              { y: 0, opacity: 1, duration: 1.5 },
-              0.5,
-            )
-            .to(
-              headlineRef.current,
-              {
-                y: isDesktop ? "-100vh" : "-65vh",
-                opacity: 0,
-                duration: isDesktop ? 3 : 1.6,
-                ease: "expo.in",
-              },
-              2,
-            );
-        },
-      );
+          .to(
+            headlineRef.current,
+            {
+              y: "-100vh",
+              opacity: 0,
+              duration: 3,
+              ease: "expo.in",
+            },
+            2,
+          );
+      });
+
+      // MOBILE → SIMPLE LIGHT ANIMATION ONLY
+      mm.add("(max-width: 767px)", () => {
+        gsap.fromTo(
+          ".mobile-fade",
+          {
+            opacity: 0,
+            y: 30,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+            },
+          },
+        );
+      });
 
       return () => {
         mm.revert();
@@ -95,16 +122,28 @@ export default function AboutLayerOne({
         ref={headlineRef}
         className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center"
       >
-        <h2 className="header-title -rotate-2 flex flex-col items-center heading justify-center gap-x-6 font-display text-[15vw] uppercase leading-none tracking-tighter  md:flex-row md:text-[15rem]">
-          <span className=" heading "> رؤيتنا</span>
-          <span className=" heading text-primary"> للشباب?</span>
+        {/* TITLE */}
+        <h2 className="header-title flex flex-col items-center justify-center gap-x-6 leading-none tracking-tighter md:flex-row">
+          <span className="mobile-fade heading -rotate-2 text-[18vw] text-black md:text-[15rem]">
+            رؤيتنا
+          </span>
+
+          <span className="mobile-fade heading text-[18vw] text-primary md:text-[15rem]">
+            للشباب؟
+          </span>
         </h2>
-        <p className="sub-header mt-8 max-w-4xl font-display text-gray-600 text-lg uppercase tracking-tight md:mt-12 md:text-3xl">
-          2026، يعمل مخيم رواد الشباب على تمكين الشباب 18 - 35 سنة من تطوير
-          المهارات القيادية والمشاركة المدنية، ودعمهم في بناء مشاريع مجتمعية
-          مستدامة. نقدّم ورش عمل، تدريبًا عمليًا، وبرامج توجيهية تهدف إلى إعداد
-          الجيل القادم من القادة والمبادرات المحلية.
+
+        {/* DESCRIPTION */}
+        <p className="sub-header mobile-fade mt-8 max-w-4xl text-base leading-8 text-gray-600 md:mt-12 md:text-3xl">
+          يعمل مخيم رواد الشباب على تمكين الشباب من تطوير المهارات القيادية
+          والمشاركة المدنية، ودعمهم في بناء مشاريع مجتمعية مستدامة من خلال
+          التدريب العملي والورشات التفاعلية.
         </p>
+      </div>
+
+      {/* SCROLL INDICATOR */}
+      <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2">
+        <ScrollIndicator />
       </div>
     </section>
   );

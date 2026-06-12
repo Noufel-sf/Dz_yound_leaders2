@@ -10,42 +10,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 function CtaSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current || !contentRef.current) return;
 
     const ctx = gsap.context(() => {
-      // reset state first
-      gsap.set(sectionRef.current, {
+      // Reset state first
+      gsap.set(contentRef.current, {
         opacity: 1,
         y: 0,
         scale: 1,
       });
 
-      // animation
+      // Animate content only
       gsap.fromTo(
-        sectionRef.current,
+        contentRef.current,
         {
-          scale: 1,
           opacity: 1,
           y: 0,
+          scale: 1,
         },
         {
-          scale: 0.92,
-          opacity: 0.2,
+          opacity: 0.15,
           y: -80,
+          scale: 0.92,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "bottom 85%",
+            start: "bottom 80%",
             end: "bottom 20%",
-            scrub: 1,
-            invalidateOnRefresh: true,
+            scrub: 1.5,
           },
-        },
+        }
       );
-
-      ScrollTrigger.refresh();
     }, sectionRef);
 
     return () => {
@@ -57,11 +55,13 @@ function CtaSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative mt-30 flex flex-col items-center justify-center overflow-hidden px-4 py-24 sm:px-8 lg:px-12"
       dir="rtl"
-      style={{ transformOrigin: "center top" }}
+      className="relative mt-10 md:mt-30 flex flex-col items-center justify-center overflow-hidden px-4 py-24 sm:px-8 lg:px-12"
     >
-      <div className="relative mx-auto max-w-7xl text-center">
+      <div
+        ref={contentRef}
+        className="relative mx-auto max-w-7xl text-center"
+      >
         <h2 className="heading text-4xl font-light leading-tight tracking-tight sm:text-9xl">
           نشعل شغفك، نُطلق إبداعك، نُصقل قيادتك.
           <br />
@@ -76,7 +76,7 @@ function CtaSection() {
         <div className="mt-10 flex items-center justify-center gap-5">
           <Link
             href="/about"
-            className="heading inline-flex items-center gap-2 border-2 border-black bg-primary px-6 py-3 font-bold text-white shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none md:text-lg"
+            className="inline-flex heading items-center gap-2 border-2 border-black bg-primary px-6 py-3 text-white md:text-lg font-bold shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
           >
             تعرف أكثر
             <ArrowLeft className="h-5 w-5" />
@@ -85,7 +85,7 @@ function CtaSection() {
           <a
             target="_blank"
             href=""
-            className="heading inline-flex items-center gap-2 border-2 border-black bg-secondary px-8 py-3 font-bold shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none md:text-lg"
+            className="inline-flex heading items-center gap-2 border-2 border-black bg-secondary px-8 py-3 md:text-lg font-bold shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
           >
             انضم الآن
           </a>
