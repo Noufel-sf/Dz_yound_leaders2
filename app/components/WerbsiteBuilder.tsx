@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 
 const DEFAULT_END_DESKTOP = "+=200%";
-const DEFAULT_END_MOBILE = "+=150%";
+const DEFAULT_END_MOBILE = "+=90%";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,7 +95,7 @@ export default function AboutLayerOne({
               start: "top top",
               end: isDesktop ? endDesktop : endMobile,
               pin: true,
-              scrub: 1.5,
+              scrub: isDesktop ? 1.5 : 0.8,
               invalidateOnRefresh: true,
             },
           });
@@ -135,9 +135,9 @@ export default function AboutLayerOne({
             .to(
               headlineRef.current,
               {
-                y: isDesktop ? "-100vh" : "-120vh",
+                y: isDesktop ? "-100vh" : "-65vh",
                 opacity: 0,
-                duration: 3,
+                duration: isDesktop ? 3 : 1.6,
                 ease: "expo.in",
               },
               2,
@@ -147,7 +147,6 @@ export default function AboutLayerOne({
 
       return () => {
         mm.revert();
-        ScrollTrigger.getAll().forEach((t) => t.kill());
       };
     },
     { scope: sectionRef },

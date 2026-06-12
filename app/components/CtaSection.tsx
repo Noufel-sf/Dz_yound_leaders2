@@ -20,7 +20,7 @@ function CtaSection() {
       ).matches;
 
       gsap.to(sectionRef.current, {
-        scale: 0.94,
+        scale: 1,
         opacity: 0,
         y: -80,
         ease: "none",
@@ -44,10 +44,10 @@ function CtaSection() {
       style={{ transformOrigin: "center top" }}
     >
 
-      <div className="relative mx-auto max-w-5xl text-center">
+      <div className="relative mx-auto max-w-7xl text-center">
         <h2
           data-cta-item
-          className="heading text-5xl font-light leading-tight tracking-tight sm:text-9xl"
+          className="heading text-4xl font-light leading-tight tracking-tight sm:text-9xl"
         >
           
           نشعل شغفك، نُطلق إبداعك، نُصقل قيادتك.
@@ -69,7 +69,7 @@ function CtaSection() {
         >
           <Link
             href="/about"
-            className=" inline-flex heading items-center gap-2 border-2  border-black bg-primary px-6 py-3 md:text-lg font-bold text-primary-foreground shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            className=" inline-flex heading items-center gap-2 border-2 text-white  border-black bg-primary px-6 py-3 md:text-lg font-bold text-primary-foreground shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
           >
             تعرف أكثر
             <ArrowLeft className="h-5 w-5" />
@@ -77,7 +77,7 @@ function CtaSection() {
           <a
             target="_blank"
             href=""
-            className=" inline-flex heading items-center gap-2 border-2 border-black text-white px-8 py-3 md:text-lg font-bold bg-secondary shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            className=" inline-flex heading items-center gap-2 border-2 border-black  px-8 py-3 md:text-lg font-bold bg-secondary shadow-[4px_4px_0_0_#111111] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
           >
             انضم الآن
           </a>

@@ -50,68 +50,70 @@ export default function AboutPage() {
 
           gsap.set([sTitle, sCards], { clearProps: "all" });
 
-          gsap.set(sTitle, { opacity: 0, y: 24, scale: 1 });
-          gsap.set(sCards, { yPercent: 100 });
+          if (isDesktop) {
+            gsap.set(sTitle, { opacity: 0, y: 24, scale: 1 });
+            gsap.set(sCards, { yPercent: 100 });
 
-          const servicesTl = gsap.timeline({
-            scrollTrigger: {
-              id: "problem-objectives-section",
-              trigger: sSection,
-              start: "top top",
-              end: `+=${sCards.length * 100 + 150}%`,
-              pin: true,
-              scrub: 1,
-              invalidateOnRefresh: true,
-            },
-          });
-
-          servicesTl
-            .to(
-              sTitle,
-              { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
-              0,
-            )
-            .to(
-              sTitle,
-              {
-                y: 0,
-                duration: 1.2,
-                scale: isDesktop ? 0.5 : 1,
-                ease: "expo.inOut",
+            const servicesTl = gsap.timeline({
+              scrollTrigger: {
+                id: "problem-objectives-section",
+                trigger: sSection,
+                start: "top top",
+                end: `+=${sCards.length * 100 + 150}%`,
+                pin: true,
+                scrub: 1,
+                invalidateOnRefresh: true,
               },
-              1,
-            )
-            .to(
-              sCards[0],
-              { yPercent: 0, duration: 1.2, ease: "expo.inOut" },
-              1,
-            );
-
-          sCards.forEach((card: HTMLDivElement, i: number) => {
-            if (i === 0) return;
-            const prevContent = sCards[i - 1].querySelector(".service-content");
-            const currentContent = card.querySelector(".service-content");
-            const pos = i + 2.5;
+            });
 
             servicesTl
               .to(
-                card,
-                { yPercent: i * (isDesktop ? 9 : 8), ease: "power2.inOut" },
-                pos,
+                sTitle,
+                { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+                0,
               )
               .to(
-                prevContent,
-                { y: -100, scale: 0.9, opacity: 0, ease: "power2.inOut" },
-                pos,
+                sTitle,
+                {
+                  y: 0,
+                  duration: 1.2,
+                  scale: 0.5,
+                  ease: "expo.inOut",
+                },
+                1,
               )
-              .fromTo(
-                currentContent,
-                { y: 150, opacity: 0 },
-                { y: 0, opacity: 1, ease: "power2.out" },
-                pos,
+              .to(
+                sCards[0],
+                { yPercent: 0, duration: 1.2, ease: "expo.inOut" },
+                1,
               );
-          });
-          servicesTl.to({}, { duration: 1 });
+
+            sCards.forEach((card: HTMLDivElement, i: number) => {
+              if (i === 0) return;
+              const prevContent = sCards[i - 1].querySelector(".service-content");
+              const currentContent = card.querySelector(".service-content");
+              const pos = i + 2.5;
+
+              servicesTl
+                .to(
+                  card,
+                  { yPercent: i * 9, ease: "power2.inOut" },
+                  pos,
+                )
+                .to(
+                  prevContent,
+                  { y: -100, scale: 0.9, opacity: 0, ease: "power2.inOut" },
+                  pos,
+                )
+                .fromTo(
+                  currentContent,
+                  { y: 150, opacity: 0 },
+                  { y: 0, opacity: 1, ease: "power2.out" },
+                  pos,
+                );
+            });
+            servicesTl.to({}, { duration: 1 });
+          }
           if (werbsiteBuilderRef.current) {
             const wbSection = werbsiteBuilderRef.current.section;
             const wbTitle = werbsiteBuilderRef.current.title;
@@ -157,7 +159,7 @@ export default function AboutPage() {
   return (
     <main ref={mainRef} dir="rtl" className=" py-24 z-10">
       {/* ── Hero Section ── */}
-      <section className="relative mb-40  lg:mb-54 overflow-hidden px-4 py-24 sm:px-8 lg:px-12">
+      <section className="relative  overflow-hidden px-4 py-24 sm:px-8 lg:px-12">
         <div className="absolute inset-0 -z-10" />
 
         <div className="mx-auto  text-center">
@@ -202,34 +204,34 @@ export default function AboutPage() {
             </a>
           </div>
 
-            <div
-                  // ref={shape1Ref}
-                  className="pointer-events-none absolute left-2 top-26 md:left-10 md:top-30"
-                >
-                  <Image
-                    src="/shape1.png"
-                    alt=""
-                    width={180}
-                    height={180}
-                    className="w-14 md:w-40"
-                    priority
-                  />
-                </div>
-          
-                {/* shape 2 */}
-                <div
-                  // ref={shape2Ref}
-                  className="pointer-events-none absolute -right-4 top-30 md:-right-10 md:top-26"
-                >
-                  <Image
-                    src="/shape2.svg"
-                    alt=""
-                    width={120}
-                    height={100}
-                    className="w-18 md:w-48"
-                    priority
-                  />
-                </div>
+          <div
+            // ref={shape1Ref}
+            className="pointer-events-none absolute left-2 top-26 md:left-10 md:top-30"
+          >
+            <Image
+              src="/shape1.png"
+              alt=""
+              width={180}
+              height={180}
+              className="w-14 md:w-40"
+              priority
+            />
+          </div>
+
+          {/* shape 2 */}
+          <div
+            // ref={shape2Ref}
+            className="pointer-events-none absolute -right-4 top-30 md:-right-10 md:top-26"
+          >
+            <Image
+              src="/shape2.svg"
+              alt=""
+              width={120}
+              height={100}
+              className="w-18 md:w-48"
+              priority
+            />
+          </div>
         </div>
       </section>
       <OurVision />

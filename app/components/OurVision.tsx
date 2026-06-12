@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 const DEFAULT_END_DESKTOP = "+=200%";
-const DEFAULT_END_MOBILE = "+=150%";
+const DEFAULT_END_MOBILE = "+=100%";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,7 +45,7 @@ export default function AboutLayerOne({
               start: "top top",
               end: isDesktop ? endDesktop : endMobile,
               pin: true,
-              scrub: 1.5,
+              scrub: isDesktop ? 1.5 : 0.8,
               invalidateOnRefresh: true,
             },
           });
@@ -67,9 +67,9 @@ export default function AboutLayerOne({
             .to(
               headlineRef.current,
               {
-                y: isDesktop ? "-100vh" : "-120vh",
+                y: isDesktop ? "-100vh" : "-65vh",
                 opacity: 0,
-                duration: 3,
+                duration: isDesktop ? 3 : 1.6,
                 ease: "expo.in",
               },
               2,
@@ -79,7 +79,6 @@ export default function AboutLayerOne({
 
       return () => {
         mm.revert();
-        ScrollTrigger.getAll().forEach((t) => t.kill());
       };
     },
     { scope: sectionRef },
@@ -101,10 +100,10 @@ export default function AboutLayerOne({
           <span className=" heading text-primary"> للشباب?</span>
         </h2>
         <p className="sub-header mt-8 max-w-4xl font-display text-gray-600 text-lg uppercase tracking-tight md:mt-12 md:text-3xl">
-           2026، يعمل مخيم رواد الشباب على تمكين الشباب  18 - 35 سنة من تطوير المهارات
-          القيادية والمشاركة المدنية، ودعمهم في بناء مشاريع مجتمعية مستدامة.
-          نقدّم ورش عمل، تدريبًا عمليًا، وبرامج توجيهية تهدف إلى إعداد الجيل
-          القادم من القادة والمبادرات المحلية.
+          2026، يعمل مخيم رواد الشباب على تمكين الشباب 18 - 35 سنة من تطوير
+          المهارات القيادية والمشاركة المدنية، ودعمهم في بناء مشاريع مجتمعية
+          مستدامة. نقدّم ورش عمل، تدريبًا عمليًا، وبرامج توجيهية تهدف إلى إعداد
+          الجيل القادم من القادة والمبادرات المحلية.
         </p>
       </div>
     </section>
