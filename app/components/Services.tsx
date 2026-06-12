@@ -179,7 +179,7 @@ export default function Services() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full touch-pan-y overflow-x-hidden text-[#111111] selection:text-black"
+      className="relative w-full touch-pan-y overflow-x-clip text-[#111111] selection:text-black"
     >
       {/* ───────────────────────────────────── */}
       {/* SERVICES */}
@@ -187,6 +187,7 @@ export default function Services() {
 
       <section
         ref={serviceRef}
+        dir="rtl"
         className="relative w-full bg-[var(--figjam-cream)] md:h-screen md:overflow-hidden"
       >
         {SERVICES.map((svc, i) => (
@@ -195,7 +196,7 @@ export default function Services() {
             ref={(el) => {
               if (el) serviceCards.current[i] = el;
             }}
-            className={`relative flex w-full touch-pan-y flex-col items-center justify-center px-6 py-12 md:absolute md:inset-1 md:h-screen md:px-20 md:py-16 ${svc.bg}`}
+            className={`relative flex w-full flex-col items-center justify-center px-6 py-12 md:absolute md:inset-1 md:h-screen md:px-20 md:py-16 ${svc.bg}`}
             style={{ zIndex: i + 10 }}
           >
             {/* GHOST NUMBER */}

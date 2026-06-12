@@ -114,13 +114,13 @@ export default function AboutLayerOne({
   return (
     <section
       ref={sectionRef}
-      className={`relative h-screen w-full overflow-hidden bg-primary-950 ${
+      className={`relative min-h-[560px] w-full overflow-hidden bg-primary-950 md:h-screen ${
         className ?? ""
       }`}
     >
       <div
         ref={headlineRef}
-        className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center"
+        className="relative z-10 flex min-h-[560px] flex-col items-center justify-center px-6 py-16 text-center md:absolute md:inset-0 md:min-h-0 md:py-0"
       >
         {/* TITLE */}
         <h2 className="header-title flex flex-col items-center justify-center gap-x-6 leading-none tracking-tighter md:flex-row">
@@ -142,7 +142,7 @@ export default function AboutLayerOne({
       </div>
 
       {/* SCROLL INDICATOR */}
-      <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2">
+      <div className="absolute bottom-10 left-1/2 z-20 hidden -translate-x-1/2 md:block">
         <ScrollIndicator />
       </div>
     </section>
