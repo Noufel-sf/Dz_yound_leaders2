@@ -207,7 +207,7 @@ export default function AboutLayerOne({
             className="flex items-center justify-center gap-4"
           >
             <a
-              href="https://www.instagram.com/edg"
+              href="https://www.instagram.com/dr.khadidja_bm?igsh=YzB6ZTFxbWQ4ajN3"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -216,7 +216,7 @@ export default function AboutLayerOne({
               <InstagramIcon className="h-5 w-5" />
             </a>
             <a
-              href="https://www.facebook.com/edg"
+              href="https://www.facebook.com/khadidja.bouteramansour.9?locale=fr_FR"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
