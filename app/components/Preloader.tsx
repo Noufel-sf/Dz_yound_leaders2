@@ -8,7 +8,7 @@ interface PreloaderProps {
   onComplete: () => void;
 }
 
-const WORDS = ["نحلم", "نبتكر", "نبني"];
+const WORDS = ["نحلم", "نبني"];
 
 export const PreLoad = ({ onComplete }: PreloaderProps) => {
   const preloaderRef = useRef<HTMLDivElement>(null);
@@ -27,7 +27,7 @@ export const PreLoad = ({ onComplete }: PreloaderProps) => {
       ).matches;
 
       if (prefersReducedMotion) {
-        gsap.delayedCall(0.3, () => {
+        gsap.delayedCall(0.15, () => {
           setIsComplete(true);
           onComplete();
         });
@@ -35,30 +35,31 @@ export const PreLoad = ({ onComplete }: PreloaderProps) => {
         return;
       }
 
-      // INITIAL STATES
       gsap.set(preloaderRef.current, {
         autoAlpha: 1,
       });
 
-      gsap.set(containerRef.current, {
-        autoAlpha: 1,
+      gsap.set(eyebrowRef.current, {
+        opacity: 0,
+        y: 12,
       });
 
-      gsap.set(eyebrowRef.current, {
-        y: 20,
+      gsap.set(wordRefs.current, {
         opacity: 0,
+        y: 50,
+        rotateX: -15,
       });
 
       const tl = gsap.timeline({
         defaults: {
-          ease: "power3.out",
+          ease: "power2.out",
         },
 
         onComplete: () => {
           gsap.to(preloaderRef.current, {
             yPercent: -100,
-            duration: 1,
-            ease: "expo.inOut",
+            duration: 0.55,
+            ease: "power3.inOut",
 
             onComplete: () => {
               setIsComplete(true);
@@ -68,14 +69,14 @@ export const PreLoad = ({ onComplete }: PreloaderProps) => {
         },
       });
 
-      // EYEBROW
+      // Badge
       tl.to(eyebrowRef.current, {
         opacity: 1,
         y: 0,
-        duration: 0.4,
+        duration: 0.25,
       });
 
-      // WORD LOOP
+      // Words
       WORDS.forEach((_, index) => {
         tl.to(
           wordRefs.current[index],
@@ -83,20 +84,18 @@ export const PreLoad = ({ onComplete }: PreloaderProps) => {
             opacity: 1,
             y: 0,
             rotateX: 0,
-            duration: 0.4,
-            ease: "back.out(1.7)",
+            duration: 0.25,
+            ease: "back.out(1.5)",
           },
-          ">-0.1",
-        )
-
-          .to(wordRefs.current[index], {
-            opacity: 0,
-            y: -80,
-            rotateX: 20,
-            duration: 0.5,
-            ease: "power3.in",
-            delay: 0.55,
-          });
+          ">",
+        ).to(wordRefs.current[index], {
+          opacity: 0,
+          y: -40,
+          rotateX: 10,
+          duration: 0.25,
+          ease: "power2.in",
+          delay: 0.15,
+        });
       });
 
       return () => {
@@ -116,9 +115,9 @@ export const PreLoad = ({ onComplete }: PreloaderProps) => {
     >
       <div
         ref={containerRef}
-        className="relative flex w-full max-w-3xl flex-col items-center justify-center px-6 text-center"
+        className="flex w-full max-w-3xl flex-col items-center justify-center px-6 text-center"
       >
-        {/* TOP LABEL */}
+        {/* Badge */}
         <p
           ref={eyebrowRef}
           className="heading mb-8 border-2 border-black bg-secondary px-5 py-2 text-base font-black text-black shadow-[4px_4px_0_0_#111111] md:text-lg"
@@ -126,23 +125,23 @@ export const PreLoad = ({ onComplete }: PreloaderProps) => {
           مخيم الرواد الشبابي
         </p>
 
-        {/* WORDS */}
-        <div className="relative flex h-32 w-full items-center justify-center overflow-hidden md:h-40">
+        {/* Words */}
+        <div className="relative flex h-28 w-full items-center justify-center overflow-hidden md:h-36">
           {WORDS.map((word, index) => (
             <span
               key={word}
               ref={(el) => {
                 wordRefs.current[index] = el;
               }}
-              className="heading absolute inset-0 flex translate-y-20 rotate-x-[-20deg] items-center justify-center opacity-0 text-6xl font-black text-white md:text-8xl"
+              className="heading absolute inset-0 flex items-center justify-center text-6xl font-black text-white md:text-8xl"
             >
               {word}
             </span>
           ))}
         </div>
 
-        {/* SMALL BOTTOM TEXT */}
-        <p className="mt-6 text-sm text-white/60 md:text-base">
+        {/* Tagline */}
+        <p className="mt-4 text-sm text-white/60 md:text-base">
           نصنع جيلاً يقود المستقبل
         </p>
       </div>
