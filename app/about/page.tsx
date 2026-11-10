@@ -76,9 +76,10 @@ export default function AboutPage() {
               .to(
                 sTitle,
                 {
-                  y: 0,
+                  y: -40,
                   duration: 1.2,
-                  scale: 0.5,
+                  scale: 0.65,
+                  transformOrigin: "center top",
                   ease: "expo.inOut",
                 },
                 1,
