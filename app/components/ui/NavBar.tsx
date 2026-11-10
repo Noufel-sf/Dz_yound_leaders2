@@ -77,9 +77,9 @@ export const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
     return (
       <div
         ref={navContainerRef}
-        className="navbar fixed top-6 py-2 md:py-4 z-100 flex w-full items-center justify-center rounded-lg border-none border-transparent"
+        className="navbar fixed top-4 md:top-6 py-2 md:py-4 z-100 flex w-full items-center justify-center rounded-lg border-none border-transparent"
       >
-        <nav className="relative flex w-[90vw] items-center justify-between">
+        <nav className="relative flex w-[92vw] max-w-7xl items-center justify-between px-2 sm:px-4">
           <Link
             href="/"
             onClick={(e) => {
@@ -88,16 +88,17 @@ export const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
-            className="flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full"
+            className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full shrink-0"
           >
             <Image
               src="/logossmall.png"
               alt="شعار رواد الشباب"
-              width={50}
-              height={50}
+              width={44}
+              height={44}
               priority
+              className="w-8 h-8 sm:w-10 sm:h-10"
             />
-            <span className="text-4xl font-sans heading tracking-tight text-primary">
+            <span className="text-2xl sm:text-3xl md:text-4xl font-sans heading tracking-tight text-primary">
               رواد الشباب
             </span>
           </Link>
@@ -106,25 +107,20 @@ export const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
             aria-label="شعار رواد الشباب - العودة للرئيسية"
             className="absolute hidden md:block left-1/2 -translate-x-1/2 cursor-pointer"
           >
-            <Image
-              src="/logossmall.png"
-              alt=""
-              width={100}
-              height={100}
-            />
+            <Image src="/logossmall.png" alt="" width={80} height={80} />
           </button>
 
-          <div ref={itemsRef} className="hidden items-center gap-14 md:flex">
+          <div ref={itemsRef} className="hidden items-center gap-10 lg:gap-14 md:flex">
             <Link
               href="/about"
-              className={`nav-link inline-flex items-center gap-2  border-2 border-black hover:bg-secondary/20 transition duration-400 heading bg-secondary px-4 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111] ${pathname === "/about" ? "active-link" : ""}`}
+              className={`nav-link inline-flex items-center gap-2 border-2 border-black hover:bg-secondary/20 transition duration-400 heading bg-secondary px-4 py-1 text-2xl lg:text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111] ${pathname === "/about" ? "active-link" : ""}`}
             >
               من نحن
             </Link>
 
             <Link
               href="/contact"
-              className="nav-contact heading inline-flex items-center gap-2 hover:bg-secondary/20 transition duration-400  border-2 border-black bg-secondary px-4 py-1 text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]"
+              className="nav-contact heading inline-flex items-center gap-2 hover:bg-secondary/20 transition duration-400 border-2 border-black bg-secondary px-4 py-1 text-2xl lg:text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]"
             >
               تواصل معنا
             </Link>
@@ -134,13 +130,13 @@ export const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
             ref={burgerRef}
             onClick={onBurgerClick}
             aria-label={isOpen ? "إغلاق القائمة" : "فتح القائمة"}
-            className="scale-1 absolute -rotate-3 font-bold  text-black bg-white border-4 shadow-[3px_3px_0_0_#111111] right-[5vw] flex cursor-pointer flex-col gap-1.5 p-2 md:scale-0"
+            className="md:hidden flex cursor-pointer -rotate-3 font-bold text-black bg-white border-2 sm:border-4 border-black shadow-[3px_3px_0_0_#111111] flex-col justify-center items-center gap-1.5 p-2 sm:p-2.5 shrink-0 transition-transform active:scale-95 z-10"
           >
             <div
-              className={`h-0.75 w-8 rounded-full bg-black transition-transform duration-300 ${isOpen ? "translate-y-2.25 rotate-45" : ""}`}
+              className={`h-0.75 w-7 sm:w-8 rounded-full bg-black transition-transform duration-300 ${isOpen ? "translate-y-2.25 rotate-45" : ""}`}
             />
             <div
-              className={`h-0.75 w-8 rounded-full bg-black  transition-transform duration-300 ${isOpen ? "-translate-y-2.25 -rotate-45" : ""}`}
+              className={`h-0.75 w-7 sm:w-8 rounded-full bg-black transition-transform duration-300 ${isOpen ? "-translate-y-2.25 -rotate-45" : ""}`}
             />
           </button>
         </nav>
@@ -308,40 +304,6 @@ export function useNavbarAnimations({
             y: 0,
             clearProps: "none",
           });
-
-          gsap.set(navBurgerRef.current, { scale: 0, autoAlpha: 0 });
-          gsap.set(navItemsRef.current, {
-            x: 0,
-            autoAlpha: 1,
-            pointerEvents: "auto",
-          });
-
-          if (!isDesktop) {
-            gsap.set(navBurgerRef.current, { scale: 1, autoAlpha: 1 });
-            gsap.set(navItemsRef.current, { autoAlpha: 0, display: "none" });
-          } else {
-            gsap.set(navItemsRef.current, { display: "flex" });
-          }
-
-          const navMorphTl = gsap.timeline({
-            paused: true,
-            defaults: { overwrite: "auto" },
-          });
-          navMorphTl
-            .to(navItemsRef.current, {
-              x: 30,
-              autoAlpha: 0,
-              pointerEvents: "none",
-              duration: 0.4,
-              ease: "power2.in",
-            })
-            .to(
-              navBurgerRef.current,
-              { scale: 1, autoAlpha: 1, duration: 0.4, ease: "back.out(1.7)" },
-              "-=0.2",
-            );
-
-          navTl.current = navMorphTl;
         },
       );
 

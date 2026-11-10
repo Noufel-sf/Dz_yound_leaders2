@@ -60,7 +60,7 @@ export default function HeroSection() {
       </div>
 
       {/* center content */}
-      <div className="relative z-10 mt-24 flex max-w-5xl xl:max-w-6xl flex-col items-center text-center">
+      <div className="relative z-10 md:mt-24 flex max-w-5xl xl:max-w-6xl flex-col items-center text-center">
         {/* top small text */}
         <span className="heading border-2 -rotate-2 border-black bg-secondary px-5 py-2 text-sm font-black text-black shadow-[4px_4px_0_0_#111111] md:text-base">
           مخيم الرواد الشبابي
