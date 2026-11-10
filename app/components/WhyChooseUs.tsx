@@ -6,47 +6,44 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const highlights = [
   {
     title: "تأهيل شامل",
-    description:
-      "برنامج متكامل يغطي المسارات المهارية والقانونية.",
+    description: "برنامج متكامل يغطي المسارات المهارية والقانونية.",
     accent: "border-[var(--figjam-blue)]",
     iconBg: "bg-[var(--figjam-blue)]",
   },
   {
     title: "قيادة واعية",
-    description:
-      "نعد جيلاً قادراً على فهم الحياة العامة والمشاركة الفعالة فيها.",
+    description: "نعد جيلاً قادراً على فهم الحياة العامة والمشاركة الفعالة فيها.",
     accent: "border-[var(--figjam-yellow)]",
     iconBg: "bg-[var(--figjam-yellow)]",
   },
   {
     title: "هوية قوية",
-    description:
-      "نحافظ على التراث الثقافي ونطوره ليكون منطلقاً للتغيير الإيجابي.",
+    description: "نحافظ على التراث الثقافي ونطوره ليكون منطلقاً للتغيير الإيجابي.",
     accent: "border-[var(--figjam-pink)]",
     iconBg: "bg-[var(--figjam-pink)]",
   },
   {
     title: "شراكات استراتيجية",
-    description:
-      "دعم من  للشباب ضمن برنامج DZ Young Leaders.",
+    description: "دعم من للشباب ضمن برنامج DZ Young Leaders.",
     accent: "border-[var(--figjam-green)]",
     iconBg: "bg-[var(--figjam-green)]",
   },
   {
     title: "تقييم مستمر",
-    description: "نظام تقييم شامل لضمان جودة المخرجاة.",
+    description: "نظام تقييم شامل لضمان جودة المخرجات.",
     accent: "border-[var(--figjam-purple)]",
     iconBg: "bg-[var(--figjam-purple)]",
   },
   {
     title: "تأثير ملموس",
-    description:
-      "نهدف إلى بناء جيل قادر على إحداث تغيير إيجابي في المجتمع الجزائري.",
+    description: "نهدف إلى بناء جيل قادر على إحداث تغيير إيجابي في المجتمع الجزائري.",
     accent: "border-[var(--figjam-blue)]",
     iconBg: "bg-[var(--figjam-blue)]",
   },
@@ -57,66 +54,62 @@ function WhyChooseUs() {
 
   useGSAP(
     () => {
-      ScrollTrigger.getAll().forEach((st) => {
-        if (st.trigger && sectionRef.current?.contains(st.trigger)) st.kill();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
       });
 
-      gsap.fromTo(
+      tl.fromTo(
         ".why-choose-title",
         { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.7,
+          duration: 0.6,
           ease: "power2.out",
-          scrollTrigger: { trigger: ".why-choose-title", start: "top 85%" },
+        }
+      ).fromTo(
+        ".why-choose-card",
+        { opacity: 0, y: 30, rotate: -2 },
+        {
+          opacity: 1,
+          y: 0,
+          rotate: 0,
+          duration: 0.5,
+          stagger: 0.08,
+          ease: "power2.out",
         },
+        "-=0.3"
       );
-
-      gsap.utils.toArray<HTMLElement>(".why-choose-card").forEach((card, i) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 30, rotate: -2 },
-          {
-            opacity: 1,
-            y: 0,
-            rotate: 0,
-            duration: 0.6,
-            delay: i * 0.08,
-            ease: "power2.out",
-            scrollTrigger: { trigger: card, start: "top 85%" },
-          },
-        );
-      });
-
-      ScrollTrigger.refresh();
     },
-    { scope: sectionRef },
+    { scope: sectionRef }
   );
 
   return (
     <section
       ref={sectionRef}
-      className="bg-primary z-2 px-4 py-20 sm:px-8  lg:px-12"
+      className="bg-primary z-2 px-4 py-20 sm:px-8 lg:px-12"
     >
       <div className="why-choose-title mb-10 flex flex-col items-center gap-4 text-center">
-        <span className="inline-flex items-center gap-2  border-2 border-black heading bg-secondary px-4 py-1 text-2xl md:text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
-            لماذا تختارنا
+        <span className="inline-flex items-center gap-2 border-2 border-black heading bg-secondary px-4 py-1 text-2xl md:text-3xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+          لماذا تختارنا
         </span>
 
-        <h2 className="heading text-6xl font-bold text-white uppercase sm:text-9xl">
+        <h2 className="heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white uppercase">
           <span className="block heading" dir="rtl">
-            ما الذي يميزنا ?
+            ما الذي يميزنا ؟
           </span>
         </h2>
       </div>
 
-      <div className="mx-auto max-w-6xl -rotate-1 hover:rotate-0 transition duration-500 ease-in-out border-[3px] border-black bg-[var(--figjam-cream)] p-6 shadow-[10px_10px_0_0_#111111] sm:p-10">
+      <div className="mx-auto max-w-6xl -rotate-1 hover:rotate-0 transition-transform duration-500 ease-in-out border-[3px] border-black bg-[var(--figjam-cream)] p-6 shadow-[10px_10px_0_0_#111111] sm:p-10">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {highlights.map((item, idx) => (
+          {highlights.map((item) => (
             <article
-              key={idx}
-              className={`why-choose-card  border-[3px] bg-white p-6 shadow-[6px_6px_0_0_#111111] ${item.accent}`}
+              key={item.title}
+              className={`why-choose-card border-[3px] bg-white p-6 shadow-[6px_6px_0_0_#111111] ${item.accent}`}
             >
               <div className="mb-4 flex items-center justify-between">
                 <div

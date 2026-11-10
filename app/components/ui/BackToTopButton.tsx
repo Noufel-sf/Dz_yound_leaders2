@@ -12,8 +12,9 @@ export default function BackToTopButton() {
       const currentScrollY = window.scrollY;
       const scrollingUp = currentScrollY < lastScrollYRef.current;
       const pastThreshold = currentScrollY > 300;
+      const shouldBeVisible = pastThreshold && scrollingUp;
 
-      setIsVisible(pastThreshold && scrollingUp);
+      setIsVisible((prev) => (prev !== shouldBeVisible ? shouldBeVisible : prev));
       lastScrollYRef.current = currentScrollY;
     };
 

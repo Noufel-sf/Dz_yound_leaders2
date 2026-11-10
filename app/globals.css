@@ -6,19 +6,26 @@
 
 html {
   scroll-behavior: smooth;
-   min-height: 100%;
-
+  min-height: 100%;
   z-index: 2;
+  background-color: #f2ece1;
+}
 
-   background-color: #f2ece1;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
-   background-color: #F2ECE1;
+  font-family: var(--font-zain), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 500;
+  background-color: #F2ECE1;
+  text-rendering: optimizeSpeed;
 }
 
 .heading {
-  font-family: "Lalezar", sans-serif;
+  font-family: var(--font-lalezar), sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
@@ -41,10 +48,46 @@ body {
    background-color: rgba(252, 224, 10, 0.38);
 }
 
-* {
-  font-family: "Zain";
-  font-optical-sizing: auto;
-  font-weight: 500;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-5deg);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(6deg);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-slow {
+  animation: float-slow 5.5s ease-in-out infinite;
+  will-change: transform;
 }
 
 @theme {

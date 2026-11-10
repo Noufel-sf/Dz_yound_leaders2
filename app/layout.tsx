@@ -1,32 +1,29 @@
 import type { Metadata } from "next";
-import { Lalezar , Noto_Sans_Arabic, Zain } from "next/font/google";
+import { Lalezar, Zain } from "next/font/google";
 import "./globals.css";
 import Layout from "./components/LayoutWrapper";
 import BackToTopButton from "./components/ui/BackToTopButton";
 import { cn } from "@/lib/utils";
 
 const zain = Zain({
-  weight: "400",
-  subsets: ["latin"],
+  weight: ["400", "700"],
+  subsets: ["arabic"],
   variable: "--font-zain",
+  display: "swap",
 });
 
 const lalezar = Lalezar({
   weight: "400",
-  subsets: ["latin"],
+  subsets: ["arabic"],
   variable: "--font-lalezar",
+  display: "swap",
 });
-
-const notoSansArabic = Noto_Sans_Arabic({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-noto-sans-arabic",
-});
-
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dzyoungleaders.dz"),
   title: "مشروع - مخيم الرواد للشباب",
-  description: "مخيم الرواد للشباب هو برنامج تدريبي يهدف إلى تمكين الشباب من اكتساب المهارات القيادية والتطوير الشخصي، من خلال ورش عمل تفاعلية وأنشطة تعليمية ممتعة. يركز المخيم على تعزيز الثقة بالنفس، وتنمية مهارات التواصل، وبناء روح الفريق، مما يساعد المشاركين على تحقيق إمكاناتهم الكاملة في حياتهم الشخصية والمهنية.",
+  description:
+    "مخيم الرواد للشباب هو برنامج تدريبي يهدف إلى تمكين الشباب من اكتساب المهارات القيادية والتطوير الشخصي، من خلال ورش عمل تفاعلية وأنشطة تعليمية ممتعة. يركز المخيم على تعزيز الثقة بالنفس، وتنمية مهارات التواصل، وبناء روح الفريق، مما يساعد المشاركين على تحقيق إمكاناتهم الكاملة في حياتهم الشخصية والمهنية.",
   openGraph: {
     title: "مخيم الرواد الشبابي",
     description: "تمكين الشباب بالمهارات القيادية والتقنية",
@@ -38,7 +35,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
 };
 
 export default function RootLayout({
@@ -49,9 +45,16 @@ export default function RootLayout({
   return (
     <html
       lang="ar"
-      className={cn("h-full", "antialiased", lalezar.variable, notoSansArabic.variable, "font-sans", zain.variable)}
+      dir="rtl"
+      className={cn(
+        "h-full",
+        "antialiased",
+        lalezar.variable,
+        zain.variable,
+        "font-sans"
+      )}
     >
-      <body className="min-h-full flex flex-col bg-[#f8fafc]">
+      <body className="min-h-full flex flex-col bg-[#f8fafc] text-[#111111]">
         <div
           className="fixed inset-0 z-0 pointer-events-none"
           style={{
@@ -62,11 +65,10 @@ export default function RootLayout({
               linear-gradient(180deg, #cbd5e1 1px, transparent 1px)
             `,
             backgroundSize: "50px 50px, 50px 50px, 10px 10px, 10px 10px",
+            transform: "translateZ(0)",
           }}
         />
-        <Layout>
-          {children}
-        </Layout>
+        <Layout>{children}</Layout>
         <BackToTopButton />
       </body>
     </html>

@@ -6,7 +6,9 @@ import { gsap } from "gsap";
 import Link from "next/link";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 function CtaSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -48,7 +50,6 @@ function CtaSection() {
 
     return () => {
       ctx.revert();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
@@ -62,7 +63,7 @@ function CtaSection() {
         ref={contentRef}
         className="relative mx-auto max-w-7xl text-center"
       >
-        <h2 className="heading text-4xl font-light leading-tight tracking-tight sm:text-9xl">
+        <h2 className="heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-light leading-tight tracking-tight">
           نشعل شغفك، نُطلق إبداعك، نُصقل قيادتك.
           <br />
           انضم لجيل يصنع الفارق

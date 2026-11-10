@@ -33,11 +33,11 @@ export default function ContactPage() {
       className="min-h-screen z-10 flex flex-col py-24 overflow-hidden"
     >
       {/* ── Hero ── */}
-      <div className="overflow-x-hidden pt-24 pb-16 px-6 text-center">
+      <div className="overflow-x-hidden pt-24 pb-16 px-6 text-center max-w-5xl mx-auto">
         <p className="inline-flex items-center gap-2 border-2 mb-2 border-black heading bg-secondary px-7 py-1 text-xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
           تواصل معنا
         </p>
-        <h1 className="heading mb-5 rotate-2 text-[3.8rem] font-bold leading-[1.15] tracking-tight text-slate-900 lg:text-[9rem]">
+        <h1 className="heading mb-5 rotate-2 text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] font-bold leading-[1.15] tracking-tight text-slate-900">
           تواصل مع فريق
           <span className="text-primary heading ">  رواد الشباب</span>
         </h1>

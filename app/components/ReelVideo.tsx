@@ -1,65 +1,76 @@
-import React from "react";
-import { useRef } from "react";
+"use client";
+
+import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function ReelVideo() {
-
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
-  useGSAP(() => {
-    if (!titleRef.current) return;
+  // Lazy load video when section is within 300px of viewport
+  useEffect(() => {
+    if (!sectionRef.current) return;
 
-    ScrollTrigger.getAll().forEach((st) => {
-      if (st.trigger && sectionRef.current?.contains(st.trigger)) st.kill();
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: titleRef.current,
-        start: "top 80%",
-        end: "top 30%",
-        scrub: 1.5,
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
       },
-    });
-    tl.fromTo(
-      titleRef.current,
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.5, ease: "power3.out" },
+      { rootMargin: "300px 0px" }
     );
 
-    ScrollTrigger.refresh();
-  }, { scope: sectionRef }
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useGSAP(
+    () => {
+      if (!titleRef.current) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: "top 85%",
+          end: "top 35%",
+          scrub: 1,
+        },
+      });
+
+      tl.fromTo(
+        titleRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: "power2.out" }
+      );
+    },
+    { scope: sectionRef }
   );
 
-
-
-
-
-
-
-
-
   return (
-    <section ref={sectionRef} className="relative w-full h-screen mt-30 mb-30 overflow-hidden px-4 py-20 sm:px-8 lg:px-12">
+    <section
+      ref={sectionRef}
+      className="relative w-full my-20 overflow-hidden px-4 py-16 sm:px-8 lg:px-12"
+    >
       <div className="relative mx-auto max-w-5xl text-center">
-        <span className="inline-flex mb-3 items-center gap-2  border-2 border-black heading bg-secondary px-4 py-1 text-2xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
-            فيديو تعريفي 
+        <span className="inline-flex mb-3 items-center gap-2 border-2 border-black heading bg-secondary px-4 py-1 text-2xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
+          فيديو تعريفي
         </span>
-        <h2 
-        ref={titleRef}
-        className="heading text-5xl font-bold leading-tight text-slate-900 sm:text-8xl">
+        <h2
+          ref={titleRef}
+          className="heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-slate-900"
+        >
           كل ما تحتاج معرفته قبل
-          <span className=" text-primary heading">
-            {" "}
-            الانطلاق معنا
-          </span>
+          <span className="text-primary heading"> الانطلاق معنا</span>
         </h2>
-    
       </div>
 
       <div className="relative mx-auto mt-14 max-w-5xl">
@@ -68,17 +79,26 @@ export default function ReelVideo() {
 
         <div className="relative mx-auto w-[240px] sm:w-[280px]">
           <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_60px_rgba(15,23,42,0.15)]">
-            <div className="relative">
-              <video
-                className="h-[360px] w-full object-cover sm:h-[420px]"
-                controls
-                loop
-                autoPlay
-                playsInline
-              >
-                <source src="/k1.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+            <div className="relative aspect-[9/16] bg-slate-900">
+              {shouldLoadVideo ? (
+                <video
+                  ref={videoRef}
+                  className="h-full w-full object-cover"
+                  controls
+                  loop
+                  muted
+                  autoPlay
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src="/k1.mp4" type="video/mp4" />
+                  متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-white/50 text-sm">
+                  جاري تجهيز الفيديو...
+                </div>
+              )}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-slate-950/60 to-transparent" />
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-white/90 px-4 py-1 text-xs font-semibold text-slate-800">
                 فيديو تعريفي

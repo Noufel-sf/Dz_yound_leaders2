@@ -5,7 +5,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 // ─────────────────────────────────────────────────────────
 // DATA
@@ -107,13 +109,6 @@ export default function Services() {
 
   useGSAP(
     () => {
-      // kill old triggers
-      ScrollTrigger.getAll().forEach((st) => {
-        if (st.trigger && containerRef.current?.contains(st.trigger as Node)) {
-          st.kill();
-        }
-      });
-
       const mm = gsap.matchMedia();
 
       // ─────────────────────────────────────

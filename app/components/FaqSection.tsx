@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
@@ -59,7 +60,7 @@ export default function FaqSection() {
             الأسئلة الشائعة
           </span>
 
-          <h2 className="heading text-5xl z-10 font-bold leading-tight text-slate-900 sm:text-8xl">
+          <h2 className="heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl z-10 font-bold leading-tight text-slate-900">
             كل ما تحتاج معرفته قبل
             <span className=" text-primary heading"> الانطلاق معنا</span>
           </h2>
@@ -93,12 +94,12 @@ export default function FaqSection() {
         {/* Footer note */}
         <p className="mt-8 text-center text-sm leading-relaxed text-slate-500">
           لديك سؤال آخر؟{" "}
-          <a
+          <Link
             href="/contact"
             className="text-primary underline underline-offset-4 transition-opacity hover:opacity-70"
           >
             تواصل معنا مباشرة
-          </a>
+          </Link>
           .
         </p>
       </div>

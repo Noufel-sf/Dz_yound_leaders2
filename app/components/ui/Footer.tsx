@@ -1,13 +1,9 @@
 'use client'
 
-import React, { forwardRef, useRef } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-
-interface FooterProps {
-  onScrollToTop?: () => void
-}
 
 const SOCIAL_LINKS = [
 
@@ -58,7 +54,8 @@ const Footer = () => {
                 className="h-full w-full object-cover"
                 width={500}
                 height={500}
-                priority
+                loading="lazy"
+                sizes="(max-width: 768px) 30vw, 22vw"
               />
             </div>
           </div>
@@ -73,7 +70,7 @@ const Footer = () => {
                  نُؤمن بأن العمل العام يبدأ من الوعي، ولهذا نُكرّس مساحات للتعلم، ومنصات للانطلاق، وتجارب تصنع الأثر.
               </h2>
 
-              <a
+              <Link
                 href="/contact"
                 className="cta-link group relative w-fit font-sans text-xl font-medium text-white transition-colors hover:text-primary md:text-2xl"
               >
@@ -81,7 +78,7 @@ const Footer = () => {
                 {/* Animated Underline */}
                 <span className="absolute -bottom-2 left-0 h-[2px] w-full origin-right scale-x-100 bg-white/30 transition-transform duration-500 ease-out group-hover:origin-left group-hover:scale-x-0"></span>
                 <span className="absolute -bottom-2 left-0 h-[2px] w-full origin-left scale-x-0 bg-primary transition-transform duration-500 ease-out group-hover:scale-x-100"></span>
-              </a>
+              </Link>
             </div>
 
             {/* Nav Links */}

@@ -160,14 +160,14 @@ export default function AboutPage() {
       <section className="relative  overflow-hidden px-4 py-24 sm:px-8 lg:px-12">
         <div className="absolute inset-0 -z-10" />
 
-        <div className="mx-auto  text-center">
-          <div className="mb-6  px-5 py-2.5">
+        <div className="mx-auto max-w-5xl text-center">
+          <div className="mb-6 px-5 py-2.5">
             <span className="inline-flex items-center gap-2 border-2 border-black heading bg-secondary px-4 py-1 text-xl -rotate-3 font-bold text-black shadow-[3px_3px_0_0_#111111]">
               من نحن
             </span>
           </div>
 
-          <h1 className="heading mb-6 rotate-2 text-[3.3rem] font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-[4rem] lg:text-[13rem]">
+          <h1 className="heading mb-6 rotate-2 text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold leading-[1.15] tracking-tight text-slate-900">
             مخيم
             <span className="text-primary heading"> رواد الشباب</span>
           </h1>

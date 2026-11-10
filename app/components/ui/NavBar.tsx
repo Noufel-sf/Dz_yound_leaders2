@@ -11,7 +11,9 @@ import { ScrollToPlugin } from "gsap/all";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+}
 
 const NAV_LINKS = [
   { label: "الر ئيسية", path: "/" },
@@ -88,7 +90,13 @@ export const NavBar = forwardRef<HTMLDivElement, NavBarProps>(
             }}
             className="flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full"
           >
-            <Image src="/logossmall.png" alt="شعار رواد الشباب" width={50} height={50} />
+            <Image
+              src="/logossmall.png"
+              alt="شعار رواد الشباب"
+              width={50}
+              height={50}
+              priority
+            />
             <span className="text-4xl font-sans heading tracking-tight text-primary">
               رواد الشباب
             </span>
@@ -264,22 +272,24 @@ export function useNavbarAnimations({
       ScrollTrigger.config({ ignoreMobileResize: true });
 
       scrollTriggerRef.current?.kill();
+      let lastAtTop = true;
       scrollTriggerRef.current = ScrollTrigger.create({
         start: 0,
         end: "max",
         onUpdate: (self) => {
           if (!navContainerRef.current) return;
-
           if (menuOpen) return;
 
           const isAtTop = self.scroll() < 50;
-
-          gsap.to(navContainerRef.current, {
-            autoAlpha: isAtTop ? 1 : 0,
-            duration: 0.35,
-            ease: "power2.out",
-            overwrite: true,
-          });
+          if (isAtTop !== lastAtTop) {
+            lastAtTop = isAtTop;
+            gsap.to(navContainerRef.current, {
+              autoAlpha: isAtTop ? 1 : 0,
+              duration: 0.3,
+              ease: "power2.out",
+              overwrite: true,
+            });
+          }
         },
       });
 
@@ -339,7 +349,6 @@ export function useNavbarAnimations({
         scrollTriggerRef.current?.kill();
         scrollTriggerRef.current = null;
         mm.revert();
-        ScrollTrigger.getAll().forEach((t) => t.kill());
       };
     },
     {
